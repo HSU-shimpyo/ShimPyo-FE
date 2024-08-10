@@ -27,7 +27,7 @@ export default function Main() {
           <FineDustComponent text={"초미세먼지"} />
         </FineDustComponentContainer>
 
-        {/* 약 복용 & 병원 진료 알림 설정 탭 */}
+        {/* 약 복용 & 병원 진료 알림 설정 */}
         <SettingComponentContainer>
           <SettingComponent text={`약 복용까지 ${time} 남았어요`} img={pill} />
           <SettingComponent text={`병원 진료까지 ${day} 남았어요`} img={stethoscope} />
