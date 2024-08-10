@@ -3,12 +3,12 @@ import styled from 'styled-components/native'
 import {Image} from 'react-native'
 import NextButton from '../../../assets/images/nextbutton.png'
 import { useNavigation } from "@react-navigation/native";
+import 'moment/locale/ko';
 
 export default function SettingComponent({text,img}) {
   const navigation = useNavigation();
 
   const handleNextButtonClick = () => {
-    console.log("img",img)
     img == 4 ? navigation.navigate("MedicineTimeSetting") : navigation.navigate("HospitalTimeSetting")
   }
   return (

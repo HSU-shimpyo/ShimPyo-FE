@@ -23,7 +23,6 @@ export default function ToolBar() {
 const MainLayout = styled.View`
   width: 100%;
   height: 56px;
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

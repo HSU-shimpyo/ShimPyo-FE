@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-export default function StandardButton({ text, marginBottom }) {
+export default function StandardButton({ text, marginBottom, onPress }) {
   return (
-    <StyledButton marginBottom={marginBottom}>
+    <StyledButton marginBottom={marginBottom} onPress={onPress}>
       <ButtonText>{text}</ButtonText>
     </StyledButton>
   );
