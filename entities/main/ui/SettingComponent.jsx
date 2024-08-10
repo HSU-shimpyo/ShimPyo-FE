@@ -8,13 +8,16 @@ export default function SettingComponent({text,img}) {
   const navigation = useNavigation();
 
   const handleNextButtonClick = () => {
-    img == 3 ? navigation.navigate("MedicineTimeSetting") : navigation.navigate("HospitalTimeSetting")
+    console.log("img",img)
+    img == 4 ? navigation.navigate("MedicineTimeSetting") : navigation.navigate("HospitalTimeSetting")
   }
   return (
     <MainLayout>
       <Icon source={img}/>
-      <StyledText onPress={handleNextButtonClick}>{text}</StyledText>
-      <Next source={NextButton}/>
+      <StyledText>{text}</StyledText>
+      <WrapNextButton onPress={handleNextButtonClick}>
+        <Next source={NextButton}/>
+      </WrapNextButton>
     </MainLayout>
   )
 }
@@ -47,3 +50,6 @@ width : 16.75px;
 height : 16px;
 `;
 
+const WrapNextButton = styled.TouchableOpacity`
+
+`;
