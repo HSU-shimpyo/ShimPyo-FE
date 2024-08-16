@@ -73,3 +73,4 @@ const SettingComponentContainer = styled.View`
   position: relative;
   bottom: 3%;
 `;
+
