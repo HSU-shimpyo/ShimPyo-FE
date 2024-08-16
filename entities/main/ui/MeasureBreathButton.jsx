@@ -2,14 +2,16 @@ import React from 'react'
 import styled from 'styled-components/native'
 import icon from '../../../assets/images/icon_ver1.png'
 import toucharrow from '../../../assets/images/toucharrow.png'
+import circle from '../../../assets/images/circle.png'
 export default function MeasureBreathButton() {
   return (
     <MainLayout>
-      <ArrowImage source={toucharrow}/>
-      <CircleLayout>
-          <IconImg source={icon}/>
-      </CircleLayout>
-        <StyledText>오늘도 쉬어볼까요?</StyledText>
+      <Wrap>
+        <ArrowImage source={toucharrow}/>
+        <CircleImg source={circle}/>
+        <IconImg source={icon}/>
+      </Wrap>
+      <StyledText>오늘도 쉬어볼까요?</StyledText>
     </MainLayout>
   )
 }
@@ -20,7 +22,7 @@ height : 322px;
 background-color : #fff;
 border-radius : 32px;
 display : flex;
-justify-content : center;
+justify-content : space-between;
 align-items : center;
 position : relative;
 bottom : 8%;
@@ -30,34 +32,38 @@ shadow-opacity: 0.44;
 shadow-radius: 44px;
 elevation: 5; 
 `;
-const CircleLayout = styled.View`
-width : 200px;
-height : 200px;
-background-color : #f1f1f5;
-border-radius : 100px;
-display : flex;
+const Wrap = styled.View`
+width : 100%;
+height : 80%;
 justify-content : center;
 align-items : center;
-position : relative;
-bottom : 8%; 
+`;
+const CircleImg = styled.Image`
+width : 200px;
+height : 200px;
+margin-bottom : 10%;
 `;
 const IconImg = styled.Image`
 width : 150px;
 height : 150px;
+position : absolute;
+left : 27%;
+top : 23%;
 `;
 const ArrowImage = styled.Image`
 width : 43.33;
 height : 44;
 position : relative;
-right : 38%;
-top : 8%;
+right  : 38%;
+top : 15%;
 `;
 
 const StyledText = styled.Text`
 color : #505050;
 font-size : 24px;
 font-weight: 600;
-line-height: 34px;
-letter-spacing: -0.6px;
-margin-bottom : 6%;
+width : 100%;
+height : 20%;
+text-align : center;
+padding-top : 3%;
 `;
