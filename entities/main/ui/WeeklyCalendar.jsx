@@ -104,7 +104,7 @@ const Tile = styled.TouchableOpacity`
 const WeekText = styled.Text`
   color: ${({ selectedWeekColor }) => selectedWeekColor};
   font-size : 12px;
-  font-weight : ${({ selectedFontWeight }) => selectedFontWeight};;
+  font-weight : ${({ selectedFontWeight }) => selectedFontWeight};
 `;
 
 const DayText = styled.Text`

@@ -1,26 +1,33 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-export default function StandardButton({ text, marginBottom, onPress }) {
+export default function StandardButton({ text, marginBottom, onPress, backgroundColor, width, height , borderRadius, color, fontSize}) {
   return (
-    <StyledButton marginBottom={marginBottom} onPress={onPress}>
-      <ButtonText>{text}</ButtonText>
+    <StyledButton 
+      marginBottom={marginBottom} 
+      onPress={onPress} 
+      backgroundColor={backgroundColor}
+      width={width}
+      height={height}
+      borderRadius={borderRadius}
+      >
+      <ButtonText color={color} fontSize={fontSize}>{text}</ButtonText>
     </StyledButton>
   );
 }
 
 const StyledButton = styled.TouchableOpacity`
-  background-color: #3C63EC;
-  width: 320px;
-  height: 52px;
+  background-color: ${({ backgroundColor }) => backgroundColor || '#3C63EC'};
+  width: ${({ width }) => width || '320px'};
+  height: ${({ height }) => height || '52px'};
   padding: 16px 14px;
-  border-radius: 12px;
+  border-radius: ${({ borderRadius }) => borderRadius || '12px'};
   align-items: center;
   margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
 `;
 
 const ButtonText = styled.Text`
-  color: white;
-  font-size: 16px;
+  color: ${({ color }) => color || '#fff'};
+  font-size: ${({fontSize}) => fontSize || '16px'};
   font-weight: 600;
 `;

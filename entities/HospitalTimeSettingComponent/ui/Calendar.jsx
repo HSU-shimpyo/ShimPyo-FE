@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
 import 'moment/locale/ko';
+import EventSettingModal from './HospitalSearchModal';
 
-export default function Calendar({display}) {
+export default function Calendar({display, setIsDayClick}) {
   useEffect(() => {
     moment.locale('ko');
   }, []);
@@ -22,8 +23,14 @@ export default function Calendar({display}) {
     );
   }
 
+  const handledDayClick = () => {
+    setIsDayClick(true);
+  };
+
   return (
-    <CalendarContainer display={display}>
+    <MainLayout>
+
+      <CalendarContainer display={display}>
 
       {/* 요일 */}
       <WeekDaysContainer>
@@ -42,7 +49,7 @@ export default function Calendar({display}) {
             bottomLine={weekIndex === calendar.length - 1 ? '#fff' :  '#E5E5EC' }
             >
           {week.map((date, dayIndex) => (
-            <DayContainer key={dayIndex}>
+            <DayContainer key={dayIndex} onPress={handledDayClick}>
               <DayNumber>{date.format('D')}</DayNumber>
             </DayContainer>
           ))}
@@ -50,9 +57,13 @@ export default function Calendar({display}) {
 
       ))}
 
-    </CalendarContainer>
+      </CalendarContainer>
+
+    </MainLayout>
   );
 }
+
+const MainLayout = styled.View``;
 
 const CalendarContainer = styled.View`
   flex-direction: column;
@@ -98,7 +109,7 @@ const WeekRow = styled.View`
   border-bottom-color: ${({ bottomLine }) => bottomLine || '#E5E5EC'};
 `;
 
-const DayContainer = styled.View`
+const DayContainer = styled.TouchableOpacity`
   align-items: center;
   width : 40px;
   height : 58px;
