@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HospitalTimeSetting from './pages/HospitalTimeSetting';
 import MedicineTimeSetting from './pages/MedicineTimeSetting';
+import ChangeMedicine from './pages/ChangeMedicine';
+import MedicineComplete from './pages/MedicineComplete';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -25,6 +27,16 @@ export default function App() {
         <Stack.Screen 
           name="HospitalTimeSetting" 
           component={HospitalTimeSetting}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="ChangeMedicine" 
+          component={ChangeMedicine}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+          <Stack.Screen 
+          name="MedicineComplete" 
+          component={MedicineComplete}
           options={{ headerShown: false }} //탭바 안보이게
         />
       </Stack.Navigator>
