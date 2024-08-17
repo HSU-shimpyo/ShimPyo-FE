@@ -16,12 +16,12 @@ export default function WhenMedicineText() {
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 56px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   margin-top: 48px;
   margin-left:16px; 
+  margin-bottom:32px;
 `;
 
 const StyledText = styled.Text`

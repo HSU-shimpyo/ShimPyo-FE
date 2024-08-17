@@ -1,3 +1,4 @@
+//현재 약 복용 시간 페이지
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import {View, Text} from 'react-native' 

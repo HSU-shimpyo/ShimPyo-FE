@@ -1,3 +1,4 @@
+//약 복용 수정하기(전체 페이지)
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import {View, Text} from 'react-native' 
@@ -5,7 +6,7 @@ import ToolBar_x from '../entities/MedicineTimeSettingComponent/ui/Toolbar_x';
 import WhenMedicineText from '../entities/ChangeMedicineComponent/ui/WhenMedicineText';
 import { useNavigation } from '@react-navigation/native';
 import EatingTimeButton from '../entities/MedicineTimeSettingComponent/ui/EatingTimeButton';
-import MealButton from '../entities/MedicineTimeSettingComponent/ui/MealButton';
+import MinuteButton from '../entities/ChangeMedicineComponent/ui/MinuteButton';
 import ChangeTimeButton from '../entities/ChangeMedicineComponent/ui/ChangeTimeButton';
 import ChangeTimeButtonChangeTimeButton from '../entities/MedicineTimeSettingComponent/ui/ChangeTimeButton';
 import StandardButton from '../shared/component/StandardButton';
@@ -32,7 +33,7 @@ export default function ChangeMedicine() {
           {/* 식전 식후 버튼  */}
           {!isComplete && <WhenEatingTimeButton/>}
           {/* 아침, 점심, 저녁 버튼 */}
-          {!isComplete && <MealButton/>}
+          {!isComplete && <MinuteButton/>}
           {/* 재설정하기 버튼 */}
           {!isComplete && <ChangeTimeButton/>}
 
