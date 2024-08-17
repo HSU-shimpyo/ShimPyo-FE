@@ -1,3 +1,4 @@
+//약은 언제 드시나요? 텍스트 
 import React from 'react'
 import styled from 'styled-components/native'
 import { useNavigation } from "@react-navigation/native";
