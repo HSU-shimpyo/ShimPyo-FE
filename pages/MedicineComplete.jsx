@@ -1,3 +1,4 @@
+//약 복용 완료 페이지
 import React from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';

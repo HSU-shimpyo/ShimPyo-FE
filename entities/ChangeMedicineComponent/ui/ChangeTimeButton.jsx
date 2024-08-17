@@ -1,3 +1,4 @@
+//맨 아래에 있는 재설정하기 버튼
 import React from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
@@ -36,11 +37,13 @@ const ButtonContainer = styled.View`
 const StyledButton = styled.TouchableOpacity`
   display: flex;
   width: 327px;
+  height:52px;
   justify-content: center;
   align-items: center;
   gap: 10px;
   border-radius: 12px;
   background: #3c63ec;
+  margin-top:5px;
 `;
 
 const ButtonText = styled.Text`

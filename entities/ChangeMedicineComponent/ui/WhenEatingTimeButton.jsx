@@ -1,3 +1,4 @@
+//식전 & 식후 버튼
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
@@ -38,8 +39,8 @@ const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 327px;
-  height: 110px;
-  margin-top: -100px;
+  height: 100%;
+  margin-button:32px;
 `;
 
 const StyledButton = styled.TouchableOpacity`
