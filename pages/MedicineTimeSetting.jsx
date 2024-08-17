@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import {View, Text} from 'react-native' 
-import ToolBar_x from '../entities/MedicineTimeSettingComponent/ui/Toolbar_x';
-// import ToolBar from '../entities/MedicineTimeSettingComponent/ui/Toolbar';
+// import ToolBar_x from '../entities/MedicineTimeSettingComponent/ui/Toolbar_x';
+import ToolBar from '../entities/MedicineTimeSettingComponent/ui/Toolbar';
+import MedicineText from '../entities/MedicineTimeSettingComponent/ui/MedicineText';
 import { useNavigation } from '@react-navigation/native';
+import EatingTimeButton from '../entities/MedicineTimeSettingComponent/ui/EatingTimeButton';
+import MealButton from '../entities/MedicineTimeSettingComponent/ui/MealButton';
+import ChangeTimeButton from '../entities/MedicineTimeSettingComponent/ui/ChangeTimeButton';
+import ChangeTimeButtonChangeTimeButton from '../entities/MedicineTimeSettingComponent/ui/ChangeTimeButton';
 export default function MedicineTimeSetting() {
   // return (
   //   <MainLayout>
@@ -22,7 +27,17 @@ export default function MedicineTimeSetting() {
   }
   return(
     <MainLayout>
-            {!isComplete && <ToolBar_x/>}
+          {/* 툴바 */}
+            {!isComplete && <ToolBar/>}
+          {/* 텍스트 */}
+          {!isComplete && <MedicineText/>}
+          {/* 식전 식후 버튼  */}
+          {!isComplete && <EatingTimeButton/>}
+          {/* 아침, 점심, 저녁 버튼 */}
+          {!isComplete && <MealButton/>}
+          {/* 재설정하기 버튼 */}
+          {!isComplete && <ChangeTimeButton/>}
+
 
     </MainLayout>
   );

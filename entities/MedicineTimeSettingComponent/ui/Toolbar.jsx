@@ -33,7 +33,7 @@ const MainLayout = styled.View`
 `;
 
 const StyledText = styled.Text`
-    margin-right:140px;
+    margin-right:158px;
     overflow: hidden;
     color: var(--Font-02_black, #111);
     text-align: center;
