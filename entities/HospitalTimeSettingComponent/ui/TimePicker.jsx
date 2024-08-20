@@ -10,14 +10,14 @@ export default function TimePicker({setIsTimeSettingComplete}) {
   const [hours, setHours] = useState([]);
   const [minutes, setMinutes] = useState([]);
   useEffect(() => {
-    const hoursArray = [];
-    const minutesArray = [];
+    const hoursArray = []; //시간 담는 배열
+    const minutesArray = []; //분 담는 배열 
     
-    for (let i = 1; i <= 12; i++) {
-      hoursArray.push(i.toString());
+    for (let i = 1; i <= 12; i++) { //1시~12시 시간을 반복문을 이용하여 hoursArray 배열에 담음
+      hoursArray.push(i.toString()); 
     }
 
-    for (let i = 0; i < 60; i++) {
+    for (let i = 0; i < 60; i++) { //0분~59분 반복문을 이용하여 minutesArray 배열에 담음
         i<10 ? 
         minutesArray.push('0'+ i) :
         minutesArray.push(i.toString());
@@ -54,11 +54,13 @@ export default function TimePicker({setIsTimeSettingComplete}) {
 
         {/* 오전/오후 선택 */}
       <TimeZoneSelectScrollView>
-        {timeZone.map((item, index) => (
+
+        {/* 오전,오후를 담은 배열을 map 반복문을 이용하여 찍어냄 -> item : 오전/오후 , index : 배열 인덱스*/}
+        {timeZone.map((item, index) => ( 
           <TimeZoneButton 
             key={index} 
-            onPress={()=>selectedTimeZone(index)} 
-            isFocused={isTimeZoneFocus === index}
+            onPress={()=>selectedTimeZone(index)}  //오전,오후 선택
+            isFocused={isTimeZoneFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
             activeOpacity={1} 
           >
             <TimeZoneText isFocused={isTimeZoneFocus === index}>{item}</TimeZoneText>
@@ -71,9 +73,9 @@ export default function TimePicker({setIsTimeSettingComplete}) {
         {hours.map((item,index) => (
             <TimeButton 
                 key={index} 
-                onPress={() => selectedHours(index)} 
-                isFocused={isHoursFocus === index}
-                activeOpacity={1} 
+                onPress={() => selectedHours(index)} //시간 선택 
+                isFocused={isHoursFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
+                activeOpacity={1} //TouchableOpacity 클릭시 기본 반짝임 효과 없애기
             >
             <TimeText isFocused={isHoursFocus === index}>{item}</TimeText>
             </TimeButton>
@@ -85,9 +87,9 @@ export default function TimePicker({setIsTimeSettingComplete}) {
          {minutes.map((item,index) => (
             <TimeButton 
                 key={index} 
-                onPress={() => selectedMinute(index)}
-                isFocused={isMinuteFocus === index}
-                activeOpacity={1} 
+                onPress={() => selectedMinute(index)} //분 선택
+                isFocused={isMinuteFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isMinuteFocus -> true 
+                activeOpacity={1} //TouchableOpacity 클릭시 기본 반짝임 효과 없애기
             >
             <TimeText isFocused={isMinuteFocus === index}>{item}</TimeText>
             </TimeButton>
@@ -124,7 +126,7 @@ background-color: #F7F7FB;
 
 const TimeZoneButton = styled(TouchableOpacity)`
   padding: 10px 20px;
-  background-color: ${({ isFocused }) => (isFocused ? '#3C63EC' : '#F7F7FB')};
+  background-color: ${({ isFocused }) => (isFocused ? '#3C63EC' : '#F7F7FB')}; 
   border-radius: 24px;
   width: 66px;
   height: 48px;
