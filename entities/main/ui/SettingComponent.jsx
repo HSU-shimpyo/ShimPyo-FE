@@ -5,11 +5,11 @@ import NextButton from '../../../assets/images/nextbutton.png'
 import { useNavigation } from "@react-navigation/native";
 import 'moment/locale/ko';
 
-export default function SettingComponent({text,img}) {
+export default function SettingComponent({text,img,part}) {
   const navigation = useNavigation();
 
   const handleNextButtonClick = () => {
-    img == 4 ? navigation.navigate("MedicineTimeSetting") : navigation.navigate("HospitalTimeSetting")
+    part == "pill" ? navigation.navigate("MedicineTimeSetting") : navigation.navigate("HospitalTimeSetting")
   }
   return (
     <MainLayout>

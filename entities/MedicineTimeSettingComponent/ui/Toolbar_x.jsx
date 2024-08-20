@@ -40,7 +40,6 @@ const StyledText = styled.Text`
 
 const CloseButtonWrapper = styled.TouchableOpacity`
   margin-right: 24px;
-
 `;
 
 const CloseButton = styled.Image`
