@@ -32,7 +32,7 @@ export default function ChangeMedicine() {
           {!isComplete && <WhenMedicineText/>}
           {/* 식전 식후 버튼  */}
           {!isComplete && <WhenEatingTimeButton/>}
-          {/* 아침, 점심, 저녁 버튼 */}
+          {/*곧바로 , 30분, 1시간, 2시간 버튼 */}
           {!isComplete && <MinuteButton/>}
           {/* 재설정하기 버튼 */}
           {!isComplete && <ChangeTimeButton/>}
