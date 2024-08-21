@@ -11,6 +11,7 @@ import MedicineTimeSetting from './pages/MedicineTimeSetting';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
 
+import BreathMeasure from './pages/BreathMeasure';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -71,6 +72,11 @@ export default function App() {
           component={FirstSplash}
           options={{ headerShown: false }} //탭바 안보이게
         /> */}
+          <Stack.Screen 
+          name="BreathMeasure" 
+          component={BreathMeasure}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

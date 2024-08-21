@@ -3,9 +3,16 @@ import styled from 'styled-components/native'
 import icon from '../../../assets/images/icon_ver1.png'
 import toucharrow from '../../../assets/images/toucharrow.png'
 import circle from '../../../assets/images/circle.png'
+import { useNavigation } from '@react-navigation/native';
+
 export default function MeasureBreathButton() {
+  const navigation = useNavigation();
+
+  const clickButton = () => {
+    navigation.navigate("BreathMeasure")
+  }
   return (
-    <MainLayout>
+    <MainLayout onPress={clickButton}>
       <Wrap>
         <ArrowImage source={toucharrow}/>
         <CircleImg source={circle}/>
@@ -16,7 +23,7 @@ export default function MeasureBreathButton() {
   )
 }
 
-const MainLayout = styled.View`
+const MainLayout = styled.TouchableOpacity`
 width : 335px;
 height : 322px;
 background-color : #fff;
