@@ -3,7 +3,7 @@ import { View, StyleSheet, Button } from 'react-native';
 import { Audio } from 'expo-av';
 import PlayAudio from './PlayAudio';
 
-export default function App() {
+export default function AudioRecord() {
   const [recording, setRecording] = useState();
   const [permissionResponse, requestPermission] = Audio.usePermissions();
   const [audioFile, setAudioFile] = useState();

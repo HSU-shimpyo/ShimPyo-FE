@@ -9,10 +9,10 @@ export default function MeasureBreathButton() {
   const navigation = useNavigation();
 
   const clickButton = () => {
-    navigation.navigate("BreathMeasure")
+    navigation.navigate("TodaysShim")
   }
   return (
-    <MainLayout onPress={clickButton}>
+    <MainLayout onPress={clickButton} activeOpacity={1}>
       <Wrap>
         <ArrowImage source={toucharrow}/>
         <CircleImg source={circle}/>

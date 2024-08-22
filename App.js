@@ -6,7 +6,7 @@ import HospitalTimeSetting from './pages/HospitalTimeSetting';
 import MedicineTimeSetting from './pages/MedicineTimeSetting';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
-import BreathMeasure from './pages/BreathMeasure';
+import TodaysShim from './pages/TodaysShim';
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -41,8 +41,8 @@ export default function App() {
           options={{ headerShown: false }} //탭바 안보이게
         />
           <Stack.Screen 
-          name="BreathMeasure" 
-          component={BreathMeasure}
+          name="TodaysShim" 
+          component={TodaysShim}
           options={{ headerShown: false }} //탭바 안보이게
         />
       </Stack.Navigator>
