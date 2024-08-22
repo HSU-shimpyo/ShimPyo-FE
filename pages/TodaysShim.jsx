@@ -17,7 +17,7 @@ export default function TodaysShim() {
         <ToolBar page={isResult===true ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
 
         {/* 숨 측정 */}
-        {!isComplete && !isResult &&  <BreathNow setIsComplete={setIsComplete}/> }
+        {!isResult && <BreathNow setIsComplete={setIsComplete}/> }
        
         {/* 로딩중 */}
         {isComplete &&  !isResult && <Loading setIsResult={setIsResult}/>}
