@@ -18,8 +18,9 @@ export default function SettingComponent({value,type}) {
 
   return (
     <MainLayout onPress={handleNextButtonClick} activeOpacity={1}>
-      <Wrap>
 
+      {/* 아이콘과 텍스트 */}
+      <Wrap>
         <Icon source={type==="pill" ? pill : stethoscope}/> 
 
         {
@@ -28,9 +29,9 @@ export default function SettingComponent({value,type}) {
           :
           <StyledText>병원 진료까지 <BoldText>{value}일</BoldText> 남았어요</StyledText>
         }
-      
       </Wrap>
       
+      {/* 버튼 */}
       <Next source={NextButton}/>
 
     </MainLayout>

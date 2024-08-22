@@ -70,18 +70,22 @@ export default function FineDustComponent({value,text}) {
   return (
     <MainLayout>
 
+        {/* 이모지 */}
         <Emoji source={emoji}/>
 
+        {/* 상태 Progress Bar */}
         <ProgressBar>
           <ColorField color={color} percentage={percentage}/>
           <NonColorField percentage={100-percentage}/> 
         </ProgressBar>
 
+        {/* 상태( 좋음 / 보통 / 나쁨 / 심각 )와 수치 */}
         <ValueSection>
           <DustText color={color}>{status}</DustText> 
           <DustText color="#111" letterSpacing="-0.45px">({value}㎍/㎥)</DustText>
         </ValueSection>
 
+        {/* 미세먼지 / 초미세먼지 */}
         <DustText fontSize="14px" letterSpacing="-0.35px">{text}</DustText> 
 
     </MainLayout>

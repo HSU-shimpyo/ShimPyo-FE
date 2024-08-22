@@ -11,8 +11,10 @@ export default function SettingComponentSection() {
 
   return (
     <MainLayout>
+
         <SettingComponent type="pill" value={pill} />
         <SettingComponent type="hospital" value={hospital} />
+        
     </MainLayout>
   )
 }

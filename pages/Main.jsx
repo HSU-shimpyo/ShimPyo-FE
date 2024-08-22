@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import styled from "styled-components/native";
-import MeasureBreathButton from '../entities/main/ui/MeasureBreathButton';
-import WeeklyCalendar from '../entities/main/ui/WeeklyCalendar';
-import FineDustSection from '../entities/main/ui/FineDustSection';
-import SettingComponent from '../entities/main/ui/SettingComponent';
-import SettingComponentSection from '../entities/main/ui/SettingComponentSection';
+import MeasureBreathButton from '../entities/Main/ui/MeasureBreathButton';
+import WeeklyCalendar from '../entities/Main/ui/WeeklyCalendar';
+import FineDustSection from '../entities/Main/ui/FineDustSection';
+import SettingComponentSection from '../entities/Main/ui/SettingComponentSection';
 
 export default function Main() {
   return (
