@@ -31,6 +31,7 @@ export default function Main() {
 const ScrollContainer = styled.ScrollView`
   flex: 1;
   width: 100%;
+  background-color: #f7f7fb;
 `;
 
 const MainLayout = styled.View`

@@ -6,8 +6,8 @@ import SettingComponent from './SettingComponent';
 
 export default function SettingComponentSection() {
 
-  const [pill,setPill] = useState(5)
-  const [hospital,setHospital] = useState(30)
+  const [pill,setPill] = useState(30)
+  const [hospital,setHospital] = useState(5)
 
   return (
     <MainLayout>

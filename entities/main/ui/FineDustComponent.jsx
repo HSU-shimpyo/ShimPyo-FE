@@ -79,10 +79,10 @@ export default function FineDustComponent({value,text}) {
 
         <ValueSection>
           <DustText color={color}>{status}</DustText> 
-          <DustText color="#111" >({value}㎍/㎥)</DustText>
+          <DustText color="#111" letterSpacing="-0.45px">({value}㎍/㎥)</DustText>
         </ValueSection>
 
-        <DustText fontSize="14px">{text}</DustText> 
+        <DustText fontSize="14px" letterSpacing="-0.35px">{text}</DustText> 
 
     </MainLayout>
   )
@@ -129,4 +129,5 @@ const DustText = styled.Text`
 color : ${({ color }) => color || '#777'};
 font-size : ${({ fontSize }) => fontSize || '20px'};
 font-weight : 600;
+letter-spacing:  ${({ letterSpacing }) => letterSpacing || '-0.5px'};
 `;

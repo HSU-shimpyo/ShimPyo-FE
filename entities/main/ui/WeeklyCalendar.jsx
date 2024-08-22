@@ -62,7 +62,7 @@ export default function WeeklyCalendar() {
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 236px;
+  height: 246px;
   padding-right: 5%;
   padding-left: 5%;
   border-radius: 0px 0px 32px 32px;
