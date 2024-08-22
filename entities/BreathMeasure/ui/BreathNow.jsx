@@ -1,86 +1,111 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import styled from 'styled-components';
 import icon from '../../../assets/images/icon_ver2.png';
-import { Animated, Easing } from 'react-native';  // Easing 추가
+import { AnimatedCircularProgress } from 'react-native-circular-progress';
+import { Animated, Easing } from 'react-native';
+
+
 
 export default function BreathNow() {
-  const spinValue = useRef(new Animated.Value(0)).current;
+  const [fill,setFile] = useState(0);
+  const [count, setCount] = useState(0);
+  const [text,setText] = useState("후! 불어주세요")
 
-  useEffect(() => {
-    Animated.loop(
-      Animated.timing(spinValue, {
-        toValue: 1,
-        duration: 1000, // 1초 동안 360도 회전
-        easing: Easing.linear, // 올바르게 Easing.linear 사용
-        useNativeDriver: true,
-      })
-    ).start();
-  }, [spinValue]); 
+  const clickButton = () => {
+    setFile(fill+35);
+    setCount(count+1);
+  }
 
-  // 회전 애니메이션 설정
-  const spin = spinValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '360deg'],
-  });
-
+  useEffect(()=>{
+    switch(count) {
+      case 1 : 
+        setText("후! 불어주세요");
+        break;
+      case 2 :
+        setText("한 번 더 힘차게!");
+        break;
+      case 3 : 
+        setText("마지막으로 한 번 더!");
+        break;
+    }
+  },[count])
   return (
     <MainLayout>
-      <Animated.View style={[animatedStyle]}>
-        <Icon source={icon} />
-      </Animated.View>
 
-      <Count>1/3</Count>
+      <AnimatedCircularProgress
+        size={200}
+        width={10}
+        fill={fill}
+        tintColor="#BEEAF1"
+        backgroundColor="#E5E5EC"
+        rotation={0}
+        duration={1000}
+        tintColorSecondary="#3776CB"
+        lineCap = "round" //진행바 끝부분 변경 가능 butt, round, square
+        />
 
-      <StyledText fontSize="24px">후! 불어주세요</StyledText>
+      <WrapIcon onPress={clickButton} activeOpacity={1}>
+        <Icon source={icon}/>  
+      </WrapIcon>
+
+      <Count marginTop="32px" marginBottom="40px"><Count fontSize="40px" color="#3776CB" fontWeight='600'>{count}</Count> / 3</Count>
+
+      <StyledText fontSize="24px" marginBottom="12px">{text}</StyledText>
+
       <StyledText
         fontSize="14px"
-        width="115px"
+        width="110px"
         height="40px"
         color="#767676"
-        marginBottom="10%">
+        letterSpacing="-0.25px"
+        >
         마이크와의 거리를 적당히 유지해주세요
       </StyledText>
+
     </MainLayout>
   );
 }
 
 const MainLayout = styled.View`
-  width: 100%;
-  height: 50%;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  margin-top: 15%;
-  margin-bottom: 415px;
+width: 100%;
+height: 50%;
+flex-direction: column;
+align-items: center;
+justify-content: space-between;
+margin-top: 17%;
+margin-bottom: 415px;
 `;
 
-const animatedStyle = {
-  width: 200,
-  height: 200,
-  borderWidth: 8,
-  borderColor: "#E5E5EC",
-  borderRadius: 100,
-  justifyContent: 'center',
-  alignItems: 'center',
-};
-
+const WrapIcon = styled.TouchableOpacity`
+width: 140px;
+height: 140px;
+position : absolute;
+top : 9%;
+`;
 const Icon = styled.Image`
-  width: 140px;
-  height: 140px;
+width: 140px;
+height: 140px;
 `;
 
 const Count = styled.Text`
-  font-size: 20px;
-  color: #111;
-  margin-bottom: 20px;
+color: ${({ color }) => color || '#767676'};
+text-align: center;
+font-family: Pretendard;
+font-size: ${({ fontSize }) => fontSize || '18px'};
+font-style: normal;
+font-weight: ${({ fontWeight }) => fontWeight || '400'};
+letter-spacing: -1.1px;
+margin-top: ${({ marginTop }) => marginTop || '0px'};
+margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
 `;
 
 const StyledText = styled.Text`
-  font-size: ${({ fontSize }) => fontSize || '16px'};
-  font-weight: 400;
-  text-align: center;
-  color: ${({ color }) => color || '#111'};
-  margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
-  ${({ width }) => width && `width: ${width};`}
-  ${({ height }) => height && `height: ${height};`}
+font-size: ${({ fontSize }) => fontSize || '16px'};
+font-weight: 400;
+text-align: center;
+letter-spacing: ${({ letterSpacing }) => letterSpacing || '-0.6px'};
+color: ${({ color }) => color || '#111'};
+margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
+${({ width }) => width && `width: ${width};`}
+${({ height }) => height && `height: ${height};`}
 `;
