@@ -14,7 +14,7 @@ export default function TodaysShim() {
         <ToolBar page={"오늘의 쉼"} marginLeft={"40%"}/>
 
         {/* 숨 측정 */}
-        <BreathNow/>
+        <BreathNow setIsComplete={setIsComplete}/>
 
         {/* 로딩중 */}
         {isComplete && <Loading/>}
