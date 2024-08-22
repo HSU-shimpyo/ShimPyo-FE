@@ -84,7 +84,8 @@ const WrapIcon = styled.TouchableOpacity`
   width: 140px;
   height: 140px;
   position: absolute;
-  top: 9%;
+  top: 7.5%;
+  left : 32%;
 `;
 const Icon = styled.Image`
   width: 140px;
