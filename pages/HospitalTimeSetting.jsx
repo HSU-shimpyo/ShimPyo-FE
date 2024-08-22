@@ -34,7 +34,7 @@ export default function HospitalTimeSetting() {
     <MainLayout>
 
       {/* 툴바 */}
-      {!isComplete && <ToolBar page={"병원 일정 설정"} marginLeft={"35%"}/>}
+      {!isComplete && <ToolBar page={"병원 일정 설정"}/>}
 
       {/* 캘린더 */}
       {!isComplete && <Calendar  setIsDayClick={setIsDayClick}/>}
