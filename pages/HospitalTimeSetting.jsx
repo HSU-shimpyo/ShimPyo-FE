@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import ToolBar from '../entities/HospitalTimeSettingComponent/ui/ToolBar';
+import ToolBar from '../shared/component/ToolBar';
 import StandardButton from '../shared/component/StandardButton';
 import Calendar from '../entities/HospitalTimeSettingComponent/ui/Calendar';
 import Complete from '../entities/HospitalTimeSettingComponent/ui/Complete';
@@ -34,7 +34,7 @@ export default function HospitalTimeSetting() {
     <MainLayout>
 
       {/* 툴바 */}
-      {!isComplete && <ToolBar/>}
+      {!isComplete && <ToolBar page={"병원 일정 설정"} marginLeft={"35%"}/>}
 
       {/* 캘린더 */}
       {!isComplete && <Calendar  setIsDayClick={setIsDayClick}/>}

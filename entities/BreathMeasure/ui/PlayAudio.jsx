@@ -8,7 +8,6 @@ export default function PlayAudio({ file }) {
   async function playSound() {
     console.log('Loading Sound');
     
-    // file이 로컬 파일 경로가 아닌 경우, URI를 사용하여 소리를 로드합니다.
     const { sound } = await Audio.Sound.createAsync({ uri: file });
     setSound(sound);
 
