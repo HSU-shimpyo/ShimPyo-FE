@@ -5,20 +5,26 @@ import PlayAudio from '../entities/BreathMeasure/ui/PlayAudio'
 import ToolBar from '../shared/component/ToolBar';
 import BreathNow from '../entities/BreathMeasure/ui/BreathNow';
 import Loading from '../entities/BreathMeasure/ui/Loading';
+import Result from '../entities/BreathMeasure/ui/Result';
 
 export default function TodaysShim() {
   const [isComplete, setIsComplete] = useState(false)
+  const [isResult, setIsResult] = useState(false)
   return (
     <MainLayout>
+
         {/* 툴바 */}
-        <ToolBar page={"오늘의 쉼"} marginLeft={"40%"}/>
+        <ToolBar page={isResult===true ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
 
         {/* 숨 측정 */}
-        <BreathNow setIsComplete={setIsComplete}/>
-
+        {!isComplete && !isResult &&  <BreathNow setIsComplete={setIsComplete}/> }
+       
         {/* 로딩중 */}
-        {isComplete && <Loading/>}
+        {isComplete &&  !isResult && <Loading setIsResult={setIsResult}/>}
 
+        {/* 결과 */}
+        {isComplete && isResult &&  <Result/> }
+       
     </MainLayout>
   );
 

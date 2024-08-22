@@ -4,7 +4,7 @@ import { BlurView } from 'expo-blur';
 import sandglass from '../../../assets/images/sandglass.png';
 import { Animated, Easing } from 'react-native';
 
-export default function Loading() {
+export default function Loading({setIsResult}) {
   const spinValue = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -26,9 +26,13 @@ export default function Loading() {
         }),
       ])
     ).start();
+
+    setTimeout(()=>{
+        setIsResult(true)
+    },5000)
   }, [spinValue]);
 
-  // 회전 애니메이션 설정
+  //회전
   const spin = spinValue.interpolate({
     inputRange: [0, 0.5, 1],
     outputRange: ['0deg', '180deg', '360deg'],
@@ -36,13 +40,17 @@ export default function Loading() {
 
   return (
     <MainLayout intensity={15}>
+
       <Animated.View style={[animatedStyle, { transform: [{ rotate: spin }] }]}>
         <Icon source={sandglass} />
       </Animated.View>
+
       <StyledText fontWeight="600" fontSize="20px" letterSpacing="-0.5px" marginBottom="4px">
         잠시만 기다려주세요
       </StyledText>
+
       <StyledText marginBottom="10%;">측정 결과를 추출하는 중입니다</StyledText>
+
     </MainLayout>
   );
 }
