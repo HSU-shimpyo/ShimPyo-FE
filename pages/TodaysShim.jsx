@@ -10,6 +10,7 @@ import Result from '../entities/TodaysShim/ui/Result';
 export default function TodaysShim() {
   const [isComplete, setIsComplete] = useState(false)
   const [isResult, setIsResult] = useState(false)
+  const [audioFileArray, setAudioFileArray] = useState([]);  //녹음 파일 URI를 저장할 배열
   return (
     <MainLayout>
 
@@ -17,7 +18,7 @@ export default function TodaysShim() {
         <ToolBar page={isResult===true ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
 
         {/* 숨 측정 */}
-        {!isResult && <BreathNow setIsComplete={setIsComplete}/> }
+        {!isResult && <BreathNow setIsComplete={setIsComplete} setAudioFileArray={setAudioFileArray}/> }
        
         {/* 로딩중 */}
         {isComplete &&  !isResult && <Loading setIsResult={setIsResult}/>}
