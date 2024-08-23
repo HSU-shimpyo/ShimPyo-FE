@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {View} from 'react-native'
+import {View, Button} from 'react-native'
 import DetailGraph from './Graph';
 import TitleSection from './TitleSection';
+import { Audio } from 'expo-av';
+
 
 export default function Result() {
   return (
