@@ -14,7 +14,6 @@ import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
 import TodaysShim from './pages/TodaysShim';
 import NavigationBar from './shared/component/NavigationBar';
-
 const Stack = createStackNavigator();
 
 function MainScreenWithNavBar() {
@@ -46,6 +45,16 @@ function App() {
          <Stack.Screen 
           name="SignUp" 
           component={SignUp}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+          <Stack.Screen 
+          name="SignUpBreath" 
+          component={SignUpBreath}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="SignUpComplete" 
+          component={SignUpComplete}
           options={{ headerShown: false }} //탭바 안보이게
         />
         <Stack.Screen 
@@ -80,11 +89,11 @@ function App() {
         />
 
 
-          <Stack.Screen 
+          {/* <Stack.Screen 
           name="BreathMeasure" 
           component={BreathMeasure}
           options={{ headerShown: false }} //탭바 안보이게
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
