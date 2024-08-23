@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
+import { useNavigation } from '@react-navigation/native';
+import ToolBar from '../entities/SignUpComponent/ui/Toolbar';
+import SignUpInput from '../entities/SignUpComponent/ui/SignUpInput';
+import NextButton from '../entities/SignUpComponent/ui/NextButton';
+import SignUpBreath from './SignUpBreath';
 
 export default function SignUp() {
+  const [isComplete, setIsComplete] = useState(false);
+  const navigation = useNavigation();
+
+  const handleButtonClick = () => {
+    navigation.navigate('SignUpBreath'); // 'SignUpBreath' 화면으로 이동
+  };
+
   return (
     <MainLayout>
-      <ContentContainer>
-        <WelcomeText>회원가입 페이지</WelcomeText>
-      </ContentContainer>
+      {!isComplete && <ToolBar />}
+      {!isComplete && <SignUpInput />}
+      {!isComplete && <NextButton onPress={handleButtonClick} />}
     </MainLayout>
   );
 }
@@ -16,15 +28,4 @@ const MainLayout = styled.View`
   background-color: #f5f5f5;
   justify-content: center;
   align-items: center;
-`;
-
-const ContentContainer = styled.View`
-  justify-content: center;
-  align-items: center;
-`;
-
-const WelcomeText = styled.Text`
-  font-size: 24px;
-  color: #333;
-  font-weight: bold;
 `;

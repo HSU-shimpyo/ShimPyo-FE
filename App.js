@@ -4,6 +4,8 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FirstSplash from './pages/FirstSplash';
 import Start from './pages/Start';
 import SignUp from './pages/SignUp';
+import SignUpBreath from './pages/SignUpBreath';
+import SignUpComplete from './pages/SignUpComplete';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import HospitalTimeSetting from './pages/HospitalTimeSetting';
@@ -27,20 +29,62 @@ function MainScreenWithNavBar() {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName="Main"
-        screenOptions={{ headerShown: false }} //모든 스크린에서 헤더를 숨김
-      >
-        <Stack.Screen name="FirstSplash" component={FirstSplash}/>
-        <Stack.Screen name="Start" component={Start}/>
-        <Stack.Screen name="SignUp" component={SignUp}/>
-        <Stack.Screen name="Login" component={Login}/>
-        <Stack.Screen name="Main" component={MainScreenWithNavBar} />
-        <Stack.Screen name="MedicineTimeSetting" component={MedicineTimeSetting} />
-        <Stack.Screen name="HospitalTimeSetting" component={HospitalTimeSetting} />
-        <Stack.Screen name="ChangeMedicine" component={ChangeMedicine} />
-        <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
-        <Stack.Screen name="TodaysShim" component={TodaysShim} />
+      <Stack.Navigator 
+        initialRouteName="FirstSplash"
+        >
+      <Stack.Screen 
+          name="FirstSplash" 
+          component={FirstSplash}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+      <Stack.Screen 
+          name="Start" 
+          component={Start}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+      
+         <Stack.Screen 
+          name="SignUp" 
+          component={SignUp}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="Login" 
+          component={Login}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="Main" 
+          component={Main}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="MedicineTimeSetting" 
+          component={MedicineTimeSetting}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="HospitalTimeSetting" 
+          component={HospitalTimeSetting}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+        <Stack.Screen 
+          name="ChangeMedicine" 
+          component={ChangeMedicine}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+          <Stack.Screen 
+          name="MedicineComplete" 
+          component={MedicineComplete}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
+
+
+          <Stack.Screen 
+          name="BreathMeasure" 
+          component={BreathMeasure}
+          options={{ headerShown: false }} //탭바 안보이게
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
