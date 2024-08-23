@@ -1,4 +1,6 @@
-import { View, Text, StyleSheet } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import FirstSplash from './pages/FirstSplash';
 import Start from './pages/Start';
 import SignUp from './pages/SignUp';
@@ -6,17 +8,25 @@ import SignUpBreath from './pages/SignUpBreath';
 import SignUpComplete from './pages/SignUpComplete';
 import Login from './pages/Login';
 import Main from './pages/Main';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
 import HospitalTimeSetting from './pages/HospitalTimeSetting';
 import MedicineTimeSetting from './pages/MedicineTimeSetting';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
+import TodaysShim from './pages/TodaysShim';
+import NavigationBar from './shared/component/NavigationBar';
 
-import BreathMeasure from './pages/BreathMeasure';
 const Stack = createStackNavigator();
 
-export default function App() {
+function MainScreenWithNavBar() {
+  return (
+    <>
+      <Main />
+      <NavigationBar />
+    </>
+  );
+}
+
+function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
@@ -37,16 +47,6 @@ export default function App() {
           name="SignUp" 
           component={SignUp}
           options={{ headerShown: false }} //탭바 안보이게
-        />
-         <Stack.Screen 
-          name="SignUpBreath" 
-          component={SignUpBreath}
-          options={{ headerShown: false }} //헤더를 숨기기 위한 옵션
-        />
-        <Stack.Screen 
-          name="SignUpComplete" 
-          component={SignUpComplete}
-          options={{ headerShown: false }} //헤더를 숨기기 위한 옵션
         />
         <Stack.Screen 
           name="Login" 
@@ -79,6 +79,7 @@ export default function App() {
           options={{ headerShown: false }} //탭바 안보이게
         />
 
+
           <Stack.Screen 
           name="BreathMeasure" 
           component={BreathMeasure}
@@ -88,3 +89,5 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+export default App;

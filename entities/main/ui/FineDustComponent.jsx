@@ -1,80 +1,71 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
 import {Text} from 'react-native'
-
-//이모지 이미지
-import GoodFace from '../../../assets/images/GoodFace.png'
-import SmilingFace from '../../../assets/images/SmilingFace.png'
-import WorriedFace from '../../../assets/images/WorriedFace.png'
-import AnguishedFace from '../../../assets/images/AnguishedFace.png'
-
+import {anguished, good, model, smiling, worried} from '../model/model'
 export default function FineDustComponent({value,text}) {
   const [emoji, setEmoji] = useState();
   const [status, setStatus] = useState("보통");
-  const [percentage,setPersentage] = useState("");
+  const [percentage,setPercentage] = useState("");
   const [color, setColor] = useState('')
 
   useEffect(()=>{
     if (text==="미세먼지") {
         switch (true) { 
           case ( value >= 0 && value <= 30):
-            setEmoji(GoodFace);
-            setStatus("좋음");
-            setColor("#2F66BA")
-            setPersentage(20)
+            setEmoji(good.emoji);
+            setStatus(good.status);
+            setColor(good.color)
+            setPercentage(good.percentage)
             break;
           case ( value >= 31 && value <= 80):
-            setEmoji(SmilingFace);
-            setStatus("보통");
-            setColor("#4AA63C")
-            setPersentage(50)
+            setEmoji(smiling.emoji);
+            setStatus(smiling.status);
+            setColor(smiling.color)
+            setPercentage(smiling.percentage)
             break; 
           case ( value >= 81 && value <= 150):
-            setEmoji(WorriedFace);
-            setStatus("나쁨");
-            setColor("#FFB02E")
-            setPersentage(80)
+            setEmoji(worried.emoji);
+            setStatus(worried.status);
+            setColor(worried.color)
+            setPercentage(worried.percentage)
             break; 
           case ( value >= 151):
-            setEmoji(AnguishedFace);
-            setStatus("심각");
-            setColor("#BB1D80")
-            setPersentage(100)
+            setEmoji(anguished.emoji);
+            setStatus(anguished.status);
+            setColor(anguished.color)
+            setPercentage(anguished.percentage)
             break;  
         }
     }
     else if(text==="초미세먼지") {
       switch (true) { 
         case ( value >= 0 && value <= 15):
-          setEmoji(GoodFace);
-          setStatus("좋음");
-          setColor("#2F66BA")
-          setPersentage(20)
+          setEmoji(good.emoji);
+          setStatus(good.status);
+          setColor(good.color)
+          setPercentage(good.percentage)
           break;
         case ( value >= 16 && value <= 35):
-          setEmoji(SmilingFace);
-          setStatus("보통");
-          setColor("#4AA63C")
-          setPersentage(50)
+          setEmoji(smiling.emoji);
+          setStatus(smiling.status);
+          setColor(smiling.color)
+          setPercentage(smiling.percentage)
           break; 
         case ( value >= 36 && value <= 75):
-          setEmoji(WorriedFace);
-          setStatus("나쁨");
-          setColor("#FFB02E")
-          setPersentage(80)
+          setEmoji(worried.emoji);
+          setStatus(worried.status);
+          setColor(worried.color)
+          setPercentage(worried.percentage)
           break; 
         case ( value >= 76):
-          setEmoji(AnguishedFace);
-          setStatus("심각");
-          setColor("#BB1D80")
-          setPersentage(100)
+          setEmoji(anguished.emoji);
+          setStatus(anguished.status);
+          setColor(anguished.color)
+          setPercentage(anguished.percentage)
           break;  
       }
     }
-    
   },[])
-    
-
 
   return (
     <MainLayout>
@@ -119,6 +110,7 @@ height : 24px;
 const ProgressBar = styled.View`
 width : 126px;
 flex-direction : row;
+padding-left : 2%;
 `;
 
 const NonColorField = styled.View`

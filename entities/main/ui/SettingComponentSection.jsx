@@ -1,17 +1,18 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
+import {Text} from 'react-native'
 
-import pill from '../../../assets/images/Pill.png';
-import stethoscope from '../../../assets/images/Stethoscope.png';
 import SettingComponent from './SettingComponent';
 
 export default function SettingComponentSection() {
-const [time, setTime] = useState("30분");
-  const [day, setDay] = useState("5일");
+
+  const [pill,setPill] = useState(5)
+  const [hospital,setHospital] = useState(30)
+
   return (
     <MainLayout>
-        <SettingComponent text={`약 복용까지 ${time} 남았어요`} img={pill} part={"pill"} />
-        <SettingComponent text={`병원 진료까지 ${day} 남았어요`} img={stethoscope} part={"hospital"} />
+        <SettingComponent type="pill" value={pill} />
+        <SettingComponent type="hospital" value={hospital} />
     </MainLayout>
   )
 }
@@ -28,3 +29,5 @@ width: 100%;
   position: relative;
   bottom: 3%;
 `;
+
+
