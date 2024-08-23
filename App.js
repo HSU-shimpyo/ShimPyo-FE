@@ -82,18 +82,16 @@ function App() {
           component={ChangeMedicine}
           options={{ headerShown: false }} //탭바 안보이게
         />
-          <Stack.Screen 
+        <Stack.Screen 
           name="MedicineComplete" 
           component={MedicineComplete}
           options={{ headerShown: false }} //탭바 안보이게
         />
-
-
-          {/* <Stack.Screen 
-          name="BreathMeasure" 
-          component={BreathMeasure}
+        <Stack.Screen 
+          name="TodaysShim" 
+          component={TodaysShim}
           options={{ headerShown: false }} //탭바 안보이게
-        /> */}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
