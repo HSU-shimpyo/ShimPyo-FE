@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import AudioRecord from '../entities/BreathMeasure/ui/AudioRecord';
-import PlayAudio from '../entities/BreathMeasure/ui/PlayAudio'
+import AudioRecord from '../entities/TodaysShim/ui/AudioRecord';
+import PlayAudio from '../entities/TodaysShim/ui/PlayAudio'
 import ToolBar from '../shared/component/ToolBar';
-import BreathNow from '../entities/BreathMeasure/ui/BreathNow';
-import Loading from '../entities/BreathMeasure/ui/Loading';
-import Result from '../entities/BreathMeasure/ui/Result';
+import BreathNow from '../entities/TodaysShim/ui/BreathNow';
+import Loading from '../entities/TodaysShim/ui/Loading';
+import Result from '../entities/TodaysShim/ui/Result';
 
 export default function TodaysShim() {
   const [isComplete, setIsComplete] = useState(false)
