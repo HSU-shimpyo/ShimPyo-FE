@@ -98,25 +98,30 @@ const ImageContainer = styled.View`
   align-items: center;
   background-color: #F7F7FB;
   width: 100%;
-  margin-bottom: -90px;
+  margin-bottom: -20px;
 `;
 
 const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
-  margin-top:220px;
+  margin-top:160px;
 `;
 
 
 
 const StyledImageLogo = styled.Image`
-  margin-left: 245px;
+width: 100px;
+height: 100px;
+flex-shrink: 0;
+  margin-left: 250px;
 `;
 
 const StyledImage = styled.Image`
-  margin-left: -55px;
-  margin-top: 20px;
-  opacity: 0.5;
+width:360px;
+height:360px;
+margin-right:29px;
+margin-top:60px;
+opacity: 0.5;
 `;
 
 const StyledText = styled.Text`
