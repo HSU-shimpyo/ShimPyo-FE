@@ -41,15 +41,19 @@ export default function Loading({setIsResult}) {
   return (
     <MainLayout intensity={15}>
 
+      {/* 모래시계 */}
       <Animated.View style={[animatedStyle, { transform: [{ rotate: spin }] }]}>
         <Icon source={sandglass} />
       </Animated.View>
 
-      <StyledText fontWeight="600" fontSize="20px" letterSpacing="-0.5px" marginBottom="4px">
+      {/* 텍스트 */}
+      <StyledText fontWeight="600" fontSize="20px" letterSpacing="-0.5px" marginBottom="4px"> 
         잠시만 기다려주세요
       </StyledText>
 
-      <StyledText marginBottom="10%;">측정 결과를 추출하는 중입니다</StyledText>
+      <StyledText marginBottom="10%;">
+        측정 결과를 추출하는 중입니다
+      </StyledText>
 
     </MainLayout>
   );

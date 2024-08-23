@@ -33,6 +33,8 @@ export default function BreathNow({ setIsComplete }) {
 
   return (
     <MainLayout>
+
+      {/* 측정 Circle Progress Bar */}
       <AnimatedCircularProgress
         size={200}
         width={10}
@@ -45,16 +47,19 @@ export default function BreathNow({ setIsComplete }) {
         lineCap="round" //진행바 끝부분 변경 가능 butt, round, square
       />
 
+      {/* 아이콘 */}
       <WrapIcon onPress={clickButton} activeOpacity={1}>
         <Icon source={icon} />
       </WrapIcon>
 
+      {/* 측정 카운트 */}
       <Count marginTop="32px" marginBottom="40px">
         <Count fontSize="40px" color="#3776CB" fontWeight="600">
           {count > 3 ? 3 : count} 
         </Count> / 3
       </Count>
 
+      {/* 텍스트 */}
       <StyledText fontSize="24px" marginBottom="12px">{text}</StyledText>
 
       <StyledText
@@ -66,6 +71,7 @@ export default function BreathNow({ setIsComplete }) {
       >
         마이크와의 거리를 적당히 유지해주세요
       </StyledText>
+
     </MainLayout>
   );
 }

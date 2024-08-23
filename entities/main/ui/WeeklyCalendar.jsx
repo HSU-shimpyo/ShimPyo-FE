@@ -30,39 +30,43 @@ export default function WeeklyCalendar() {
 
   return (
       <MainLayout>
-              <Wrap>
-                <StylecText>{selectedDate.format('M월 D일')}</StylecText>
-                <CalendarContainer>
-                {weekDays.map((date, index) => (
-                  <Tile
-                    key={index}
-                    selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
-                    onPress={() => handleDatePress(date)}
-                  >
-                    <WeekText
-                    selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
-                    selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                    >
-                      {date.format('ddd')}
-                    </WeekText>
-                    <DayText
-                      selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                    >
-                      {date.format('D')}
-                    </DayText>
-                  </Tile>
-                ))}
-                </CalendarContainer>
-              </Wrap>
-            </MainLayout>
-      
+
+        <Wrap>
+
+          <StylecText>{selectedDate.format('M월 D일')}</StylecText>
+
+          <CalendarContainer>
+            {weekDays.map((date, index) => (
+              <Tile
+                key={index}
+                selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
+                onPress={() => handleDatePress(date)}
+              >
+              <WeekText
+                selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
+                selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+              >
+                {date.format('ddd')}
+              </WeekText>
+              <DayText
+                selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+              >
+                {date.format('D')}
+              </DayText>
+              </Tile>
+            ))}
+            </CalendarContainer>
+
+        </Wrap>
+
+      </MainLayout>
   );
 }
 
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 236px;
+  height: 246px;
   padding-right: 5%;
   padding-left: 5%;
   border-radius: 0px 0px 32px 32px;

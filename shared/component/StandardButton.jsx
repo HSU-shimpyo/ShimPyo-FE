@@ -11,7 +11,10 @@ export default function StandardButton({ text, marginBottom, onPress, background
       height={height}
       borderRadius={borderRadius}
       >
+
+      {/* 버튼에 들어갈 텍스트 */}
       <ButtonText color={color} fontSize={fontSize}>{text}</ButtonText>
+
     </StyledButton>
   );
 }

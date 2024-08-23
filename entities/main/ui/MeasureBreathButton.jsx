@@ -13,12 +13,15 @@ export default function MeasureBreathButton() {
   }
   return (
     <MainLayout onPress={clickButton} activeOpacity={1}>
+
       <Wrap>
         <ArrowImage source={toucharrow}/>
         <CircleImg source={circle}/>
         <IconImg source={icon}/>
       </Wrap>
+      
       <StyledText>오늘도 쉬어볼까요?</StyledText>
+
     </MainLayout>
   )
 }
@@ -73,5 +76,6 @@ font-weight: 600;
 width : 100%;
 height : 20%;
 text-align : center;
+letter-spacing: -0.6px;
 padding-top : 3%;
 `;
