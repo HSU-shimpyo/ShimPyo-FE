@@ -2,6 +2,8 @@ import { View, Text, StyleSheet } from 'react-native';
 import FirstSplash from './pages/FirstSplash';
 import Start from './pages/Start';
 import SignUp from './pages/SignUp';
+import SignUpBreath from './pages/SignUpBreath';
+import SignUpComplete from './pages/SignUpComplete';
 import Login from './pages/Login';
 import Main from './pages/Main';
 import { NavigationContainer } from '@react-navigation/native';
@@ -36,6 +38,16 @@ export default function App() {
           component={SignUp}
           options={{ headerShown: false }} //탭바 안보이게
         />
+         <Stack.Screen 
+          name="SignUpBreath" 
+          component={SignUpBreath}
+          options={{ headerShown: false }} //헤더를 숨기기 위한 옵션
+        />
+        <Stack.Screen 
+          name="SignUpComplete" 
+          component={SignUpComplete}
+          options={{ headerShown: false }} //헤더를 숨기기 위한 옵션
+        />
         <Stack.Screen 
           name="Login" 
           component={Login}
@@ -67,11 +79,6 @@ export default function App() {
           options={{ headerShown: false }} //탭바 안보이게
         />
 
-{/* <Stack.Screen 
-          name="FirstSplash" 
-          component={FirstSplash}
-          options={{ headerShown: false }} //탭바 안보이게
-        /> */}
           <Stack.Screen 
           name="BreathMeasure" 
           component={BreathMeasure}
