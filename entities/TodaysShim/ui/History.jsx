@@ -93,7 +93,7 @@ top : 17%;
 right : 5%;
 justify-content : center;
 align-items : center;
-shadow-color: rgba(35, 48, 59, 0.10);
+shadow-color: rgba(0, 0, 0, 0.5);
 shadow-offset: 0px 20px;
 shadow-opacity: 0.1;
 shadow-radius: 44px;

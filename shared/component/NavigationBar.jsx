@@ -21,7 +21,7 @@ export default function NavigationBar() {
         } else if (tab === "history") {
             //navigation.navigate("History"); 
         } else if (tab === "sumsum") {
-            //navigation.navigate("Sumsum"); 
+            navigation.navigate("SumAiChat"); 
         }
     };
 
