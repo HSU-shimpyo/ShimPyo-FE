@@ -75,7 +75,10 @@ const MainLayout = styled.View`
   padding-right : 8%;
   display : flex;
   justify-content : center;
+  font-family: Pretendard;
+
 `;
+
 const Wrap = styled.View`
   height : 100px;
   display: flex;

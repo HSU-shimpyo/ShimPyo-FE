@@ -160,4 +160,5 @@ const StyledText = styled.Text`
   margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
   ${({ width }) => width && `width: ${width};`}
   ${({ height }) => height && `height: ${height};`}
+  font-family: Pretendard;
 `;

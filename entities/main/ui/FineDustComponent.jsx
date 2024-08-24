@@ -134,4 +134,5 @@ color : ${({ color }) => color || '#777'};
 font-size : ${({ fontSize }) => fontSize || '20px'};
 font-weight : 600;
 letter-spacing:  ${({ letterSpacing }) => letterSpacing || '-0.5px'};
+font-family: Pretendard;
 `;

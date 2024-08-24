@@ -10,7 +10,7 @@ import Result from '../entities/TodaysShim/ui/Result';
 export default function TodaysShim() {
   const [isComplete, setIsComplete] = useState(false)
   const [isResult, setIsResult] = useState(false)
-  const [audioFileArray, setAudioFileArray] = useState([]);  //녹음 파일 URI를 저장할 배열
+  const [audioFileArray, setAudioFileArray] = useState([]); // 녹음 파일 URI를 저장할 배열
   return (
     <MainLayout>
 

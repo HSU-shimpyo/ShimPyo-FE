@@ -5,55 +5,56 @@ import { LineChart } from "react-native-chart-kit";
 
 
 
-export default function DetailGraph({PEF}) {
+export default function History({PEF}) {
     const screenWidth = Dimensions.get('window').width;
+
   return (
     <MainLayout>
-      <StyledText>상세 지표</StyledText>
-      <LineChart
+        <StyledText>지난 7일간 측정 내역</StyledText>
+        <LineChart
         data={{
-          labels: ["1회차","2회차","3회차"],
-          datasets: [
+            labels: ["07.03","07.04","07.05","07.06","07.07","07.08","07.09"],
+            datasets: [
             {
-              data: [190,150,275]
+                data: [170,200,150,210,230,250,275]
             }
-          ]
+            ]
         }}
         withInnerLines={false} //차트 내부 대시라인 여부
         withOuterLines={false} //차트 외부 대시라인 여부
-        withHorizontalLabels={true}
+        withHorizontalLabels={false}
         segments={3} //수평 라인 개수 , 기본값 4
         fromZero={true} //0부터 랜더링
-        width={screenWidth} //차트의 너비 조절
+        width={screenWidth-10} //차트의 너비 조절
         height={300}
         yAxisInterval={3} 
-        xLabelsOffset={5}
-        yLabelsOffset={40}
         chartConfig={{
-          backgroundGradientFrom: "rgb(0,0,0,0.1)",
-          backgroundGradientTo: "rgb(0,0,0,0.1)",
-          decimalPlaces: 0, //y축 값 소수점
-          color: (opacity = 1) => `#3F51B5` , //차트 선 색상
-          labelColor: (opacity = 1) => `#767676`, // 라벨 색상
-          fillShadowGradientFrom: '#8FBEEA' , //그라데이션 시작 색상
-          fillShadowGradientTo: "#fff", //그라데이션 끝 색상
-          fillShadowGradientFromOpacity: 1, //시작 색상 불투명도
-          fillShadowGradientToOpacity: 0, //끝 색상 불투명도
-          propsForDots: {
+            backgroundGradientFrom: "rgb(0,0,0,0.1)",
+            backgroundGradientTo: "rgb(0,0,0,0.1)",
+            decimalPlaces: 0, //y축 값 소수점
+            color:  (opacity = 1) => `#275F63` , //차트 선 색상
+            labelColor: (opacity = 1) => `#767676`, // 라벨 색상
+            fillShadowGradientFrom: '#8FEAD4', //그라데이션 시작 색상
+            fillShadowGradientTo: "#fff", //그라데이션 끝 색상
+            fillShadowGradientFromOpacity: 1, //시작 색상 불투명도
+            fillShadowGradientToOpacity: 0, //끝 색상 불투명도
+            propsForDots: {
             r: "0"
-          },
-          propsForLabels: {
-            fontSize: 14,
-            fontWeight: 400,
-            letterSpacing: -0.35
-          }
+            },
+            propsForLabels: {
+                fontFamily: 'Pretendard',
+                fontSize: 12,
+                fontWeight: 400,
+                letterSpacing: -0.3
+              }
         }}
         style={{
-          marginTop: 31,
-          marginLeft : 15
+            marginTop: 31,
+            position : 'relative',
+            right : 30
         }}
-      />
-    <Mark><MarkText>{PEF}</MarkText></Mark>
+        />
+        <Mark><MarkText>{PEF}</MarkText></Mark>
 </MainLayout>
 
   )
@@ -89,7 +90,7 @@ border-radius : 100px;
 background-color : #F1F1F5;
 position : absolute;
 top : 17%;
-right : 6%;
+right : 5%;
 justify-content : center;
 align-items : center;
 shadow-color: rgba(35, 48, 59, 0.10);
@@ -105,5 +106,5 @@ font-style: normal;
 font-weight: 400;
 line-height: 18px; /* 150% */
 letter-spacing: -0.3px;
-color : #303F9F;
+color : #38818D;
 `;
