@@ -78,4 +78,5 @@ height : 20%;
 text-align : center;
 letter-spacing: -0.6px;
 padding-top : 3%;
+font-family: Pretendard;
 `;

@@ -29,7 +29,7 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator 
-        initialRouteName="FirstSplash"
+        initialRouteName="Main"
         >
       <Stack.Screen 
           name="FirstSplash" 

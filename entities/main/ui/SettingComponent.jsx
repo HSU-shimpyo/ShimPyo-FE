@@ -54,6 +54,7 @@ const StyledText = styled.Text`
 font-size : 16px;
 font-weight : 400;
 letter-spacing: -0.4px;
+font-family: Pretendard;
 `;
 
 const Wrap = styled.View`
