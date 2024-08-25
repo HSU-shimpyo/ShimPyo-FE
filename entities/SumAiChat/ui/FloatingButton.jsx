@@ -1,9 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import Plus from '../../../assets/images/plus.png'
+import { useNavigation } from '@react-navigation/native';
+
 export default function FloatingButton() {
+  const navigation = useNavigation();
+  const clickButton = () => {
+    navigation.navigate("ChattingRoom")
+  }
   return (
-    <Background activeOpacity={1}>
+    <Background activeOpacity={1} onPress={clickButton}>
         <PlusIcon source={Plus}/>
     </Background>
   )

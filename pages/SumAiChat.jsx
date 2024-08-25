@@ -7,7 +7,7 @@ import FloatingButton from '../entities/SumAiChat/ui/FloatingButton';
 import { ScrollView } from 'react-native';
 export default function SumAiChat() {
   return (
-    <ScrollView>
+    <ScrollContainer>
         <MainLayout>
 
         {/* 타이틀 바 */}
@@ -23,11 +23,17 @@ export default function SumAiChat() {
         <FloatingButton/>
 
         </MainLayout>
-    </ScrollView>
+    </ScrollContainer>
   )
 }
+const ScrollContainer = styled.ScrollView`
+  flex: 1;
+  width: 100%;
+  background-color: #F7F7FB;
+`;
 
 const MainLayout = styled.View`
   flex: 1;
   align-items :  center;
+  background-color : #F7F7FB;
 `;
