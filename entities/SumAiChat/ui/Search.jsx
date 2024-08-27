@@ -16,7 +16,7 @@ export default function Search() {
 const WrapInput = styled.View`
 width : 327px;
 height : 56px;
-background-color : #F1F1F5;
+background-color : #F1F1F5; 
 border : 1px solid #E5E5EC;
 border-radius : 100px;
 margin-top : 8px;

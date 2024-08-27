@@ -76,7 +76,6 @@ const MainLayout = styled.View`
   display : flex;
   justify-content : center;
   font-family: Pretendard;
-
 `;
 
 const Wrap = styled.View`

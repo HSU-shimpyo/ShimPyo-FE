@@ -36,7 +36,7 @@ background-color : #999;
 border-radius : 100px;
 position : absolute;
 right : 14px;
-top : 20%;
+top : 14px;
 justify-content : center;
 align-items : center;
 `;
