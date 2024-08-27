@@ -15,6 +15,7 @@ import MedicineComplete from './pages/MedicineComplete';
 import TodaysShim from './pages/TodaysShim';
 import SumAiChat from './pages/SumAiChat';
 import NavigationBar from './shared/component/NavigationBar';
+import ChattingRoom from './pages/ChattingRoom';
 
 const Stack = createStackNavigator();
 
@@ -58,6 +59,7 @@ function App() {
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
         <Stack.Screen name="SumAiChat" component={SumAiChatScreenWithNavBar} />
+        <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
         </Stack.Navigator>
     </NavigationContainer>
   );
