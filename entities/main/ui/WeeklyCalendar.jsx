@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { View } from 'react-native'
 import styled from 'styled-components/native';
 import person from '../../..//assets/images/person.png'
+import { useNavigation } from "@react-navigation/native";
 import moment from 'moment';
 import 'moment/locale/ko';
+import { TouchableOpacity } from 'react-native';
 
 export default function WeeklyCalendar() {
+  const navigation = useNavigation();
   const [selectedDate, setSelectedDate] = useState(moment());
+
+  const clickMyPageButton = () => {
+    navigation.navigate("MyPage");
+  }
 
   useEffect(() => {
     moment.locale('ko');
@@ -35,7 +41,9 @@ export default function WeeklyCalendar() {
         <Wrap>
           <PersonIcon source={person} opacity="0"/>
           <StylecText>{selectedDate.format('M월 D일')}</StylecText>
-          <PersonIcon source={person}/>
+          <TouchableOpacity onPress={clickMyPageButton}>
+            <PersonIcon source={person}/>
+          </TouchableOpacity>
         </Wrap>
 
         <CalendarContainer>
