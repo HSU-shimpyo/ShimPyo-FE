@@ -2,11 +2,13 @@ import React from 'react'
 import styled from 'styled-components'
 import AiChat from './AiChat';
 import MyChat from './MyChat';
+import DefaultChat from './DefaultChat';
 export default function ChattingContent() {
   return (
     <MainLayout>
-        <AiChat/>
-        <MyChat/>
+      <DefaultChat/>
+        {/* <AiChat/>
+        <MyChat/> */}
     </MainLayout>
   )
 }
