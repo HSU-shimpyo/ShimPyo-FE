@@ -1,20 +1,24 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import ToolBar from '../shared/component/ToolBar';
 import MyInfo from '../entities/MyPage/MyInfo';
 import PEFInfo from '../entities/MyPage/PEFInfo';
 import Menu from '../entities/MyPage/Menu'
+import AboutUs from '../entities/MyPage/AboutUs';
 export default function MyPage() {
+  const [isViewAboutUs, setIsViewAboutUs] = useState(false);
   return (
     <MainLayout>
       
-      <ToolBar page="마이페이지"/>
+      <ToolBar page={isViewAboutUs ? "About Us" : "마이페이지"}/>
 
-      <MyInfo/>
+      {!isViewAboutUs && <MyInfo/> }
 
-      <PEFInfo/>
+      {!isViewAboutUs && <PEFInfo/>}
 
-      <Menu/>
+      {!isViewAboutUs && <Menu setIsViewAboutUs={setIsViewAboutUs}/>}
+
+      {isViewAboutUs && <AboutUs/>}
 
     </MainLayout>
   )

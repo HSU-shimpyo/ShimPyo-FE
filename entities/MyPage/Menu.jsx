@@ -1,18 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 import NextButton from '../../assets/images/nextbutton.png'
-export default function Menu() {
+import Toggle from './Toggle'
+import { TouchableOpacity } from 'react-native-gesture-handler'
+export default function Menu({setIsViewAboutUs}) {
     const list = ["Push 알림 받기", "이용 약관", "개인 정보 처리 방침", "버전 정보", "About Us"]
   return (
     <MainLayout>
-        
+        <Toggle/>
             {
                 list.map((item,index)=>(
                 <WrapMenu key={index} borderBottom={index=== list.length -1 ? "0px" : "1px"}>
                     <StyledText>
                         {item}
                     </StyledText>
-                    <Next source={NextButton}/>
+                    <TouchableOpacity onPress={()=>setIsViewAboutUs(true)}>
+                      <Next source={NextButton} opacity={index===0 ? "0" : "1"}/>
+                    </TouchableOpacity>
                 </WrapMenu>
                 ))
             }
@@ -60,4 +64,7 @@ const Next = styled.Image`
 width : 20px;
 height : 20px;
 margin-right : 2px;
+opacity : ${({ opacity }) => opacity || '0'};
 `;
+
+
