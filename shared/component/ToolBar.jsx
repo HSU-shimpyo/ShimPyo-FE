@@ -35,6 +35,7 @@ const MainLayout = styled.View`
   justify-content: space-between;
   align-items: center;
   margin-top: 42px;
+  z-index : 10;
 `;
 
 const StyledText = styled.Text`
