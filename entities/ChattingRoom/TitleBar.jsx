@@ -7,7 +7,6 @@ import icon from '../../assets/images/pencil.png'
 import {View,TouchableOpacity} from 'react-native'
 export default function TitleBar() {
     const [name , setName] = useState("질문방1");
-    const [isFocus, setIsFocus] = useState(false);
     const [isEditAble, setIsEditable] = useState(true);
 
 

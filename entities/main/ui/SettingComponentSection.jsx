@@ -29,7 +29,7 @@ width: 100%;
   margin-left: 20px;
   margin-right: 20px;
   position: relative;
-  bottom: 3%;
+  bottom: 1%;
 `;
 
 

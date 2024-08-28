@@ -36,7 +36,7 @@ justify-content : space-between;
 align-items : center;
 position : relative;
 z-index : 1;
-bottom : 8%;
+bottom : 6%;
 shadow-color: rgba(35, 48, 59, 0.15);
 shadow-offset: 0px 20px;
 shadow-opacity: 0.44;

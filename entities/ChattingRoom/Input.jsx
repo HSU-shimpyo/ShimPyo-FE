@@ -40,7 +40,7 @@ top : 14px;
 justify-content : center;
 align-items : center;
 `;
-const Icon = styled.TextInput`
+const Icon = styled.Image`
 position : absolute;
 width : 20px;
 height : 20px;
