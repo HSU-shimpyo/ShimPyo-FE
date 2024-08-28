@@ -1,11 +1,18 @@
 import React, { useEffect, useState } from 'react';
-import { Text } from 'react-native'
 import styled from 'styled-components/native';
+import person from '../../..//assets/images/person.png'
+import { useNavigation } from "@react-navigation/native";
 import moment from 'moment';
 import 'moment/locale/ko';
+import { TouchableOpacity } from 'react-native';
 
 export default function WeeklyCalendar() {
+  const navigation = useNavigation();
   const [selectedDate, setSelectedDate] = useState(moment());
+
+  const clickMyPageButton = () => {
+    navigation.navigate("MyPage");
+  }
 
   useEffect(() => {
     moment.locale('ko');
@@ -30,61 +37,69 @@ export default function WeeklyCalendar() {
 
   return (
       <MainLayout>
-              <Wrap>
-                <StylecText>{selectedDate.format('M월 D일')}</StylecText>
-                <CalendarContainer>
-                {weekDays.map((date, index) => (
-                  <Tile
-                    key={index}
-                    selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
-                    onPress={() => handleDatePress(date)}
-                  >
-                    <WeekText
-                    selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
-                    selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                    >
-                      {date.format('ddd')}
-                    </WeekText>
-                    <DayText
-                      selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                    >
-                      {date.format('D')}
-                    </DayText>
-                  </Tile>
-                ))}
-                </CalendarContainer>
-              </Wrap>
-            </MainLayout>
-      
+
+        <Wrap>
+          <PersonIcon source={person} opacity="0"/>
+          <StylecText>{selectedDate.format('M월 D일')}</StylecText>
+          <TouchableOpacity onPress={clickMyPageButton}>
+            <PersonIcon source={person}/>
+          </TouchableOpacity>
+        </Wrap>
+
+        <CalendarContainer>
+              {weekDays.map((date, index) => (
+                <Tile
+                  key={index}
+                  selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
+                  onPress={() => handleDatePress(date)}
+                >
+                <WeekText
+                  selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
+                  selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+                >
+                  {date.format('ddd')}
+                </WeekText>
+                <DayText
+                  selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+                >
+                  {date.format('D')}
+                </DayText>
+                </Tile>
+              ))}
+        </CalendarContainer>
+
+
+      </MainLayout>
   );
 }
 
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 236px;
+  height: 246px;
   padding-right: 5%;
   padding-left: 5%;
   border-radius: 0px 0px 32px 32px;
   background: #3c63ec;
   padding-left : 8%;
   padding-right : 8%;
-  display : flex;
   justify-content : center;
+  font-family: Pretendard;
 `;
 const Wrap = styled.View`
-  height : 100px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom : 9%;
+flex-direction : row;
+justify-content : space-between;
 `;
 const StylecText = styled.Text`
   color : #fff;
   font-weight: 600;
   font-size: 20px;
   margin-left : 2%;
+  margin-bottom : 16px;
+`;
+const PersonIcon = styled.Image`
+width : 28px;
+height : 28px;
 `;
 const CalendarContainer = styled.View`
   display: flex;

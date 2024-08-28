@@ -12,11 +12,18 @@ export default function ToolBar({page,marginLeft}) {
 
   return (
     <MainLayout>
+
+      {/* 레이아웃 용 빈 태그 */}
       <View/>
+
+      {/* 상단바 제목 */}
       <StyledText marginLeft={marginLeft}>{page}</StyledText>
+
+      {/* Close 버튼 */}
       <CloseButtonWrapper onPress={handleCloseButtonClick}>
         <CloseButton source={closeButton} />
       </CloseButtonWrapper>
+
     </MainLayout>
   )
 }
@@ -28,6 +35,7 @@ const MainLayout = styled.View`
   justify-content: space-between;
   align-items: center;
   margin-top: 42px;
+  z-index : 10;
 `;
 
 const StyledText = styled.Text`

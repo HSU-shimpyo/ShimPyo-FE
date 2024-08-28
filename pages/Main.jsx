@@ -3,7 +3,6 @@ import styled from "styled-components/native";
 import MeasureBreathButton from '../entities/main/ui/MeasureBreathButton';
 import WeeklyCalendar from '../entities/main/ui/WeeklyCalendar';
 import FineDustSection from '../entities/main/ui/FineDustSection';
-import SettingComponent from '../entities/main/ui/SettingComponent';
 import SettingComponentSection from '../entities/main/ui/SettingComponentSection';
 
 export default function Main() {
@@ -15,7 +14,7 @@ export default function Main() {
         <WeeklyCalendar />
 
         {/* 측정 버튼  */}
-        <MeasureBreathButton />
+        <MeasureBreathButton/>
 
         {/* 미세먼지 */}
         <FineDustSection/>
@@ -31,6 +30,7 @@ export default function Main() {
 const ScrollContainer = styled.ScrollView`
   flex: 1;
   width: 100%;
+  background-color: #f7f7fb;
 `;
 
 const MainLayout = styled.View`

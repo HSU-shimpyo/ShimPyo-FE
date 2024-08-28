@@ -6,13 +6,15 @@ import SettingComponent from './SettingComponent';
 
 export default function SettingComponentSection() {
 
-  const [pill,setPill] = useState(5)
-  const [hospital,setHospital] = useState(30)
+  const [pill,setPill] = useState(30)
+  const [hospital,setHospital] = useState(5)
 
   return (
     <MainLayout>
+
         <SettingComponent type="pill" value={pill} />
         <SettingComponent type="hospital" value={hospital} />
+        
     </MainLayout>
   )
 }
@@ -27,7 +29,7 @@ width: 100%;
   margin-left: 20px;
   margin-right: 20px;
   position: relative;
-  bottom: 3%;
+  bottom: 1%;
 `;
 
 
