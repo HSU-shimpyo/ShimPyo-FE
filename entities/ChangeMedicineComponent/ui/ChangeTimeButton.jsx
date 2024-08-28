@@ -7,7 +7,7 @@ export default function ChangeTimeButton() {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    navigation.navigate('MedicineComplete'); // 'MedicineComplete' 페이지로 이동
+    navigation.navigate('WhenBreakfast'); // 'MedicineComplete' 페이지로 이동
   };
 
   return (
