@@ -15,7 +15,7 @@ export default function TodaysShim() {
     <MainLayout>
 
         {/* 툴바 */}
-        <ToolBar page={isResult===true ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
+        <ToolBar page={ isResult ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
 
         {/* 숨 측정 */}
         {!isResult && <BreathNow setIsComplete={setIsComplete} setAudioFileArray={setAudioFileArray}/> }

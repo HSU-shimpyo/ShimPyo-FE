@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import Sum from '../../assets/images/mypageSum.png'
+import { myInfo } from '../model/model'
+import Sum from '../../../assets/images/mypageSum.png'
+
 export default function PEFInfo() {
   return (
     <MainLayout>
@@ -8,7 +10,7 @@ export default function PEFInfo() {
             <StyledText marginBottom="8px">
                 니의 기준 <StyledText fontWeight="600">최대 호기량(PEF)는</StyledText>
             </StyledText>
-            <StyledText fontWeight="600" fontSize="48px">275 <StyledText fontSize="16px" fontWeight="600">Lpm</StyledText></StyledText>
+            <StyledText fontWeight="600" fontSize="48px">{myInfo.PEF} <StyledText fontSize="16px" fontWeight="600">Lpm</StyledText></StyledText>
         </TextSection>
       <SumImg source={Sum}/>
     </MainLayout>
