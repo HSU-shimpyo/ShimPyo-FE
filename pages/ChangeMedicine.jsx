@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 import {View, Text} from 'react-native' 
 import ToolBar_x from '../entities/MedicineTimeSettingComponent/ui/Toolbar_x';
 import WhenMedicineText from '../entities/ChangeMedicineComponent/ui/WhenMedicineText';
+import WhenBreakfast from './WhenBreakfast';
 import { useNavigation } from '@react-navigation/native';
 import EatingTimeButton from '../entities/MedicineTimeSettingComponent/ui/EatingTimeButton';
 import MinuteButton from '../entities/ChangeMedicineComponent/ui/MinuteButton';
@@ -19,7 +20,7 @@ export default function ChangeMedicine() {
   
   const handleButtonClick = () => {
     if (isComplete) {
-      navigation.navigate("MedicineComplete");
+      navigation.navigate("WhenBreakfast");
     } else {
       setIsComplete(true);
     }

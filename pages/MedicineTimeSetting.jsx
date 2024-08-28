@@ -29,9 +29,9 @@ export default function MedicineTimeSetting() {
             {!isComplete && <ToolBar/>}
           {/* 텍스트 */}
           {!isComplete && <MedicineText/>}
-          {/* 식전 식후 버튼  */}
+          {/* 식전 식후  */}
           {!isComplete && <EatingTimeButton/>}
-          {/* 아침, 점심, 저녁 버튼 */}
+          {/* 아침, 점심, 저녁  */}
           {!isComplete && <MealButton/>}
           {/* 재설정하기 버튼 */}
           {!isComplete && <ChangeTimeButton/>}

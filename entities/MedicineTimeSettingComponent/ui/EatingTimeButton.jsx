@@ -4,8 +4,8 @@ import styled from 'styled-components/native';
 export default function EatingTimeButton() {
   // 더미 데이터 (하나만 선택되도록 설정)
   const selectedData = {
-    option: '식후', // 선택된 옵션
-    time: null,     // 이 경우 선택되지 않음
+    option: '식후', // 만약 식후를 선택했을 때
+    time: null,     // 선택되지 않았을 때는 null 써주기
   };
 
   // 현재 설정된 페이지로, 더미 데이터를 기반으로 색상이 적용된 버튼을 표시
