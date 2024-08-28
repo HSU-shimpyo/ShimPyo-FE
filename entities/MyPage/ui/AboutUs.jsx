@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Card from './Card';
-import Arrow from '../../assets/images/swipeArrow.png'
+import Arrow from '../../../assets/images/swipeArrow.png'
 export default function AboutUs() {
   return (
     <MainLayout>

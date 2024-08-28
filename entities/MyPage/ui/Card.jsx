@@ -3,14 +3,14 @@ import { ScrollView } from 'react-native'
 import styled from 'styled-components/native'
 
 //이미지
-import logo from '../../assets/images/logo_ver3.png'
-import Sum from '../../assets/images/aboutusSum.png'
-import Email from '../../assets/images/email.png'
-import Jy from '../../assets/images/jy.png'
-import Ye from '../../assets/images/ye.png'
-import Hj from '../../assets/images/hj.png'
-import Je from '../../assets/images/je.png'
-import Kn from '../../assets/images/kn.png'
+import logo from '../../../assets/images/logo_ver3.png'
+import Sum from '../../../assets/images/aboutusSum.png'
+import Email from '../../../assets/images/email.png'
+import Jy from '../../../assets/images/jy.png'
+import Ye from '../../../assets/images/ye.png'
+import Hj from '../../../assets/images/hj.png'
+import Je from '../../../assets/images/je.png'
+import Kn from '../../../assets/images/kn.png'
 
 export default function Card() {
     const [itemWidth, setItemWidth] = useState(0);

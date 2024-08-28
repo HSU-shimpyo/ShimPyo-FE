@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import Sum from '../../assets/images/mypageSum.png'
+import Sum from '../../../assets/images/mypageSum.png'
 export default function PEFInfo() {
   return (
     <MainLayout>

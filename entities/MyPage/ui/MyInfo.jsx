@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import chatIcon from '../../assets/images/chatIcon.png'
+import chatIcon from '../../../assets/images/chatIcon.png'
 export default function MyInfo() {
   return (
     <MainLayout>

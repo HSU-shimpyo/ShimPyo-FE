@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import NextButton from '../../assets/images/nextbutton.png'
+import NextButton from '../../../assets/images/nextbutton.png'
 import Toggle from './Toggle'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 export default function Menu({setIsViewAboutUs}) {
