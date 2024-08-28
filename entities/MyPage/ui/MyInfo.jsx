@@ -1,13 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import chatIcon from '../../../assets/images/chatIcon.png'
+import { myInfo } from '../model/model'
 export default function MyInfo() {
   return (
     <MainLayout>
          <Icon source={chatIcon}/>
          <TextSection>
-            <StyledText fontSize="24px" fontWeight="600" letterSpacing="-0.6px" marginBottom="4px">이주연</StyledText>
-            <StyledText>2001.07.08</StyledText>
+            <StyledText fontSize="24px" fontWeight="600" letterSpacing="-0.6px" marginBottom="4px">{myInfo.name}</StyledText>
+            <StyledText>{myInfo.birth}</StyledText>
          </TextSection>
          <Icon source={chatIcon} opacity="0"/>
     </MainLayout>
