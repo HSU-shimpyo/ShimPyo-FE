@@ -17,7 +17,7 @@ export default function LunchText() {
 }
 
 const MainLayout = styled.View`
-  width: 80#;
+  width: 65%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

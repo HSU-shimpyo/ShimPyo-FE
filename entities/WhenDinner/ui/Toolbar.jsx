@@ -9,7 +9,7 @@ export default function ToolBar() {
   const navigation = useNavigation();
   
   const handleArrowButtonClick = () => {
-    navigation.navigate("WhenBreakfast");
+    navigation.navigate("WhenLunch");
   }
 
   const handleCloseButtonClick = () => {

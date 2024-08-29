@@ -106,8 +106,8 @@ const TimeZoneContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  width: 243px;
-  height: 62px;
+  width: 237px;
+  height: 56px;
   margin-bottom: 24px;
   border-radius: 100px;
   border: 1px solid #E5E5EC;
@@ -178,7 +178,7 @@ const TimeText = styled(Text)`
 `;
 
 const DotImage = styled.Image`
-  width: 5px;
-  height: 27px;
-  margin-top:45px;
+  width: 4px;
+  height: 22px;
+  margin-top:50px;
 `;

@@ -17,7 +17,7 @@ export default function DinnerText() {
 }
 
 const MainLayout = styled.View`
-  width: 60%;
+  width: 65%;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
