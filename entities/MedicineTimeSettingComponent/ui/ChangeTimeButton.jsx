@@ -37,7 +37,7 @@ const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 327px;
-  height: 64px;
+  height: 52px;
 `;
 
 const StyledButton = styled.TouchableOpacity`

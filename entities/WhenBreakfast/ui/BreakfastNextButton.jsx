@@ -26,12 +26,13 @@ export default function BreakfastNextButton({ onPress }) {
 
 const StyledButton = styled.Pressable`
   width: 327px;
-  height: 56px;
+  height: 52px;
   padding: 14px 16px;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
   background-color: ${({ isPressed }) => (isPressed ? '#3C63EC' : '#E5E5EC')};
+  margin-bottom:30px;
 `;
 
 const ButtonText = styled.Text`

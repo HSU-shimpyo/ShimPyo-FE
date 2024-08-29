@@ -30,7 +30,7 @@ text-align: center;
 
 /* MO/Headline/KR/H2_KR_Rg */
 font-family: Pretendard;
-font-size: 28px;
+font-size: 24px;
 font-style: normal;
 font-weight: 400;
 line-height: 38px; /* 135.714% */

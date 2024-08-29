@@ -46,8 +46,8 @@ const StyledText = styled.Text`
 
 const StyledImg = styled.Image`
   display: flex;
-  width: 190px;
-  height: 190px;
+  width: 158.4px;
+  height: 189px;
   justify-content: center;
   align-items: center;
   margin-bottom: 198.4px;

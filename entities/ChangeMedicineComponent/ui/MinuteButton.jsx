@@ -51,6 +51,7 @@ const Container = styled.View`
 const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
+  width:327px;
   height: 64px;
   background-color:#E5E5EC;
   border-radius:24px;
@@ -120,7 +121,7 @@ const ButtonText = styled.Text`
   color: ${(props) => (props.isSelected ? '#3C63EC' : '#767676')}; /* 선택된 경우 텍스트 색상 변경 */
   text-align: center;
   font-family: Pretendard;
-  font-size: 16px;
+  font-size: 14px;
   font-style: normal;
   font-weight: 600;
   line-height: 24px; /* 150% */

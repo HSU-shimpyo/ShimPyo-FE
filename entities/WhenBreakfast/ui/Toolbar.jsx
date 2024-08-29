@@ -34,7 +34,7 @@ const MainLayout = styled.View`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-margin-top:-375px;
+ margin-top:-375px;
 `;
 
 const StyledText = styled.Text`

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-export default function LunchNextButton({ onPress }) {
+export default function BreakfastNextButton({ onPress }) {
   const [isPressed, setIsPressed] = useState(false);
 
   const handlePressIn = () => {
@@ -19,7 +19,6 @@ export default function LunchNextButton({ onPress }) {
       onPressOut={handlePressOut}
       isPressed={isPressed}
     >
-      {/* ButtonText 컴포넌트로 텍스트를 감쌉니다 */}
       <ButtonText isPressed={isPressed}>다음</ButtonText>
     </StyledButton>
   );
@@ -27,12 +26,13 @@ export default function LunchNextButton({ onPress }) {
 
 const StyledButton = styled.Pressable`
   width: 327px;
-  height: 56px;
+  height: 52px;
   padding: 14px 16px;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
   background-color: ${({ isPressed }) => (isPressed ? '#3C63EC' : '#E5E5EC')};
+  margin-bottom:30px;
   
 `;
 
