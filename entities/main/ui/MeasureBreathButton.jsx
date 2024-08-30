@@ -62,8 +62,8 @@ left : 27%;
 top : 23%;
 `;
 const ArrowImage = styled.Image`
-width : 43.33;
-height : 44;
+width : 43.33px;
+height : 44px;
 position : relative;
 right  : 38%;
 top : 15%;

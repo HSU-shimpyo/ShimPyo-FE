@@ -36,22 +36,22 @@ export default function History({PEF}) {
             labelColor: (opacity = 1) => `#767676`, // 라벨 색상
             fillShadowGradientFrom: '#8FEAD4', //그라데이션 시작 색상
             fillShadowGradientTo: "#fff", //그라데이션 끝 색상
-            fillShadowGradientFromOpacity: 1, //시작 색상 불투명도
-            fillShadowGradientToOpacity: 0, //끝 색상 불투명도
+            fillShadowGradientFromOpacity: 0.2, //시작 색상 불투명도
+            fillShadowGradientToOpacity: 0.4, //끝 색상 불투명도
             propsForDots: {
-            r: "0"
+              r: "0"
             },
             propsForLabels: {
                 fontFamily: 'Pretendard',
                 fontSize: 12,
                 fontWeight: 400,
-                letterSpacing: -0.3
+                letterSpacing: -0.3,
               }
         }}
         style={{
             marginTop: 31,
             position : 'relative',
-            right : 30
+            right : 30,
         }}
         />
         <Mark><MarkText>{PEF}</MarkText></Mark>
@@ -93,10 +93,9 @@ top : 17%;
 right : 5%;
 justify-content : center;
 align-items : center;
-shadow-color: rgba(0, 0, 0, 0.5);
-shadow-offset: 0px 20px;
-shadow-opacity: 0.1;
-shadow-radius: 44px;
+shadow-color: rgba(0, 0, 0, 0.10);
+shadow-offset: 0px 5px;
+shadow-opacity: 0.3;
 `;
 
 const MarkText = styled.Text`

@@ -6,121 +6,61 @@ import styled from 'styled-components/native'
 import logo from '../../../assets/images/logo_ver3.png'
 import Sum from '../../../assets/images/aboutusSum.png'
 import Email from '../../../assets/images/email.png'
-import Jy from '../../../assets/images/jy.png'
-import Ye from '../../../assets/images/ye.png'
-import Hj from '../../../assets/images/hj.png'
-import Je from '../../../assets/images/je.png'
-import Kn from '../../../assets/images/kn.png'
 
-export default function Card() {
-    const [itemWidth, setItemWidth] = useState(0);
-    const member =[
-        {
-            name : "이주연",
-            part : "Front-End",
-            email : "2191047@hansung.ac.kr",
-            img : Jy
-        },
-        {
-            name : "임예은",
-            part : "Front-End",
-            email : "2271514@hansung.ac.kr",
-            img : Ye
-        },
-        {
-            name : "임혜정",
-            part : "Back-End",
-            email : "2191233@hansung.ac.kr",
-            img : Hj
-        },
-        {
-            name : "김정은",
-            part : "Back-End",
-            email : "2211013@hansung.ac.kr",
-            img : Je
-        },
-        {
-            name : "권기남",
-            part : "Designer",
-            email : "rlska0711@hansung.ac.kr",
-            img : Kn
-        },
-    ];
-    
-  return (
-    <Container>
+export default function Card({ name, email, img, part, marginLeft }) {
 
-    <ScrollView
-        horizontal
-        pagingEnabled
-        contentContainerStyle={{width: `${100 * member.length}%`}}
-        scrollEventThrottle={200}
-        decelerationRate="fast"
-        onContentSizeChange={w => setItemWidth(w / member.length)}
-        showsHorizontalScrollIndicator={false}
-    >
-        {
-            member.map((item,index)=>(
-                <MainLayout width={itemWidth}>
+    return (
+        <Container marginLeft={marginLeft}>
 
-                    <TopCard>
+            <TopCard>
 
-                        <WrapRound>
+                <WrapRound>
 
-                            <Round padding="4px 14px 4px 14px">
-                                <StyledText fontSize="14px" color="#3C63EC" lineHeight="20px" letterSpacing="-0.35px" fontWeight="700">
-                                    {item.part}
-                                </StyledText>
-                            </Round>
-
-                            <Round width="28px" height="28px">
-                                <Img source={logo}/>
-                            </Round>
-
-                        </WrapRound>
-
-                        <Img source={item.img} width="200px" height="200px" marginBottom="15%"/>
-
-                    </TopCard>
-
-                    <BottomCard>
-
-                        <StyledText fontSize="36px" fontWeight="600" lineHeight="44px" letterSpacing="-0.9px" color="#F7F7FB" marginBottom="12px">
-                            {item.name}
+                    <Round padding="4px 14px 4px 14px">
+                        <StyledText fontSize="14px" color="#3C63EC" lineHeight="20px" letterSpacing="-0.35px" fontWeight="700">
+                            {part}
                         </StyledText>
+                    </Round>
 
-                        <WrapEmail>
-                            <Img source={Email} width="13px" height="10px" marginRight="3px"/>
-                            <StyledText fontWeight="600">E-mail</StyledText>
-                        </WrapEmail>
+                    <Round width="28px" height="28px">
+                        <Img source={logo} />
+                    </Round>
 
-                        <StyledText>{item.email}</StyledText>
+                </WrapRound>
 
-                        <Img 
-                            source={Sum} 
-                            width="105px" 
-                            height="110px"
-                            position="absolute"
-                        />
+                <Img source={img} width="200px" height="200px" marginBottom="15%" />
 
-                    </BottomCard>
+            </TopCard>
 
-                </MainLayout>
-            ))
-        }
-    </ScrollView>
-    </Container>
-  )
+            <BottomCard>
+
+                <StyledText fontSize="36px" fontWeight="600" lineHeight="44px" letterSpacing="-0.9px" color="#F7F7FB" marginBottom="12px">
+                    {name}
+                </StyledText>
+
+                <WrapEmail>
+                    <Img source={Email} width="13px" height="10px" marginRight="3px" />
+                    <StyledText fontWeight="600">E-mail</StyledText>
+                </WrapEmail>
+
+                <StyledText>{email}</StyledText>
+
+                <Img
+                    source={Sum}
+                    width="105px"
+                    height="110px"
+                    position="absolute"
+                />
+
+            </BottomCard>
+
+        </Container>
+    )
 }
 const Container = styled.View`
-height : 60%;
-
-`;
-
-const MainLayout = styled.View`
-justify-content : center;
-align-items : center;
-width : ${({ width }) => width || '20%'};
+height : 100%;
+margin-right : 32px;
+margin-left :  ${({ marginLeft }) => marginLeft || '0px'};
 `;
 
 const StyledText = styled.Text`
