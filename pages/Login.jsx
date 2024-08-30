@@ -105,6 +105,7 @@ const Logo = styled.Image`
   width: 100px;
   height: 100px;
   align-self: center;
+  margin-top:-250px;
 `;
 
 const Subtitle = styled.Text`
@@ -118,7 +119,7 @@ const InputContainer = styled.View`
 `;
 
 const Label = styled.Text`
-  color: #000;
+  color: #111;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -135,6 +136,8 @@ const StyledInput = styled.TextInput`
   padding: 14px 16px;
   border-radius: 12px;
   background: #f1f1f5;
+  font-size: 16px;
+
 `;
 
 const ErrorMessage = styled.Text`
@@ -153,12 +156,13 @@ const StyledButton = styled.Pressable`
   height: 56px;
   justify-content: center;
   align-items: center;
+  padding: 14px 16px;
   border-radius: 12px;
   background-color: ${({ isEnabled }) => (isEnabled ? '#3C63EC' : '#E5E5EC')};
 `;
 
 const ButtonText = styled.Text`
-  color: #fff;
+  color: ${({ isEnabled }) => (isEnabled ? '#FFF' : '#E5E5EC')};
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
