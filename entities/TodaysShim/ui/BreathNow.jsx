@@ -119,12 +119,13 @@ export default function BreathNow({ setIsComplete, setAudioFileArray }) {
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 50%;
+  height: 40%;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
   margin-top: 17%;
   margin-bottom: 415px;
+  border : 1px solid red;
 `;
 
 const WrapIcon = styled.TouchableOpacity`

@@ -29,6 +29,7 @@ export default function Result() {
 const ScrollContainer = styled.ScrollView`
   flex: 1;
   width: 100%;
+  height : 150%;
   background-color: #f7f7fb;
 `;
 

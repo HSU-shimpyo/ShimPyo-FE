@@ -13,8 +13,10 @@ export default function ToolBar({page,marginLeft}) {
   return (
     <MainLayout>
 
-      {/* 레이아웃 용 빈 태그 */}
-      <View/>
+       {/* Close 버튼 */}
+       <CloseButtonWrapper onPress={handleCloseButtonClick} opacity="0">
+        <CloseButton source={closeButton} />
+      </CloseButtonWrapper>
 
       {/* 상단바 제목 */}
       <StyledText marginLeft={marginLeft}>{page}</StyledText>
@@ -39,12 +41,13 @@ const MainLayout = styled.View`
 `;
 
 const StyledText = styled.Text`
-  margin-left : 15%;
   font-size: 20px;
   font-weight: 600;
 `;
 
 const CloseButtonWrapper = styled.TouchableOpacity`
+opacity : ${({ opacity }) => opacity || '1'};
+
 `;
 
 const CloseButton = styled.Image`
