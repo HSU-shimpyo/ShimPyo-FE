@@ -70,19 +70,23 @@ export default function FineDustComponent({value,text}) {
   return (
     <MainLayout>
 
+        {/* 이모지 */}
         <Emoji source={emoji}/>
 
+        {/* 상태 Progress Bar */}
         <ProgressBar>
           <ColorField color={color} percentage={percentage}/>
           <NonColorField percentage={100-percentage}/> 
         </ProgressBar>
 
+        {/* 상태( 좋음 / 보통 / 나쁨 / 심각 )와 수치 */}
         <ValueSection>
           <DustText color={color}>{status}</DustText> 
-          <DustText color="#111" >({value}㎍/㎥)</DustText>
+          <DustText color="#111" letterSpacing="-0.45px">({value}㎍/㎥)</DustText>
         </ValueSection>
 
-        <DustText fontSize="14px">{text}</DustText> 
+        {/* 미세먼지 / 초미세먼지 */}
+        <DustText fontSize="14px" letterSpacing="-0.35px">{text}</DustText> 
 
     </MainLayout>
   )
@@ -129,4 +133,6 @@ const DustText = styled.Text`
 color : ${({ color }) => color || '#777'};
 font-size : ${({ fontSize }) => fontSize || '20px'};
 font-weight : 600;
+letter-spacing:  ${({ letterSpacing }) => letterSpacing || '-0.5px'};
+font-family: Pretendard;
 `;

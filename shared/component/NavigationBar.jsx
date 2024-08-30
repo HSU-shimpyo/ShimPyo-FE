@@ -21,24 +21,31 @@ export default function NavigationBar() {
         } else if (tab === "history") {
             //navigation.navigate("History"); 
         } else if (tab === "sumsum") {
-            //navigation.navigate("Sumsum"); 
+            navigation.navigate("SumAiChat"); 
         }
     };
 
     return (
         <MainLayout>
+
+            {/* 홈 */}
             <Menu onPress={() => handleTabPress("home")}>
                 <MenuImage source={selectedTab === "home" ? selectedHome : home}/>
                 <StyledText color={selectedTab === "home" ? "#3776CB" : "#767676"}>홈</StyledText>
             </Menu>
+
+            {/* 숨 지표 */}
             <Menu onPress={() => handleTabPress("history")}>
                 <MenuImage source={selectedTab === "history" ? selectedHistory : history}/>
                 <StyledText color={selectedTab === "history" ? "#3776CB" : "#767676"}>숨 지표</StyledText>
             </Menu>
+
+            {/* 숨숨이 */}
             <Menu onPress={() => handleTabPress("sumsum")}>
                 <MenuImage source={selectedTab === "sumsum" ? selectedSumsum : sumsum}/>
                 <StyledText color={selectedTab === "sumsum" ? "#3776CB" : "#767676"}>숨숨이</StyledText>
             </Menu>
+
         </MainLayout>
     );
 }

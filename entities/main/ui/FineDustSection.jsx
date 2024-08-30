@@ -24,8 +24,13 @@ export default function FineDustSection() {
 
     return (
     <MainLayout>
+        
+        {/* 미세먼지 */}
         <FineDustComponent value={PM10} text="미세먼지"/>
+
+        {/* 초미세먼지 */}
         <FineDustComponent value={PM25} text="초미세먼지"/>
+
     </MainLayout>
     )
 }
@@ -35,5 +40,5 @@ flex-direction : row;
 width : 350px;
 justify-content : space-around;
 position : relative;
-bottom : 10%;
+bottom : 6%;
 `;

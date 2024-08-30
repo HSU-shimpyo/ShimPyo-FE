@@ -40,7 +40,8 @@ export default function HospitalReservationTimeModal({setIsDayClick, setIsHospit
         fontSize='14px'
         marginBottom='24px'
         onPress={CompleteButtonClick}
-        />
+    />
+
   </ModalContainer>
 
 </Container>

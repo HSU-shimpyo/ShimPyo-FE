@@ -46,9 +46,6 @@ export default function TimePicker({setIsTimeSettingComplete}) {
   const selectedMinute = (index) => {
     setIsMinuteFocus(index)
   }
-
-
-
   return (
     <MainLayout>
 
