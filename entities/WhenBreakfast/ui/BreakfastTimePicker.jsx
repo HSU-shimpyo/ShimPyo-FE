@@ -159,11 +159,11 @@ const SelectScrollView = styled.ScrollView`
 const TimeButton = styled(TouchableOpacity)`
   align-items: center;
   display: flex;
-  width: 100px;
+  width: 100%;
   height: 120px;
-  padding: 32px 29px 0px 29px;
+  padding: 0px 29px 0px 29px;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
 `;
 
