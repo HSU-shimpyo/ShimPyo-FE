@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components/native'
-import icon from '../../../assets/images/icon_ver1.png'
+import screw from '../../../assets/images/screw.png'
 import toucharrow from '../../../assets/images/toucharrow.png'
-import circle from '../../../assets/images/circle.png'
+import measureButton from '../../../assets/images/measurebutton.png'
 import { useNavigation } from '@react-navigation/native';
 
 export default function MeasureBreathButton() {
@@ -12,21 +12,30 @@ export default function MeasureBreathButton() {
     navigation.navigate("TodaysShim")
   }
   return (
-    <MainLayout onPress={clickButton} activeOpacity={1}>
+    <MainLayout>
 
-      <Wrap>
+      <Wrap onPress={clickButton}>
         <ArrowImage source={toucharrow}/>
-        <CircleImg source={circle}/>
-        <IconImg source={icon}/>
+        <CircleImg source={measureButton}/>
       </Wrap>
       
-      <StyledText>오늘도 쉬어볼까요?</StyledText>
+      <MeasureButton>
+        <WrapScrew>
+          <ScrewImg source={screw}/>
+          <ScrewImg source={screw}/>
+        </WrapScrew>
+        <StyledText>오늘의 쉼 측정하기</StyledText>
+        <WrapScrew>
+          <ScrewImg source={screw}/>
+          <ScrewImg source={screw}/>
+        </WrapScrew>
+      </MeasureButton>
 
     </MainLayout>
   )
 }
 
-const MainLayout = styled.TouchableOpacity`
+const MainLayout = styled.View`
 width : 335px;
 height : 322px;
 background-color : #fff;
@@ -43,7 +52,7 @@ shadow-opacity: 0.44;
 shadow-radius: 44px;
 elevation: 5; 
 `;
-const Wrap = styled.View`
+const Wrap = styled.TouchableOpacity`
 width : 100%;
 height : 80%;
 justify-content : center;
@@ -54,12 +63,13 @@ width : 200px;
 height : 200px;
 margin-bottom : 10%;
 `;
-const IconImg = styled.Image`
-width : 150px;
-height : 150px;
-position : absolute;
-left : 27%;
-top : 23%;
+
+const WrapScrew = styled.View`
+justify-content : space-between;
+`;
+const ScrewImg = styled.Image`
+width : 5px;
+height : 5px;
 `;
 const ArrowImage = styled.Image`
 width : 43.33px;
@@ -68,15 +78,24 @@ position : relative;
 right  : 38%;
 top : 15%;
 `;
-
-const StyledText = styled.Text`
-color : #505050;
-font-size : 24px;
-font-weight: 600;
-width : 100%;
-height : 20%;
+const MeasureButton = styled.View`
+width : 178px;
+height : 34px;
+background-color : #3C63EC;
 text-align : center;
-letter-spacing: -0.6px;
-padding-top : 3%;
+margin-bottom : 32px;
+border-radius: 6px;
+flex-direction : row;
+justify-content : space-between;
+flex-wrap: wrap;
+padding : 4px 5px;
+`;
+const StyledText = styled.Text`
+color : #fff;
 font-family: Pretendard;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 24px; 
+letter-spacing: -0.4px;
 `;
