@@ -10,9 +10,6 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import HospitalTimeSetting from './pages/HospitalTimeSetting';
 import MedicineTimeSetting from './pages/MedicineTimeSetting';
-import WhenBreakfast from './pages/WhenBreakfast';
-import WhenLunch from './pages/WhenLunch';
-import WhenDinner from './pages/WhenDinner';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
 import TodaysShim from './pages/TodaysShim';
@@ -37,6 +34,9 @@ function App() {
           initialRouteName="FirstSplash"
           screenOptions={{ headerShown: false }} //모든 스크린에서 헤더를 숨김
           >
+          initialRouteName="Main"
+          screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
+        >
         <Stack.Screen name="FirstSplash" component={FirstSplash}/>
         <Stack.Screen name="Start" component={Start}/>
         <Stack.Screen name="SignUp" component={SignUp}/>
@@ -53,6 +53,9 @@ function App() {
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
         <Stack.Screen name="SumAiChat" component={SumAiChat} />
+        <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
+        <Stack.Screen name="TodaysShim" component={TodaysShim} />
+        <Stack.Screen name="SumAiChat" component={SumAiChatScreenWithNavBar} />
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
 
 
