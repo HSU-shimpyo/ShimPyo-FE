@@ -16,14 +16,11 @@ import WhenDinner from './pages/WhenDinner';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
 import TodaysShim from './pages/TodaysShim';
-import SumAiChat from './pages/SumAiChat';
 import NavigationBar from './shared/component/NavigationBar';
+import SumAiChat from './pages/SumAiChat';
 import ChattingRoom from './pages/ChattingRoom';
-import MyPage from './pages/MyPage';
-
 const Stack = createStackNavigator();
 
-// Main 화면에 NavigationBar를 추가한 컴포넌트
 function MainScreenWithNavBar() {
   return (
     <>
@@ -33,25 +30,13 @@ function MainScreenWithNavBar() {
   );
 }
 
-// SumAiChat 화면에 NavigationBar를 추가한 컴포넌트
-function SumAiChatScreenWithNavBar() {
-  return (
-    <>
-      <SumAiChat />
-      <NavigationBar />
-    </>
-  );
-}
-
 function App() {
   return (
     <NavigationContainer>
         <Stack.Navigator
-          initialRouteName="Main"
+          initialRouteName="FirstSplash"
           screenOptions={{ headerShown: false }} //모든 스크린에서 헤더를 숨김
           >
-          screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
-        >
         <Stack.Screen name="FirstSplash" component={FirstSplash}/>
         <Stack.Screen name="Start" component={Start}/>
         <Stack.Screen name="SignUp" component={SignUp}/>
@@ -65,14 +50,12 @@ function App() {
         <Stack.Screen name="WhenBreakfast" component={WhenBreakfast} />
         <Stack.Screen name="WhenLunch" component={WhenLunch} />
         <Stack.Screen name="WhenDinner" component={WhenDinner} />
-
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
-        <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
-        <Stack.Screen name="TodaysShim" component={TodaysShim} />
-        <Stack.Screen name="SumAiChat" component={SumAiChatScreenWithNavBar} />
+        <Stack.Screen name="SumAiChat" component={SumAiChat} />
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
-        <Stack.Screen name="MyPage" component={MyPage} />
+
+
         </Stack.Navigator>
     </NavigationContainer>
   );
