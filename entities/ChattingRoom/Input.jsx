@@ -1,6 +1,7 @@
-import React from 'react'
-import styled from 'styled-components'
-import ExportIcon from '../../assets/images/export.png'
+import React from 'react';
+import styled from 'styled-components';
+import ExportIcon from '../../assets/images/export.png';
+
 export default function Input() {
   return (
     <Wrap>

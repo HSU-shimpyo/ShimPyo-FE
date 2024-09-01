@@ -55,11 +55,13 @@ const MainLayout = styled.View`
   justify-content: space-between;
   align-items: center;
   margin-top: 42px;
+  background-color:#FFFFFF;
 `;
 
 const WrapTitle = styled.View`
 flex-direction : row;
 height : 28px;
+
 `;
 
 const Title = styled.TextInput`
@@ -71,6 +73,7 @@ font-style: normal;
 font-weight: 600;
 letter-spacing: -0.5px;
 margin-right : 9.69rem;
+
 `;
 
 const IconWrap = styled.TouchableOpacity`
