@@ -16,6 +16,10 @@ import TodaysShim from './pages/TodaysShim';
 import NavigationBar from './shared/component/NavigationBar';
 import SumAiChat from './pages/SumAiChat';
 import ChattingRoom from './pages/ChattingRoom';
+import WhenBreakfast from './pages/WhenBreakfast';
+import WhenLunch from './pages/WhenLunch';
+import WhenDinner from './pages/WhenDinner';
+
 const Stack = createStackNavigator();
 
 function MainScreenWithNavBar() {
@@ -30,19 +34,16 @@ function MainScreenWithNavBar() {
 function App() {
   return (
     <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="FirstSplash"
-          screenOptions={{ headerShown: false }} //모든 스크린에서 헤더를 숨김
-          >
-          initialRouteName="Main"
-          screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
-        >
-        <Stack.Screen name="FirstSplash" component={FirstSplash}/>
-        <Stack.Screen name="Start" component={Start}/>
-        <Stack.Screen name="SignUp" component={SignUp}/>
-        <Stack.Screen name="SignUpBreath" component={SignUpBreath}/>
-        <Stack.Screen name="SignUpComplete" component={SignUpComplete}/>
-        <Stack.Screen name="Login" component={Login}/>
+      <Stack.Navigator
+        initialRouteName="Main" // 초기 경로 설정
+        screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
+      >
+        <Stack.Screen name="FirstSplash" component={FirstSplash} />
+        <Stack.Screen name="Start" component={Start} />
+        <Stack.Screen name="SignUp" component={SignUp} />
+        <Stack.Screen name="SignUpBreath" component={SignUpBreath} />
+        <Stack.Screen name="SignUpComplete" component={SignUpComplete} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={MainScreenWithNavBar} />
         <Stack.Screen name="MedicineTimeSetting" component={MedicineTimeSetting} />
         <Stack.Screen name="HospitalTimeSetting" component={HospitalTimeSetting} />
@@ -53,13 +54,8 @@ function App() {
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
         <Stack.Screen name="SumAiChat" component={SumAiChat} />
-        <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
-        <Stack.Screen name="TodaysShim" component={TodaysShim} />
-        <Stack.Screen name="SumAiChat" component={SumAiChatScreenWithNavBar} />
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
-
-
-        </Stack.Navigator>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
