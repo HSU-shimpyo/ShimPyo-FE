@@ -2,13 +2,15 @@ import React from 'react'
 import styled from 'styled-components'
 import ToolBar from '../shared/component/ToolBar';
 import NavigationBar from '../shared/component/NavigationBar';
-
+import Contents from '../entities/SumHistory/Contents';
 
 export default function SumHistory() {
   return (
     <MainLayout>
         {/* 상단바 */}
         <ToolBar page="숨 지표"/>
+
+        <Contents/>
 
         {/* 네비게이션바 */}
         <NavigationBar history/>    
