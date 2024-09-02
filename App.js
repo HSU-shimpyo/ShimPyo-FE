@@ -13,23 +13,15 @@ import MedicineTimeSetting from './pages/MedicineTimeSetting';
 import ChangeMedicine from './pages/ChangeMedicine';
 import MedicineComplete from './pages/MedicineComplete';
 import TodaysShim from './pages/TodaysShim';
-import NavigationBar from './shared/component/NavigationBar';
 import SumAiChat from './pages/SumAiChat';
 import ChattingRoom from './pages/ChattingRoom';
+import MyPage from './pages/MyPage';
 import WhenBreakfast from './pages/WhenBreakfast';
 import WhenLunch from './pages/WhenLunch';
 import WhenDinner from './pages/WhenDinner';
+import SumHistory from './pages/SumHistory';
 
 const Stack = createStackNavigator();
-
-function MainScreenWithNavBar() {
-  return (
-    <>
-      <Main />
-      <NavigationBar />
-    </>
-  );
-}
 
 function App() {
   return (
@@ -44,7 +36,7 @@ function App() {
         <Stack.Screen name="SignUpBreath" component={SignUpBreath} />
         <Stack.Screen name="SignUpComplete" component={SignUpComplete} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Main" component={MainScreenWithNavBar} />
+        <Stack.Screen name="Main" component={Main} />
         <Stack.Screen name="MedicineTimeSetting" component={MedicineTimeSetting} />
         <Stack.Screen name="HospitalTimeSetting" component={HospitalTimeSetting} />
         <Stack.Screen name="ChangeMedicine" component={ChangeMedicine} />
@@ -55,6 +47,8 @@ function App() {
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
         <Stack.Screen name="SumAiChat" component={SumAiChat} />
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
+        <Stack.Screen name="MyPage" component={MyPage} />
+        <Stack.Screen name="SumHistory" component={SumHistory}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

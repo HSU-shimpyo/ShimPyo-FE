@@ -4,6 +4,7 @@ import MeasureBreathButton from '../entities/main/ui/MeasureBreathButton';
 import WeeklyCalendar from '../entities/main/ui/WeeklyCalendar';
 import FineDustSection from '../entities/main/ui/FineDustSection';
 import SettingComponentSection from '../entities/main/ui/SettingComponentSection';
+import NavigationBar from '../shared/component/NavigationBar';
 
 export default function Main() {
   return (
@@ -23,6 +24,7 @@ export default function Main() {
         <SettingComponentSection/>
 
       </MainLayout>
+      <NavigationBar main/>
     </ScrollContainer>
   )
 }
