@@ -5,12 +5,12 @@ import { useNavigation } from "@react-navigation/native";
 // 이미지
 import home from '../../assets/images/home.png';
 import selectedHome from '../../assets/images/colorhome.png';
-import history from '../../assets/images/ruler.png';
+import History from '../../assets/images/ruler.png';
 import selectedHistory from '../../assets/images/colorruler.png';
 import sumsum from '../../assets/images/sumsum.png';
 import selectedSumsum from '../../assets/images/colorsumsum.png';
 
-export default function NavigationBar() {
+export default function NavigationBar({main, history ,chat}) {
     const navigation = useNavigation();
     const [selectedTab, setSelectedTab] = useState("home");
 
@@ -19,7 +19,7 @@ export default function NavigationBar() {
         if (tab === "home") {
             navigation.navigate("Main");
         } else if (tab === "history") {
-            //navigation.navigate("History"); 
+            navigation.navigate("SumHistory"); 
         } else if (tab === "sumsum") {
             navigation.navigate("SumAiChat"); 
         }
@@ -27,25 +27,51 @@ export default function NavigationBar() {
 
     return (
         <MainLayout>
-
             {/* 홈 */}
-            <Menu onPress={() => handleTabPress("home")}>
-                <MenuImage source={selectedTab === "home" ? selectedHome : home}/>
-                <StyledText color={selectedTab === "home" ? "#3776CB" : "#767676"}>홈</StyledText>
-            </Menu>
+            {
+                main ? (
+                    <Menu onPress={() => handleTabPress("home")}>
+                        <MenuImage source={selectedHome}/>
+                        <StyledText color="#3776CB">홈</StyledText>
+                    </Menu>
+                ) : (
+                    <Menu onPress={() => handleTabPress("home")}>
+                        <MenuImage source={home}/>
+                        <StyledText color="#767676">홈</StyledText>
+                    </Menu>
+                )
+            }
 
             {/* 숨 지표 */}
-            <Menu onPress={() => handleTabPress("history")}>
-                <MenuImage source={selectedTab === "history" ? selectedHistory : history}/>
-                <StyledText color={selectedTab === "history" ? "#3776CB" : "#767676"}>숨 지표</StyledText>
-            </Menu>
+            {
+                history ? (
+                <Menu onPress={() => handleTabPress("history")}>
+                    <MenuImage source={selectedHistory}/>
+                    <StyledText color="#3776CB">숨 지표</StyledText>
+                </Menu>
+                ) : (
+                <Menu onPress={() => handleTabPress("history")}>
+                    <MenuImage source={History}/>
+                    <StyledText color="#767676">숨 지표</StyledText>
+                </Menu>
+                )
+            }
 
             {/* 숨숨이 */}
-            <Menu onPress={() => handleTabPress("sumsum")}>
-                <MenuImage source={selectedTab === "sumsum" ? selectedSumsum : sumsum}/>
-                <StyledText color={selectedTab === "sumsum" ? "#3776CB" : "#767676"}>숨숨이</StyledText>
-            </Menu>
-
+            {
+                chat ? (
+                    <Menu onPress={() => handleTabPress("sumsum")}>
+                        <MenuImage source={selectedSumsum}/>
+                        <StyledText color="#3776CB">숨숨이</StyledText>
+                    </Menu>
+                ) :
+                (
+                    <Menu onPress={() => handleTabPress("sumsum")}>
+                        <MenuImage source={sumsum}/>
+                        <StyledText color="#767676">숨숨이</StyledText>
+                    </Menu>
+                )
+            }
         </MainLayout>
     );
 }
