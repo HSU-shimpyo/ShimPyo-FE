@@ -20,6 +20,7 @@ import WhenBreakfast from './pages/WhenBreakfast';
 import WhenLunch from './pages/WhenLunch';
 import WhenDinner from './pages/WhenDinner';
 import SumHistory from './pages/SumHistory';
+
 const Stack = createStackNavigator();
 
 function App() {
