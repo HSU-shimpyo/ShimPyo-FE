@@ -1,5 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components/native';
+import axios from "axios";
+import { BASE_URL } from '../shared/config/config';
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
 
 export default function LoginScreen({ navigation }) {
@@ -8,13 +10,32 @@ export default function LoginScreen({ navigation }) {
   const [errorMessage, setErrorMessage] = useState('');
   const passwordInputRef = useRef();
 
-  const handleLogin = () => {
-    const storedUser = 'user123';
-    const storedPassword = 'pw123';
+  const login = (username, password) => {
+    console.log(`login 함수로 들어옴,${username}, ${password}`);
+    
+    axios.post(`${BASE_URL}/api/signIn`,
+        {
+            "userId": username,
+            "password": password
+        },
+        {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+    )
+    .then((response) => {
+        console.log(response.data.data);
+    })
+    .catch((error) => {
+        console.error('error!', error.response?.data || error.message);
+    });
+};
 
-    if (username === storedUser && password === storedPassword) {
-      setErrorMessage(''); // 로그인 성공 시 에러 메시지 초기화
-      navigation.navigate('Main');
+  const handleLogin = () => {
+    if (username && password) {
+      login(username,password)
+      //navigation.navigate('Main');
     } else {
       setErrorMessage('올바르지 않은 아이디와 비밀번호입니다.');
     }
