@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native'; // '.native'를 사용하여 React Native에서 작동하도록 변경
 
-export default function Input({ type, placeholder }) {
+export default function Input({ type, placeholder, setValue }) {
     const [isFocus, setIsFocus] = useState(false);
 
     return (
@@ -14,6 +14,8 @@ export default function Input({ type, placeholder }) {
                 onBlur={() => setIsFocus(false)} 
                 backgroundColor={isFocus ? '#DBE1F9' : '#F1F1F5' }
                 borderColor={isFocus ? '#8CA2F3' : '#F1F1F5'}
+                onChangeText={(e) => setValue(e)}
+                returnKeyType='done'
             />
         </MainLayout>
     );
