@@ -2,30 +2,35 @@ import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import ToolBar from '../entities/SignUpComponent/ui/Toolbar';
-import SignUpInput from '../entities/SignUpComponent/ui/SignUpInput';
-import NextButton from '../entities/SignUpComponent/ui/NextButton';
-import SignUpBreath from './SignUpBreath';
+import InputInfo from '../entities/SignUpComponent/ui/InputInfo';
+import StandardButton from '../shared/component/StandardButton';
+import InputPef from '../entities/SignUpComponent/ui/InputPef';
 
 export default function SignUp() {
-  const [isComplete, setIsComplete] = useState(false);
+  const [isInfoInputComplete, setIsInfoInputComplete] = useState(true);
   const navigation = useNavigation();
 
   const handleButtonClick = () => {
-    navigation.navigate('SignUpBreath'); // 'SignUpBreath' 화면으로 이동
+    //navigation.navigate('SignUpBreath'); // 'SignUpBreath' 화면으로 이동
   };
 
   return (
     <MainLayout>
-      {!isComplete && <ToolBar />}
-      {!isComplete && <SignUpInput />}
-      {!isComplete && <NextButton onPress={handleButtonClick} />}
+       <ToolBar/>
+
+        {!isInfoInputComplete && <InputInfo setIsInfoInputComplete/>}
+
+        {isInfoInputComplete && <InputPef/>}
+
+       <StandardButton text="다음"/>
     </MainLayout>
   );
 }
 
 const MainLayout = styled.View`
   flex: 1;
-  background-color: #f5f5f5;
-  justify-content: center;
+  background-color: #F7F7FB;
+  justify-content: space-around;
   align-items: center;
 `;
+
