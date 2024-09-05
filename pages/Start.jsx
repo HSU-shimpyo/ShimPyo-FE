@@ -30,14 +30,12 @@ export default function Start() {
             onPress={() => navigation.navigate('SignUp')} // 버튼 클릭 시 Login 화면으로 이동
             width = "327px"
             height = "56px"
-            justify-content = "center"
             gap = "10px"
             borderRadius={"100px"}
             font-size= {"16px"}
-            padding={"14px"}
+            padding
             font-weight= {"600"}
             letter-spacing={"-0.4px"}
-            alignContent="center"
           />
         </ButtonContainer>
         <RowContainer>
@@ -68,7 +66,6 @@ const RowContainer = styled.View`
   justify-content: center;
   align-items: center;
 background-color: #F7F7FB;
-margin-top:16px;
 width:166px;
 
 `;
@@ -104,8 +101,9 @@ const ImageContainer = styled.View`
 const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
-  margin-top:160px;
-`;
+  margin-top: 180px; 
+  margin-bottom: 15px; 
+  `;
 
 
 
@@ -141,7 +139,7 @@ const StyledTextLogin = styled.Text`
   color: #111;
   background-color: #F7F7FB;
   font-family: Pretendard;
-  font-size: 20px;
+  font-size: 16px;
   font-style: normal;
   font-weight: 400;
   line-height: 28px;

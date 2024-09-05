@@ -20,7 +20,7 @@ const Container = styled.View`
   flex-direction: column;
   align-items: flex-start;
   margin-left: 24px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   flex: 1;
   justify-content: flex-end;
 `;

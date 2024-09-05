@@ -25,7 +25,7 @@ border-radius : 100px;
 justify-content : center;
 align-items : center;
 margin-left : 70%;
-bottom: -40px;
+bottom: -40px;  
 
 shadow-color: rgba(0, 0, 0, 0.04); 
 shadow-offset: 0px 4px; 
