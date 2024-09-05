@@ -1,41 +1,54 @@
 import React, { useState, useRef } from 'react';
 import styled from 'styled-components/native';
 import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { BASE_URL } from '../shared/config/config';
 import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@react-navigation/native'; 
 
-export default function LoginScreen({ navigation }) {
+
+export default function LoginScreen() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [accessToken, setAccessToken] = useState('');
   const passwordInputRef = useRef();
 
-  const login = (username, password) => {
-    console.log(`login 함수로 들어옴,${username}, ${password}`);
-    
-    axios.post(`${BASE_URL}/api/signIn`,
-        {
-            "userId": username,
-            "password": password
-        },
-        {
-            headers: {
-                'Content-Type': 'application/json'
+  const navigation = useNavigation();
+
+  const login = async (username, password) => {    
+    try {
+        const response = await axios.post(`${BASE_URL}/api/signIn`, 
+            {
+                "loginId": username,
+                "password": password
+            }, 
+            {
+                headers: {
+                    'Content-Type': 'application/json'
+                }
             }
+        );
+
+        if(response.data.status === 200) {
+          console.log("로그인 성공");
+          navigation.navigate('Main'); 
+
         }
-    )
-    .then((response) => {
-        console.log(response.data.data);
-    })
-    .catch((error) => {
+        //로그인으로 발급받은 accessToken 로컬스토리지에 저장하기
+        await AsyncStorage.setItem('accessToken', response.data.data.accessToken);
+        const token = await AsyncStorage.getItem('accessToken');
+        console.log("로컬에 저장된 토큰", token)
+
+
+    } catch (error) {
         console.error('error!', error.response?.data || error.message);
-    });
+    }
 };
 
   const handleLogin = () => {
     if (username && password) {
       login(username,password)
-      //navigation.navigate('Main');
     } else {
       setErrorMessage('올바르지 않은 아이디와 비밀번호입니다.');
     }

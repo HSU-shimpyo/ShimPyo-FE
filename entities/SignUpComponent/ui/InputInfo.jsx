@@ -6,6 +6,7 @@ export default function InputInfo({
   setId,
   setPassword,
   setBirth,
+  setIsInfoInputComplete
 }) {
   return (
     <MainLayout>
