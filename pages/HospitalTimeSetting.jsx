@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import ToolBar from '../shared/component/ToolBar';
 import StandardButton from '../shared/component/StandardButton';
@@ -15,6 +15,11 @@ export default function HospitalTimeSetting() {
   const [isDayClick, setIsDayClick] = useState(false); //true -> 병원 검색 모달 열림, false -> 병원 시간 설정 모달 열림
   const [isHospitalSelected, setIsHospitalSelected] = useState(false) //true -> 병원 검색 모달 열림, false -> 병원 시간 설정 모달 닫침
 
+  const [hospitalId,setHospitalId] = useState();
+  const [year, setYear] = useState();
+  const [month, setMonth] = useState();
+  const [day, setDay] = useState();
+
   const navigation = useNavigation();
   
   const handleButtonClick = () => {
@@ -30,6 +35,13 @@ export default function HospitalTimeSetting() {
     }
   }
 
+  // useEffect(()=>{
+  //  // console.log("hospitalId",hospitalId);
+  //  console.log("year",year);
+  //  console.log("month",month);
+  //  console.log("day",day);
+  // },[year,month,day])
+
   return (
     <MainLayout>
 
@@ -37,7 +49,7 @@ export default function HospitalTimeSetting() {
       {!isComplete && <ToolBar page={"병원 일정 설정"}/>}
 
       {/* 캘린더 */}
-      {!isComplete && <Calendar  setIsDayClick={setIsDayClick}/>}
+      {!isComplete && <Calendar  setIsDayClick={setIsDayClick} setYear={setYear} setMonth={setMonth} setDay={setDay}/>}
 
       {/* 완료 메시지 */}
       {isComplete && <Complete/>}
@@ -46,7 +58,7 @@ export default function HospitalTimeSetting() {
       <StandardButton text={buttonStatus} marginBottom={"53px"} backgroundColor={buttonColor} onPress={handleButtonClick} />
 
       {/* 병원 검색 모달 */}
-      { isDayClick && <HospitalSearchModal setIsDayClick={setIsDayClick} setIsHospitalSelected={setIsHospitalSelected}/>}
+      { isDayClick && <HospitalSearchModal setIsDayClick={setIsDayClick} setIsHospitalSelected={setIsHospitalSelected} setHospitalId={setHospitalId}/>}
 
       {/* 병원 예약 시간 */}
       { isHospitalSelected && !isDayClick && 
@@ -56,6 +68,10 @@ export default function HospitalTimeSetting() {
           setIsComplete={setIsComplete}
           setButtonStatus={setButtonStatus}
           setButtonColor={setButtonColor}
+          hospitalId={hospitalId}
+          year={year}
+          month={month}
+          day={day}
           />}
 
     </MainLayout>

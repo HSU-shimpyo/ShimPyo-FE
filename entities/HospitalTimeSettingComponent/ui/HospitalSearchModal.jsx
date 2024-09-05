@@ -7,7 +7,7 @@ import { BlurView } from 'expo-blur';
 import { searchHospital } from '../api/HospitalApi';
 import StandardButton from '../../../shared/component/StandardButton';
 
-export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelected }) {
+export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelected, setHospitalId }) {
   const [isResult, setIsResult] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [selected, setSelected] = useState();
@@ -23,9 +23,11 @@ export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelect
     //console.log(result);
   };
 
-  const selectedHospital = (index) => {
+  const selectedHospital = (item) => {
     setIsSelected(true);
-    setSelected(index)
+   // console.log(item.hospitalId)
+    setSelected(item.hospitalId)
+    setHospitalId(item.hospitalId)
   };
 
   const completeButtonClick = () => {
@@ -63,12 +65,12 @@ export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelect
                 {result.map((item, index) => (
                   <ResultTouchableOpacity
                     key={index} // key 추가
-                    onPress={() => selectedHospital(index)}
-                    backgroundColor={selected === index ? '#4896EC' : 'transparent'}
-                    borderRadius={selected === index ? '12px' : '0px'}
+                    onPress={() => selectedHospital(item)}
+                    backgroundColor={selected === item.hospitalId ? '#4896EC' : 'transparent'}
+                    borderRadius={selected === item.hospitalId ? '12px' : '0px'}
                   >
                     <ResultText>{item.hospitalName}</ResultText>
-                    <ResultText color={selected === index ? '#fff' : '#999'} fontSize="12px" fontWeight="400" marginTop="8px">
+                    <ResultText color={selected === item.hospitalId ? '#fff' : '#999'} fontSize="12px" fontWeight="400" marginTop="8px">
                       {item.hospitalAddress}
                     </ResultText>
                   </ResultTouchableOpacity>

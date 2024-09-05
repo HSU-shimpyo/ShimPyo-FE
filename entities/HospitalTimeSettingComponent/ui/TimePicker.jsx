@@ -2,10 +2,15 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { TouchableOpacity, Text } from 'react-native';
 
-export default function TimePicker({setIsTimeSettingComplete}) {
-  const [isTimeZoneFocus, setIsTimeZoneFocus] = useState(null);
-  const [isHoursFocus, setIsHoursFocus] = useState(null);
-  const [isMinuteFocus, setIsMinuteFocus] = useState(null);
+export default function TimePicker({
+  setIsTimeSettingComplete,
+  setSelectedTimeZone,
+  setSelectedHours,
+  setSelectedMinutes
+}) {
+  const [isTimeZoneFocus, setIsTimeZoneFocus] = useState(null); //오전,오후 선택
+  const [isHoursFocus, setIsHoursFocus] = useState(null); //시간 선택
+  const [isMinuteFocus, setIsMinuteFocus] = useState(null); //분 선택
   const timeZone = ['오전', '오후'];
   const [hours, setHours] = useState([]);
   const [minutes, setMinutes] = useState([]);
@@ -35,16 +40,19 @@ export default function TimePicker({setIsTimeSettingComplete}) {
     }
   }, [isTimeZoneFocus, isHoursFocus, isMinuteFocus]);
 
-  const selectedTimeZone = (index) => {
-    setIsTimeZoneFocus(index) //index가 0이면 오전 , 1이면 오후 
+  const selectedTimeZone = (item) => {
+    setIsTimeZoneFocus(item) //index가 0이면 오전 , 1이면 오후 
+    setSelectedTimeZone(item)
   }
 
-  const selectedHours = (index) => {
-    setIsHoursFocus(index) 
+  const selectedHours = (item) => {
+    setIsHoursFocus(item) 
+    setSelectedHours(item)
   }
 
-  const selectedMinute = (index) => {
-    setIsMinuteFocus(index)
+  const selectedMinute = (item) => {
+    setIsMinuteFocus(item)
+    setSelectedMinutes(item)
   }
   return (
     <MainLayout>
@@ -56,11 +64,11 @@ export default function TimePicker({setIsTimeSettingComplete}) {
         {timeZone.map((item, index) => ( 
           <TimeZoneButton 
             key={index} 
-            onPress={()=>selectedTimeZone(index)}  //오전,오후 선택
-            isFocused={isTimeZoneFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
+            onPress={()=>selectedTimeZone(item)}  //오전,오후 선택
+            isFocused={isTimeZoneFocus === item} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
             activeOpacity={1} 
           >
-            <TimeZoneText isFocused={isTimeZoneFocus === index}>{item}</TimeZoneText>
+            <TimeZoneText isFocused={isTimeZoneFocus === item}>{item}</TimeZoneText>
           </TimeZoneButton>
         ))}
       </TimeZoneSelectScrollView>
@@ -70,11 +78,11 @@ export default function TimePicker({setIsTimeSettingComplete}) {
         {hours.map((item,index) => (
             <TimeButton 
                 key={index} 
-                onPress={() => selectedHours(index)} //시간 선택 
-                isFocused={isHoursFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
+                onPress={() => selectedHours(item)} //시간 선택 
+                isFocused={isHoursFocus === item} //보이는 배열의 index와 선택한 배열의 index가 같으면 isHoursFocus -> true 
                 activeOpacity={1} //TouchableOpacity 클릭시 기본 반짝임 효과 없애기
             >
-            <TimeText isFocused={isHoursFocus === index}>{item}</TimeText>
+            <TimeText isFocused={isHoursFocus === item}>{item}</TimeText>
             </TimeButton>
         ))}
       </SelectScrollView> 
@@ -84,11 +92,11 @@ export default function TimePicker({setIsTimeSettingComplete}) {
          {minutes.map((item,index) => (
             <TimeButton 
                 key={index} 
-                onPress={() => selectedMinute(index)} //분 선택
-                isFocused={isMinuteFocus === index} //보이는 배열의 index와 선택한 배열의 index가 같으면 isMinuteFocus -> true 
+                onPress={() => selectedMinute(item)} //분 선택
+                isFocused={isMinuteFocus === item} //보이는 배열의 index와 선택한 배열의 index가 같으면 isMinuteFocus -> true 
                 activeOpacity={1} //TouchableOpacity 클릭시 기본 반짝임 효과 없애기
             >
-            <TimeText isFocused={isMinuteFocus === index}>{item}</TimeText>
+            <TimeText isFocused={isMinuteFocus === item}>{item}</TimeText>
             </TimeButton>
         ))} 
       </SelectScrollView>

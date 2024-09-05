@@ -2,9 +2,8 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
 import 'moment/locale/ko';
-import EventSettingModal from './HospitalSearchModal';
 
-export default function Calendar({display, setIsDayClick}) {
+export default function Calendar({ display, setIsDayClick, setYear, setMonth, setDay }) {
   useEffect(() => {
     moment.locale('ko');
   }, []);
@@ -23,42 +22,48 @@ export default function Calendar({display, setIsDayClick}) {
     );
   }
 
-  const handledDayClick = () => {
+  const handledDayClick = (date) => {
     setIsDayClick(true);
+    
+    // 년, 월, 일 추출
+    const selectedYear = date.year();
+    const selectedMonth = date.month() + 1; // moment.js에서 month()는 0부터 시작하므로 +1
+    const selectedDay = date.date();
+
+    // 상태 업데이트
+    setYear(selectedYear);
+    setMonth(selectedMonth);
+    setDay(selectedDay);
   };
 
   return (
     <MainLayout>
-
       <CalendarContainer display={display}>
 
-      {/* 요일 */}
-      <WeekDaysContainer>
-        {weeks.map((day, dayIndex) => (
-          <WeekDay key={dayIndex}>
-            <WeekDayText>{day}</WeekDayText>
-          </WeekDay>
-        ))}
-      </WeekDaysContainer>
-
-      {/* 날짜 출력 */}
-      {calendar.map((week, weekIndex) => (
-
-        <WeekRow 
-            key={weekIndex}
-            bottomLine={weekIndex === calendar.length - 1 ? '#fff' :  '#E5E5EC' }
-            >
-          {week.map((date, dayIndex) => (
-            <DayContainer key={dayIndex} onPress={handledDayClick}>
-              <DayNumber>{date.format('D')}</DayNumber>
-            </DayContainer>
+        {/* 요일 */}
+        <WeekDaysContainer>
+          {weeks.map((day, dayIndex) => (
+            <WeekDay key={dayIndex}>
+              <WeekDayText>{day}</WeekDayText>
+            </WeekDay>
           ))}
-        </WeekRow>
+        </WeekDaysContainer>
 
-      ))}
+        {/* 날짜 출력 */}
+        {calendar.map((week, weekIndex) => (
+          <WeekRow
+            key={weekIndex}
+            bottomLine={weekIndex === calendar.length - 1 ? '#fff' : '#E5E5EC'}
+          >
+            {week.map((date, dayIndex) => (
+              <DayContainer key={dayIndex} onPress={() => handledDayClick(date)}>
+                <DayNumber>{date.format('D')}</DayNumber>
+              </DayContainer>
+            ))}
+          </WeekRow>
+        ))}
 
       </CalendarContainer>
-
     </MainLayout>
   );
 }
