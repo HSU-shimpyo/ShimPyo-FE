@@ -1,31 +1,37 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import closeButton from '../../../assets/images/whiteclosebutton.png';
 import glasses from '../../../assets/images/glasses.png';
 import { View, Modal, TouchableOpacity } from 'react-native';
 import { BlurView } from 'expo-blur';
+import { searchHospital } from '../api/HospitalApi';
 import StandardButton from '../../../shared/component/StandardButton';
 
 export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelected }) {
   const [isResult, setIsResult] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
+  const [selected, setSelected] = useState();
+  const [keyword, setKeyword] = useState('');
+  const [result, setResult] = useState([]);
 
   const handleCloseButtonClick = () => {
     setIsDayClick(false);
   };
 
   const DoneSearch = () => {
-    setIsResult(true);
+    searchHospital(keyword, setResult, setIsResult);
+    //console.log(result);
   };
 
-  const selectedHospital = () => {
+  const selectedHospital = (index) => {
     setIsSelected(true);
+    setSelected(index)
   };
 
   const completeButtonClick = () => {
-    setIsHospitalSelected(true)
-    setIsDayClick(false)
-  }
+    setIsHospitalSelected(true);
+    setIsDayClick(false);
+  };
 
   return (
     <Container intensity={15}>
@@ -41,6 +47,8 @@ export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelect
           <StyledInput
             placeholder="예약한 병원 이름을 입력해주세요"
             placeholderTextColor="#999"
+            value={keyword}
+            onChangeText={(keyword) => setKeyword(keyword)}
             onSubmitEditing={DoneSearch}
             returnKeyType="done"
           />
@@ -49,21 +57,30 @@ export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelect
 
         {/* 검색 결과 */}
         {isResult ? (
-          <ResultTouchableOpacity 
-            onPress={selectedHospital} 
-            backgroundColor={isSelected ? '#4896EC' : 'transparent'}
-            borderRadius={isSelected ? '12px' : '0px' }
-          >
-            <ResultText marginRight='142px'>제일조아병원</ResultText>
-            <ResultText color={isSelected ? '#fff' : '#999'} fontSize="12px" fontWeight="400"  marginTop='8px'>
-              경기도 하남시 감일백제로 123(펠리스빌딩 3층)
-            </ResultText>
-          </ResultTouchableOpacity>
+          <Section>
+            <ScrollSection>
+              <ResultSection>
+                {result.map((item, index) => (
+                  <ResultTouchableOpacity
+                    key={index} // key 추가
+                    onPress={() => selectedHospital(index)}
+                    backgroundColor={selected === index ? '#4896EC' : 'transparent'}
+                    borderRadius={selected === index ? '12px' : '0px'}
+                  >
+                    <ResultText>{item.hospitalName}</ResultText>
+                    <ResultText color={selected === index ? '#fff' : '#999'} fontSize="12px" fontWeight="400" marginTop="8px">
+                      {item.hospitalAddress}
+                    </ResultText>
+                  </ResultTouchableOpacity>
+                ))}
+              </ResultSection>
+            </ScrollSection>
+          </Section>
         ) : (
           <View />
         )}
 
-        <StandardButton 
+        <StandardButton
           text="선택 완료"
           color={isSelected ? '#FFFFFF' : '#999999'}
           backgroundColor={isSelected ? '#4896EC' : '#F1F1F5'}
@@ -144,21 +161,35 @@ const StyledInput = styled.TextInput`
 `;
 
 const ResultTouchableOpacity = styled(TouchableOpacity)`
-  position: absolute;
-  top: 25%;
   width: 279px;
   height: 72px;
   background-color: ${({ backgroundColor }) => backgroundColor || 'transparent'};
-  border-radius : ${({ borderRadius }) => borderRadius || '0px'};
-  justify-content : center;
-  align-items : center;
-  padding : 14px  24px 14px 24px;
+  border-radius: ${({ borderRadius }) => borderRadius || '0px'};
+  justify-content: center;
+  padding: 14px 24px;
+`;
+
+const Section = styled.View`
+width : 100%;
+height : 50%;
+margin-top : 3%;
+`;
+const ScrollSection = styled.ScrollView`
+  width: 100%;
+`;
+
+const ResultSection = styled.View`
+  width: 100%;
+  flex-direction: column; 
+  justify-content: flex-start; 
+  align-items: center;
 `;
 
 const ResultText = styled.Text`
   color: ${({ color }) => color || '#fff'};
   font-weight: ${({ fontWeight }) => fontWeight || '600'};
   font-size: ${({ fontSize }) => fontSize || '16px'};
-  margin-right : ${({ marginRight }) => marginRight || '0px'};
+  margin-right: ${({ marginRight }) => marginRight || '0px'};
   margin-top: ${({ marginTop }) => marginTop || '0px'};
+  width: 100%;
 `;
