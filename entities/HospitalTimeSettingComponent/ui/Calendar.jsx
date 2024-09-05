@@ -3,10 +3,21 @@ import styled from 'styled-components/native';
 import moment from 'moment';
 import 'moment/locale/ko';
 
-export default function Calendar({ display, setIsDayClick, setYear, setMonth, setDay }) {
+export default function Calendar({ display, setIsDayClick, setYear, setMonth, setDay, reservationList }) {
+  const resevation = [
+    
+  ]
   useEffect(() => {
     moment.locale('ko');
-  }, []);
+
+    const times = reservationList.map((info) => info.visitTime);
+
+    // const date = 0;
+    // times.map((time,index) => (
+    // ))
+
+    console.log(times);
+  }, [reservationList]);
 
   const startDay = moment().clone().startOf("month").startOf("week");
   const endDay = moment().clone().endOf("month").endOf("week");

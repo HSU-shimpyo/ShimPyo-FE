@@ -63,13 +63,13 @@ export const setVisitHospital = async (hospitalId,reservationTime) => {
 };
 
 //병원 방문 일정 전체 조회 (캘린더 표시)
-export const getAllHospitalVisit = async () => {    
+export const getAllHospitalVisit = async (setReservationList) => {    
     try {
         //로컬 스토리지에 저장되어 있는 토큰을 가져옴
         const token = await AsyncStorage.getItem('accessToken');
         
         if (token) {
-            const response = await axios.post(`${BASE_URL}/api/hospital/getAllHospitalVisit`, 
+            const response = await axios.get(`${BASE_URL}/api/hospital/getAllHospitalVisit`, 
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -78,7 +78,8 @@ export const getAllHospitalVisit = async () => {
                 }
             );
             
-           console.log(response.data);
+           //console.log(response.data.data);
+           setReservationList(response.data.data)
         } else {
             console.log("토큰이 없습니다.");
         }

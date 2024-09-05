@@ -7,6 +7,7 @@ import Complete from '../entities/HospitalTimeSettingComponent/ui/Complete';
 import { useNavigation } from '@react-navigation/native';
 import HospitalSearchModal from '../entities/HospitalTimeSettingComponent/ui/HospitalSearchModal';
 import HospitalReservationTimeModal from '../entities/HospitalTimeSettingComponent/ui/HospitalReservationTimeModal';
+import { getAllHospitalVisit } from '../entities/HospitalTimeSettingComponent/api/HospitalApi';
 
 export default function HospitalTimeSetting() {
   const [buttonStatus, setButtonStatus] = useState("일정 추가 하기");
@@ -19,6 +20,8 @@ export default function HospitalTimeSetting() {
   const [year, setYear] = useState();
   const [month, setMonth] = useState();
   const [day, setDay] = useState();
+
+  const [reservationList , setReservationList] = useState([]);
 
   const navigation = useNavigation();
   
@@ -35,12 +38,10 @@ export default function HospitalTimeSetting() {
     }
   }
 
-  // useEffect(()=>{
-  //  // console.log("hospitalId",hospitalId);
-  //  console.log("year",year);
-  //  console.log("month",month);
-  //  console.log("day",day);
-  // },[year,month,day])
+  useEffect(()=>{
+    getAllHospitalVisit(setReservationList)
+    // console.log(reservationList)
+  },[])
 
   return (
     <MainLayout>
@@ -49,7 +50,7 @@ export default function HospitalTimeSetting() {
       {!isComplete && <ToolBar page={"병원 일정 설정"}/>}
 
       {/* 캘린더 */}
-      {!isComplete && <Calendar  setIsDayClick={setIsDayClick} setYear={setYear} setMonth={setMonth} setDay={setDay}/>}
+      {!isComplete && <Calendar  setIsDayClick={setIsDayClick} setYear={setYear} setMonth={setMonth} setDay={setDay} reservationList={reservationList}/>}
 
       {/* 완료 메시지 */}
       {isComplete && <Complete/>}

@@ -1,13 +1,16 @@
-import React,{useState} from 'react'
+import React,{useEffect, useState} from 'react'
 import styled from 'styled-components'
-import {Text} from 'react-native'
-
+import { getTimeLeft } from '../api/MainApi';
 import SettingComponent from './SettingComponent';
 
 export default function SettingComponentSection() {
 
   const [pill,setPill] = useState(30)
-  const [hospital,setHospital] = useState(5)
+  const [hospital,setHospital] = useState()
+
+  useEffect(()=>{
+    getTimeLeft(setHospital)
+  },[])
 
   return (
     <MainLayout>
