@@ -33,7 +33,7 @@ export default function Start() {
             gap = "10px"
             borderRadius={"100px"}
             font-size= {"16px"}
-            padding
+            padding={"16px 14px"}
             font-weight= {"600"}
             letter-spacing={"-0.4px"}
           />
