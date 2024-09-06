@@ -5,6 +5,8 @@ import { Keyboard, Platform, TouchableWithoutFeedback } from 'react-native';
 export default function LoginScreen({ navigation }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [isUsernameFocused, setIsUsernameFocused] = useState(false);
+  const [isPasswordFocused, setIsPasswordFocused] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const passwordInputRef = useRef();
 
@@ -13,7 +15,7 @@ export default function LoginScreen({ navigation }) {
     const storedPassword = 'pw123';
 
     if (username === storedUser && password === storedPassword) {
-      setErrorMessage(''); // 로그인 성공 시 에러 메시지 초기화
+      setErrorMessage('');
       navigation.navigate('Main');
     } else {
       setErrorMessage('올바르지 않은 아이디와 비밀번호입니다.');
@@ -30,30 +32,37 @@ export default function LoginScreen({ navigation }) {
           <SubtitleContainer>
             <Subtitle>나만을 위한 천식 관리</Subtitle>
           </SubtitleContainer>
-          
-          <InputContainer>
-            <Label>아이디</Label>
-            <StyledInput
-              placeholder="아이디를 입력해주세요"
-              value={username}
-              onChangeText={setUsername}
-              returnKeyType="next"
-              onSubmitEditing={() => passwordInputRef.current.focus()}
-            />
-          </InputContainer>
+          <InputContainers>
+            <InputContainer>
+              <Label>아이디</Label>
+              <StyledInput
+                placeholder="아이디를 입력해주세요"
+                value={username}
+                onChangeText={setUsername}
+                returnKeyType="next"
+                onSubmitEditing={() => passwordInputRef.current.focus()}
+                isFocused={isUsernameFocused} // 포커스 상태 전달
+                onFocus={() => setIsUsernameFocused(true)} // 포커스 시 상태 변경
+                onBlur={() => setIsUsernameFocused(false)} // 포커스 해제 시 상태 변경
+              />
+            </InputContainer>
 
-          <InputContainer>
-            <Label>비밀번호</Label>
-            <StyledInput
-              ref={passwordInputRef}
-              placeholder="비밀번호를 입력해주세요"
-              value={password}
-              onChangeText={setPassword}
-              secureTextEntry
-              returnKeyType="done"
-              onSubmitEditing={handleLogin}
-            />
-          </InputContainer>
+            <InputContainer>
+              <Label>비밀번호</Label>
+              <StyledInput
+                ref={passwordInputRef}
+                placeholder="비밀번호를 입력해주세요"
+                value={password}
+                onChangeText={setPassword}
+                secureTextEntry
+                returnKeyType="done"
+                onSubmitEditing={handleLogin}
+                isFocused={isPasswordFocused} // 포커스 상태 전달
+                onFocus={() => setIsPasswordFocused(true)} // 포커스 시 상태 변경
+                onBlur={() => setIsPasswordFocused(false)} // 포커스 해제 시 상태 변경
+              />
+            </InputContainer>
+          </InputContainers>
 
           <ButtonContainer>
             {errorMessage !== '' && (
@@ -65,7 +74,7 @@ export default function LoginScreen({ navigation }) {
               disabled={!isButtonEnabled}
               isEnabled={isButtonEnabled}
             >
-              <ButtonText>로그인</ButtonText>
+              <ButtonText isEnabled={isButtonEnabled}>로그인</ButtonText>
             </StyledButton>
           </ButtonContainer>
          
@@ -90,9 +99,9 @@ const ContentContainer = styled.View`
 const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
-  margin-top: 16px; /* 버튼과 다른 요소들 간의 간격을 조절 */
+  margin-top: 16px;
   position: absolute;
-  bottom: 45px; /* 전체 화면의 하단에서 45px 위로 고정 */
+  bottom: 45px;
 `;
 
 const SubtitleContainer = styled.View`
@@ -104,8 +113,6 @@ const SubtitleContainer = styled.View`
 const Logo = styled.Image`
   width: 100px;
   height: 100px;
-  align-self: center;
-  margin-top:-250px;
 `;
 
 const Subtitle = styled.Text`
@@ -116,6 +123,10 @@ const Subtitle = styled.Text`
 
 const InputContainer = styled.View`
   margin-bottom: 20px;
+`;
+
+const InputContainers = styled.View`
+  margin-bottom: 242px;
 `;
 
 const Label = styled.Text`
@@ -135,9 +146,9 @@ const StyledInput = styled.TextInput`
   height: 52px;
   padding: 14px 16px;
   border-radius: 12px;
-  background: #f1f1f5;
+  background-color: ${({ isFocused }) => (isFocused ? '#DBE1F9' : '#F1F1F5')}; /* 포커스 시 배경색 변경 */
+  border: 1px solid ${({ isFocused }) => (isFocused ? '#8CA2F3' : '#F1F1F5')}; /* 포커스 시 테두리 색 변경 */
   font-size: 16px;
-
 `;
 
 const ErrorMessage = styled.Text`
@@ -162,7 +173,7 @@ const StyledButton = styled.Pressable`
 `;
 
 const ButtonText = styled.Text`
-  color: ${({ isEnabled }) => (isEnabled ? '#FFF' : '#E5E5EC')};
+  color: ${({ isEnabled }) => (isEnabled ? '#FFFFFF' : '#999999')};
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;
