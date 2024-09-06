@@ -31,8 +31,11 @@ export default function ToolBar() {
 }
 
 const MainLayout = styled.View`
+  position:absolute;
+  top:0;
+    z-index: 1000;
+  margin-top:58px;
   width: 375px;
-  height: 56px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

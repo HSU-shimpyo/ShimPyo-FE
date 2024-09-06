@@ -25,14 +25,16 @@ export default function CompleteButton({ onPress }) {
 }
 
 const StyledButton = styled.Pressable`
+
+  bottom:0;
   width: 327px;
   height: 56px;
   padding: 14px 16px;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
+  margin-top:451px;
   background-color: ${({ isPressed }) => (isPressed ? '#3C63EC' : '#E5E5EC')};
-  margin-top: 470px;
   `;
 
 const ButtonText = styled.Text`

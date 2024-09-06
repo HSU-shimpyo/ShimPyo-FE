@@ -34,7 +34,7 @@ const Container = styled.View`
 const Content = styled.View`
 
   align-items: center;
-  margin-top:150px;
+  margin-top:193px;
 `;
 
 const Title = styled.Text`
@@ -80,7 +80,7 @@ const LoginButton = styled.TouchableOpacity`
   align-items: center;
   border-radius: 12px;
   background-color: #3C63EC;
-  margin-bottom:15px;
+  margin-bottom:6px;
 `;
 
 const ButtonText = styled.Text`

@@ -19,9 +19,15 @@ export default function SignUpBreath() {
       <ToolBar />
       <InputContaier>
         <Title>최대호기량(PEF)</Title>
-        <InputBox placeholder="평소 최대호기량을 입력해주세요" />
+        <InputContents>       
+         <InputBox placeholder="평소 최대호기량을 입력해주세요" marginTop={"80px"} position={"absolute"}/>
+
+        </InputContents>
       </InputContaier>
-      <Text>⨀ 해당 호기량 수치는 초기 기록의 기준치로 사용될 예정입니다.</Text>
+      <RowContainer>
+        <StyledImage source={require('../assets/images/exclamation.png')} />
+        <Text>해당 호기량 수치는 초기 기록의 기준치로 사용될 예정입니다.</Text>
+      </RowContainer>
       <CompleteButton onPress={handleNext} /> 
     </Container>
   );
@@ -29,11 +35,10 @@ export default function SignUpBreath() {
 
 const Container = styled.View`
   flex: 1;
-  justify-content: start;
-  align-items: center;
+  align-items: flex-start;
   background-color: #F7F7FB;
   padding: 14px 24px;
-  margin-top: 44px;
+  
 `;
 
 const InputContaier = styled.View`
@@ -41,20 +46,26 @@ const InputContaier = styled.View`
   height: 84px;
 `;
 
+const InputContents=styled.View`
+  margin-top:164px;
+
+`;
+
 const Text = styled.Text`
   color: #3C63EC;
+
   font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 18px;
   letter-spacing: -0.3px;
-  margin-top: 50px;
-  margin-right: 70px;
+  margin-left: 4px; /* 이미지와 텍스트 사이의 여백 */
 `;
 
 const Title = styled.Text`
-  color: #000;
+  position:absolute;
+  color: #111;
   font-family: Pretendard;
   font-size: 16px;
   font-style: normal;
@@ -63,5 +74,21 @@ const Title = styled.Text`
   letter-spacing: -0.4px;
   margin-left: 7px;
   margin-bottom: 8px;
-  margin-top: 32px;
+  margin-top: 132px;
+`;
+
+const RowContainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-contents:center;
+  float:start;
+  margin-left:8px;
+  margin-top:173px;
+
+  
+`;
+
+const StyledImage = styled.Image`
+  width: 20px;  
+  height: 20px;
 `;

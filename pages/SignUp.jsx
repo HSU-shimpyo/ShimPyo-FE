@@ -34,7 +34,7 @@ export default function SignUp() {
     if (allFieldsFilled) {
       navigation.navigate('SignUpBreath'); // 'SignUpBreath' 화면으로 이동
     } else {
-      alert('모든 필드를 채워주세요.');
+      alert('모든 내용을 채워주세요.');
     }
   };
 
