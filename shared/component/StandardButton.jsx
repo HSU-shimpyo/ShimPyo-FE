@@ -35,5 +35,7 @@ const ButtonText = styled.Text`
    color: ${({ color }) => color || '#fff'};
   font-size: ${({fontSize}) => fontSize || '16px'};
   font-weight: 600;
- text-align: center; 
+  justify-content:center;
+  alien-items:center;
+  margin-top: ${({marginTop}) => marginTop || '4px'};
 `;

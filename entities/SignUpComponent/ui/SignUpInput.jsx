@@ -30,17 +30,18 @@ const MainLayout = styled.View`
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin-top: 42px;
+  margin-top:-150px;
 `;
 
 const InputContainer = styled.View`
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 `;
 
 const Text = styled.Text`
-  color: #000;
+  color: #111;
   font-family: Pretendard;
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 8px;
+  margin-left: 8px;
 `;

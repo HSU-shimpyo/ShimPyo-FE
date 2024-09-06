@@ -96,12 +96,13 @@ const ImageContainer = styled.View`
   background-color: #F7F7FB;
   width: 100%;
   margin-bottom: -20px;
+  
 `;
 
 const ButtonContainer = styled.View`
   width: 100%;
   align-items: center;
-  margin-top: 180px; 
+  margin-top: 170px; 
   margin-bottom: 15px; 
   `;
 

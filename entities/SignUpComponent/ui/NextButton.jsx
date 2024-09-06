@@ -25,6 +25,8 @@ export default function NextButton({ onPress }) {
 }
 
 const StyledButton = styled.Pressable`
+  position: absolute;
+  bottom: 45px; 
   width: 327px;
   height: 56px;
   padding: 14px 16px;
@@ -32,7 +34,6 @@ const StyledButton = styled.Pressable`
   align-items: center;
   border-radius: 12px;
   background-color: ${({ isPressed }) => (isPressed ? '#3C63EC' : '#E5E5EC')};
-  margin-top: 520px;
 `;
 
 const ButtonText = styled.Text`
