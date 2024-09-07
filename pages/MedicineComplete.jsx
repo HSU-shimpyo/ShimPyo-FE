@@ -23,7 +23,8 @@ export default function MedicineComplete() {
       <StyledImg source={ClockImg} />
       <StandardButton 
         text="홈으로 가기" 
-        marginBottom="32px" 
+        marginTop="30px" 
+        textMarginTop={"-4px"}
         onPress={handlePress} // 버튼 클릭 시 Main 화면으로 이동
       />
     </MainLayout>

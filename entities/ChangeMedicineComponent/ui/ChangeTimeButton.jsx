@@ -28,10 +28,12 @@ const Container = styled.View`
 `;
 
 const ButtonContainer = styled.View`
+  position:absolute;
+  bottom:55px;
   flex-direction: row;
   justify-content: space-between;
   width: 327px;
-  height: 64px;
+  height: 52px;
 `;
 
 const StyledButton = styled.TouchableOpacity`

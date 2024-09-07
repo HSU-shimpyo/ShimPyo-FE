@@ -35,14 +35,15 @@ const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-`;
+  height:258px;
+  `;
 
 const ButtonContainer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   width: 327px;
   height: 64px;
-  margin-top: -100px;
+  margin-top:-180px;
 `;
 
 const StyledLeftButton = styled.View`

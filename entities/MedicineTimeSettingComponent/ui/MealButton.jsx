@@ -30,17 +30,18 @@ export default function MealButton() {
 }
 
 const Container = styled.View`
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  
+justify-content: center;
+align-items: center;
+
 `;
 
 const ButtonContainer = styled.View`
+  position:relative;
   flex-direction: row;
   justify-content: space-between;
   width: 326px;
-  height: 64px;
-  margin-top: -340px;
+  bottom:100px;
 `;
 
 const StyledButton = styled.View`
