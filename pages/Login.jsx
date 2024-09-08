@@ -66,7 +66,6 @@ export default function LoginScreen() {
           </SubtitleContainer>
           
           <InputContainer>
-          {/* 메인 브랜치 변경 사항 있어야 돼서 넣는 주석 */}
             <Label>아이디</Label>
             <StyledInput
               placeholder="아이디를 입력해주세요"
