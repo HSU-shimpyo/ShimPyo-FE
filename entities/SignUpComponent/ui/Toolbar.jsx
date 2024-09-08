@@ -27,12 +27,14 @@ export default function ToolBar() {
 }
 
 const MainLayout = styled.View`
+  position:absolute;
+  top: 0;
+  z-index: 1000;
   width: 100%;
-  height: 56px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  
+  margin-top:58px;
 `;
 
 const StyledText = styled.Text`

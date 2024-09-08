@@ -163,7 +163,7 @@ const TimeButton = styled(TouchableOpacity)`
   height: 120px;
   padding: 32px 29px 0px 29px;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex;
   align-items: center;
 `;
 

@@ -24,7 +24,6 @@ export default function ChattingContent() {
 }
 
 const ScrollViewContainer = styled.View`
-  flex: 1;
   width: 100%;
   background-color: #F1F1F5; 
 `;

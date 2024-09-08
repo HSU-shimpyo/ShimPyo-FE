@@ -4,6 +4,7 @@ import TitleBar from '../entities/SumAiChat/ui/TitleBar'
 import Search from '../entities/SumAiChat/ui/Search';
 import Background from '../entities/SumAiChat/ui/Background';
 import FloatingButton from '../entities/SumAiChat/ui/FloatingButton';
+import NavigationBar from '../shared/component/NavigationBar';
 import { ScrollView } from 'react-native';
 export default function SumAiChat() {
   return (
@@ -21,6 +22,7 @@ export default function SumAiChat() {
 
         {/* 플로팅 버튼 */}
         <FloatingButton/>
+        <NavigationBar SumAiChat/>
 
         </MainLayout>
     </ScrollContainer>
