@@ -3,11 +3,11 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function ChangeTimeButton() {
+export default function ChangeTimeButton({mealTiming,intakeTiming}) {
   const navigation = useNavigation();
 
   const handleButtonPress = () => {
-    navigation.navigate('WhenBreakfast'); // 'MedicineComplete' 페이지로 이동
+    navigation.navigate('WhenBreakfast',{mealTiming, intakeTiming}); // 'MedicineComplete' 페이지로 이동
   };
 
   return (

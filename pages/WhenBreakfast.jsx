@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import ToolBar from '../entities/WhenBreakfast/ui/Toolbar';
 import BreakfastText from '../entities/WhenBreakfast/ui/BreakfastText';
@@ -7,15 +7,17 @@ import BreakfastNextButton from '../entities/WhenBreakfast/ui/BreakfastNextButto
 import { useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity } from 'react-native';
 
-export default function WhenBreakfast() {
+export default function WhenBreakfast({route}) {
+  const {mealTiming, intakeTiming} = route.params;
   const [isComplete, setIsComplete] = useState(false);
   const [imageToggle, setImageToggle] = useState(false); // 이미지 상태 관리
+  const [breakfastTime, setBreakfastTime] = useState();
+  const [color, setColor] = useState(); 
   const navigation = useNavigation();
 
   const handleButtonClick = () => {
     if (isComplete) {
-      console.log("시간 설정이 완료되었습니다.");
-      navigation.navigate('WhenLunch'); // WhenLunch 페이지로 이동
+      navigation.navigate('WhenLunch',{mealTiming, intakeTiming, breakfastTime}); // WhenLunch 페이지로 이동
     } else {
       alert("시간을 먼저 설정해주세요.");
     }
@@ -29,7 +31,7 @@ export default function WhenBreakfast() {
     <MainLayout>
       <ToolBar />
       <BreakfastText />
-      <BreakfastTimePicker setIsTimeSettingComplete={setIsComplete} />
+      <BreakfastTimePicker setIsTimeSettingComplete={setIsComplete} setBreakfastTime={setBreakfastTime} />
       
       {/* 이미지가 있는 부분 */}
       <TouchableOpacity onPress={handleImagePress} activeOpacity={1}>
@@ -37,10 +39,10 @@ export default function WhenBreakfast() {
       </TouchableOpacity>
       
       <ButtonWrapper>
-        <BreakfastNextButton onPress={handleButtonClick} />
+        <BreakfastNextButton onPress={handleButtonClick} isComplete={isComplete} />
       </ButtonWrapper>
     </MainLayout>
-  );
+  );ㅌ
 }
 
 const MainLayout = styled.View`
@@ -50,7 +52,6 @@ const MainLayout = styled.View`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  position: relative;
 `;
 
 const ButtonWrapper = styled.View`
@@ -62,7 +63,6 @@ const ButtonWrapper = styled.View`
 `;
 
 const ImageWrapper = styled(Image)`
-
   width: 110px;
   height: 22px;
   margin-top:40px;

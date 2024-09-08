@@ -8,7 +8,6 @@ export default function MedicineText() {
   return (
     <MainLayout>
       <StyledText>현재 약 복용 알림 시간</StyledText>
-      
     </MainLayout>
   )
 }

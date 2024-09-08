@@ -2,11 +2,19 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-export default function MinuteButton() {
+export default function MinuteButton({setIntakeTiming}) {
   const [selectedButton, setSelectedButton] = useState(null);
 
   const handleButtonPress = (button) => {
     setSelectedButton(button);
+    switch (button) {
+      case '곧바로' :  setIntakeTiming(0); break;
+      case '30분' :  setIntakeTiming(30); break;
+      case '1시간' :  setIntakeTiming(60); break;
+      case '2시간' :  setIntakeTiming(120); break;
+      default : break;
+    }
+  
   };
 
   return (
