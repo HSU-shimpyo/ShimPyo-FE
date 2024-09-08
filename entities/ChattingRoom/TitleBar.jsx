@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import closeButton from '../../assets/images/closebutton.png';
 import icon from '../../assets/images/pencil.png';
+import SumAiChat from '../../pages/SumAiChat';
 import { TouchableOpacity } from 'react-native';
 
 export default function TitleBar({ navigation }) {  // navigation 객체를 props로 받음
@@ -11,16 +12,16 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
   return (
     <MainLayout>
 
-      {/* Close 버튼 */}
+      {/* Close 버튼 (왼쪽) */}
       <CloseButtonWrapper 
-        opacity="0"
+        opacity="1"
         onPress={() => navigation.navigate('SumAiChat')} // 페이지 이동 
       >
         <CloseButton source={closeButton} />
       </CloseButtonWrapper>
 
+      {/* 질문방 제목 */}
       <WrapTitle>
-        {/* 질문방 제목 (수정가능) */}
         <Title
           placeholder={name}
           value={name}
@@ -36,7 +37,7 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
         </IconWrap>
       </WrapTitle>
 
-      {/* Close 버튼 */}
+      {/* Close 버튼 (오른쪽) */}
       <CloseButtonWrapper 
         opacity="1"
         onPress={() => navigation.navigate('SumAiChat')} // SumAiChat 페이지로 이동
@@ -49,12 +50,11 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 56px;
+  height: 100px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  margin-top: 42px;
-  background-color:#FFFFFF;
+  background-color: #FFFFFF;
 `;
 
 const WrapTitle = styled.View`
