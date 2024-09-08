@@ -24,6 +24,8 @@ export default function SignUp() {
     const year = birth.slice(0, 4);  // 처음 4자리: 연도
     const month = birth.slice(4, 6); // 5번째와 6번째 자리: 월
     const day = birth.slice(6, 8);   // 마지막 2자리: 일
+
+    //메인 브랜치에 있어야함
   
     // "2001.07.08" 형식으로 변환하여 반환
     return `${year}.${month}.${day}`;
