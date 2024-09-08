@@ -4,7 +4,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import FirstSplash from './pages/FirstSplash';
 import Start from './pages/Start';
 import SignUp from './pages/SignUp';
-import SignUpBreath from './pages/SignUpBreath';
 import SignUpComplete from './pages/SignUpComplete';
 import Login from './pages/Login';
 import Main from './pages/Main';
@@ -33,7 +32,6 @@ function App() {
         <Stack.Screen name="FirstSplash" component={FirstSplash} />
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="SignUp" component={SignUp} />
-        <Stack.Screen name="SignUpBreath" component={SignUpBreath} />
         <Stack.Screen name="SignUpComplete" component={SignUpComplete} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Main" component={Main} />
