@@ -78,7 +78,8 @@ const DefaultSection = styled.View`
   width: 100%;
   flex-direction: row;
   flaot:start;
-    flex-wrap: wrap;
+  flex-wrap: wrap;
+  
   `;
 
 const DefaultQuestion = styled.TouchableOpacity`
