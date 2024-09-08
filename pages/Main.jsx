@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from "styled-components/native";
 import MeasureBreathButton from '../entities/main/ui/MeasureBreathButton';
 import WeeklyCalendar from '../entities/main/ui/WeeklyCalendar';
@@ -7,16 +7,23 @@ import SettingComponentSection from '../entities/main/ui/SettingComponentSection
 import NavigationBar from '../shared/component/NavigationBar';
 import {View} from 'react-native'
 export default function Main() {
+  const [year, setYear] = useState();
+  const [month, setMonth] = useState();
+  const [day, setDay] = useState();
+
+  useEffect(()=>{
+    //console.log(`${year}, ${month}, ${day}`)
+  },[,year,month,day])
   return (
     <Container>
     <ScrollContainer>
         <MainLayout>
 
           {/* 주간캘린더 */}
-          <WeeklyCalendar />
+          <WeeklyCalendar setYear={setYear} setMonth={setMonth} setDay={setDay}/>
 
           {/* 측정 버튼  */}
-          <MeasureBreathButton/>
+          <MeasureBreathButton year={year} month={month} day={day}/>
 
           {/* 미세먼지 */}
           <FineDustSection/>
