@@ -46,6 +46,7 @@ export default function WhenBreakfast({route}) {
 }
 
 const MainLayout = styled.View`
+
   background-color: #f7f7fb;
   width: 100%;
   height: 100%;

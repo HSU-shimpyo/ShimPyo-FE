@@ -33,6 +33,7 @@ const StyledButton = styled.Pressable`
   border-radius: 12px;
   background-color: ${({ isComplete }) => (isComplete ? '#3C63EC' : '#E5E5EC')};
   margin-bottom:30px;
+
 `;
 
 const ButtonText = styled.Text`

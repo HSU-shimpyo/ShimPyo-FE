@@ -77,9 +77,9 @@ const StyledText = styled.Text`
 const DefaultSection = styled.View`
   width: 100%;
   flex-direction: row;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-`;
+  flaot:start;
+    flex-wrap: wrap;
+  `;
 
 const DefaultQuestion = styled.TouchableOpacity`
   background-color: #fff;
@@ -100,7 +100,7 @@ const UserMessage = styled.View`
   align-self: flex-end;
   padding: 8px 12px;
   border-radius: 8px 0px 8px 8px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   max-width: 80%;
 
 `;
@@ -109,7 +109,7 @@ const BotMessage = styled.View`
   background-color: #FFFFFF;
   align-self: flex-start;
   padding: 8px 12px;
-  margin-bottom: 8px;
+  margin-bottom: 20px;
   max-width: 80%;
   border-radius: 0px 8px 8px 8px;
 `;
