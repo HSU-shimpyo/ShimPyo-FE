@@ -25,7 +25,7 @@ export default function SettingComponent({value,type}) {
 
         {
           type==="pill" ?
-          <StyledText>약 복용까지 <BoldText>{value}분</BoldText> 남았어요</StyledText>
+          <StyledText>약 복용까지 <BoldText>{value}</BoldText> 남았어요</StyledText>
           :
           <StyledText>병원 진료까지 <BoldText>{value}</BoldText> 남았어요</StyledText>
         }
