@@ -2,11 +2,16 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-export default function WhenEatingTimeButton() {
+export default function WhenEatingTimeButton({setMealTiming}) {
   const [selectedButton, setSelectedButton] = useState(null);
 
   const handleButtonPress = (button) => {
     setSelectedButton(button);
+    switch(button) {
+      case '식전' : setMealTiming('BEFORE_MEAL'); break;
+      case '식후' : setMealTiming('AFTER_MEAL'); break;
+      default : break;
+    }
   };
 
   return (

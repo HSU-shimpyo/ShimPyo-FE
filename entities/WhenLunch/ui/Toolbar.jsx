@@ -5,11 +5,11 @@ import closeButton from '../../../assets/images/closebutton.png'
 import arrowButton from '../../../assets/images/arrow.png'
 import { useNavigation } from "@react-navigation/native";
 
-export default function ToolBar() {
+export default function ToolBar({mealTiming, intakeTiming}) {
   const navigation = useNavigation();
   
   const handleArrowButtonClick = () => {
-    navigation.navigate("WhenBreakfast");
+    navigation.navigate("WhenBreakfast",{mealTiming, intakeTiming});
   }
 
   const handleCloseButtonClick = () => {

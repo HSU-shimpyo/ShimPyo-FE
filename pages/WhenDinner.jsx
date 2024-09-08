@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity } from 'react-native';
@@ -6,15 +6,17 @@ import ToolBar from '../entities/WhenDinner/ui/Toolbar';
 import DinnerText from '../entities/WhenDinner/ui/DinnerText';
 import DinnerTimePicker from '../entities/WhenDinner/ui/DinnerTimePicker';
 import DinnerNextButton from '../entities/WhenDinner/ui/DinnerNextButton';
-
-export default function WhenDinner() {
+import { timeSetting } from '../entities/WhenDinner/ui/api/TimeSettingApi';
+export default function WhenDinner({route}) {
+  const {mealTiming, intakeTiming, breakfastTime, lunchTime} = route.params;
   const [isComplete, setIsComplete] = useState(false);
   const [imageToggle, setImageToggle] = useState(false); // 이미지 상태 관리
+  const [dinnerTime, setDinnerTime] = useState();
   const navigation = useNavigation();
 
   const handleButtonClick = () => {
     if (isComplete) {
-      console.log("시간 설정이 완료되었습니다.");
+      timeSetting(mealTiming,intakeTiming,breakfastTime,lunchTime,dinnerTime)
       navigation.navigate('MedicineComplete'); // Complete 페이지로 이동
     } else {
       alert("시간을 먼저 설정해주세요.");
@@ -27,9 +29,13 @@ export default function WhenDinner() {
 
   return (
     <MainLayout>
-      <ToolBar />
+      <ToolBar 
+        mealTiming={mealTiming}
+        intakeTiming={intakeTiming}
+        breakfastTime={breakfastTime}
+       />
       <DinnerText />
-      <DinnerTimePicker setIsTimeSettingComplete={setIsComplete} />
+      <DinnerTimePicker setIsTimeSettingComplete={setIsComplete} setDinnerTime={setDinnerTime}/>
       
       {/* 이미지가 있는 부분 */}
       <TouchableOpacity onPress={handleImagePress} activeOpacity={1}>
@@ -37,7 +43,7 @@ export default function WhenDinner() {
       </TouchableOpacity>
       
       <ButtonWrapper>
-        <DinnerNextButton onPress={handleButtonClick} />
+        <DinnerNextButton onPress={handleButtonClick} isComplete={isComplete} />
       </ButtonWrapper>
     </MainLayout>
   );

@@ -15,8 +15,8 @@ export default function ChangeTimeButton() {
     <Container>
       <ButtonContainer>
         <StyledButton
-        onPress={() => navigation.navigate('ChangeMedicine')}
-        isSelected={selectedButton === '재설정하기'}
+          onPress={() => navigation.navigate('ChangeMedicine')}
+          isSelected={selectedButton === '재설정하기'}
         >
           <ButtonText isSelected={selectedButton === '재설정하기'}>
             재설정 하기

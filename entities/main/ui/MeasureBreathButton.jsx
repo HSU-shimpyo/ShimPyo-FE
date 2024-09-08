@@ -5,11 +5,11 @@ import toucharrow from '../../../assets/images/toucharrow.png'
 import measureButton from '../../../assets/images/measurebutton.png'
 import { useNavigation } from '@react-navigation/native';
 
-export default function MeasureBreathButton() {
+export default function MeasureBreathButton({year, month, day}) {
   const navigation = useNavigation();
 
   const clickButton = () => {
-    navigation.navigate("TodaysShim")
+    navigation.navigate("TodaysShim",{year,month,day})
   }
   return (
     <MainLayout>

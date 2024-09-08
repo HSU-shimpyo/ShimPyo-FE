@@ -4,12 +4,26 @@ import icon from '../../../assets/images/icon_ver2.png';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Audio } from 'expo-av';
 
-export default function BreathNow({ setIsComplete, setAudioFileArray }) {
+export default function BreathNow({ setIsComplete, setAudioFileArray, year, month, day }) {
   const [fill, setFill] = useState(0);
   const [count, setCount] = useState(0);
   const [text, setText] = useState("후! 불어주세요");
   const recordingRef = useRef(null);
   const [permissionResponse, requestPermission] = Audio.usePermissions();
+  const [measureDate, setMeasureDate] = useState('');
+
+  // 날짜 포맷팅 함수
+  const formatDate = () => {
+    const formattedMonth = month < 10 ? `0${month}` : month;
+    const formattedDay = day < 10 ? `0${day}` : day;
+    return `${year}-${formattedMonth}-${formattedDay}`;
+  };
+
+  useEffect(() => {
+    const formattedDate = formatDate();
+    setMeasureDate(formattedDate);
+    console.log("Formatted measureDate:", formattedDate);
+  }, [year, month, day]);
 
   const clickButton = () => {
     setFill(fill + 35);
@@ -117,6 +131,7 @@ export default function BreathNow({ setIsComplete, setAudioFileArray }) {
   );
 }
 
+
 const MainLayout = styled.View`
   width: 100%;
   height: 40%;
@@ -125,7 +140,6 @@ const MainLayout = styled.View`
   justify-content: space-between;
   margin-top: 17%;
   margin-bottom: 415px;
-  border : 1px solid red;
 `;
 
 const WrapIcon = styled.TouchableOpacity`

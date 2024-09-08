@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { useNavigation } from '@react-navigation/native';
 import { Image, TouchableOpacity } from 'react-native';
@@ -7,15 +7,16 @@ import LunchTimePicker from '../entities/WhenLunch/ui/LunchTimePicker';
 import LunchText from '../entities/WhenLunch/ui/LunchText';
 import LunchNextButton from '../entities/WhenLunch/ui/LunchNextButton';
 
-export default function WhenLunch() {
+export default function WhenLunch({route}) {
+  const {mealTiming, intakeTiming, breakfastTime} = route.params;
   const [isComplete, setIsComplete] = useState(false);
   const [imageToggle, setImageToggle] = useState(false); // 이미지 상태 관리
+  const [lunchTime, setLunchTime] = useState();
   const navigation = useNavigation();
 
   const handleButtonClick = () => {
     if (isComplete) {
-      console.log("시간 설정이 완료되었습니다.");
-      navigation.navigate('WhenDinner'); // WhenDinner 페이지로 이동
+      navigation.navigate('WhenDinner',{mealTiming, intakeTiming, breakfastTime, lunchTime}); // WhenDinner 페이지로 이동
     } else {
       alert("시간을 먼저 설정해주세요.");
     }
@@ -27,9 +28,12 @@ export default function WhenLunch() {
 
   return (
     <MainLayout>
-      <ToolBar />
+      <ToolBar 
+        mealTiming={mealTiming}
+        intakeTiming={intakeTiming}
+      />
       <LunchText />
-      <LunchTimePicker setIsTimeSettingComplete={setIsComplete} />
+      <LunchTimePicker setIsTimeSettingComplete={setIsComplete} setLunchTime={setLunchTime} />
       
       {/* 이미지가 있는 부분 */}
       <TouchableOpacity onPress={handleImagePress} activeOpacity={1}>
@@ -37,7 +41,7 @@ export default function WhenLunch() {
       </TouchableOpacity>
       
       <ButtonWrapper>
-        <LunchNextButton onPress={handleButtonClick} />
+        <LunchNextButton onPress={handleButtonClick} isComplete={isComplete} />
       </ButtonWrapper>
     </MainLayout>
   );

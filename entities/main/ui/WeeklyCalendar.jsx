@@ -6,7 +6,7 @@ import moment from 'moment';
 import 'moment/locale/ko';
 import { TouchableOpacity } from 'react-native';
 
-export default function WeeklyCalendar() {
+export default function WeeklyCalendar({ setYear, setMonth, setDay }) {
   const navigation = useNavigation();
   const [selectedDate, setSelectedDate] = useState(moment());
 
@@ -31,45 +31,55 @@ export default function WeeklyCalendar() {
 
   const handleDatePress = (date) => {
     setSelectedDate(date);
+
+    // 년, 월, 일 추출
+    const selectedYear = date.year();
+    const selectedMonth = date.month() + 1;
+    const selectedDay = date.date();
+
+    // 상태 업데이트
+    setYear(selectedYear);
+    setMonth(selectedMonth);
+    setDay(selectedDay);
+
   };
 
   const weekDays = generateWeekDays();
-
   return (
-      <MainLayout>
+    <MainLayout>
 
-        <Wrap>
-          <PersonIcon source={person} opacity="0"/>
-          <StylecText>{selectedDate.format('M월 D일')}</StylecText>
-          <TouchableOpacity onPress={clickMyPageButton}>
-            <PersonIcon source={person}/>
-          </TouchableOpacity>
-        </Wrap>
+      <Wrap>
+        <PersonIcon source={person} opacity="0" />
+        <StylecText>{selectedDate.format('M월 D일')}</StylecText>
+        <TouchableOpacity onPress={clickMyPageButton}>
+          <PersonIcon source={person} />
+        </TouchableOpacity>
+      </Wrap>
 
-        <CalendarContainer>
-              {weekDays.map((date, index) => (
-                <Tile
-                  key={index}
-                  selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
-                  onPress={() => handleDatePress(date)}
-                >
-                <WeekText
-                  selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
-                  selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                >
-                  {date.format('ddd')}
-                </WeekText>
-                <DayText
-                  selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
-                >
-                  {date.format('D')}
-                </DayText>
-                </Tile>
-              ))}
-        </CalendarContainer>
+      <CalendarContainer>
+        {weekDays.map((date, index) => (
+          <Tile
+            key={index}
+            selectedTileColor={date.isSame(selectedDate, 'day') ? '#fff' : '#3C63EC'}
+            onPress={() => handleDatePress(date)}
+          >
+            <WeekText
+              selectedWeekColor={date.isSame(selectedDate, 'day') ? '#000' : '#fff'}
+              selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+            >
+              {date.format('ddd')}
+            </WeekText>
+            <DayText
+              selectedFontWeight={date.isSame(selectedDate, 'day') ? 600 : 400}
+            >
+              {date.format('D')}
+            </DayText>
+          </Tile>
+        ))}
+      </CalendarContainer>
 
 
-      </MainLayout>
+    </MainLayout>
   );
 }
 

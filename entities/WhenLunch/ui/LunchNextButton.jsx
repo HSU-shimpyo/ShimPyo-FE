@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 
-export default function BreakfastNextButton({ onPress }) {
+export default function BreakfastNextButton({ onPress, isComplete }) {
   const [isPressed, setIsPressed] = useState(false);
 
   const handlePressIn = () => {
@@ -17,9 +17,9 @@ export default function BreakfastNextButton({ onPress }) {
     <StyledButton
       onPressIn={handlePressIn}
       onPressOut={handlePressOut}
-      isPressed={isPressed}
+      isComplete={isComplete}
     >
-      <ButtonText isPressed={isPressed}>다음</ButtonText>
+      <ButtonText isComplete={isComplete}>다음</ButtonText>
     </StyledButton>
   );
 }
@@ -31,12 +31,12 @@ const StyledButton = styled.Pressable`
   justify-content: center;
   align-items: center;
   border-radius: 12px;
-  background-color: ${({ isPressed }) => (isPressed ? '#3C63EC' : '#E5E5EC')};
-  
+  background-color: ${({ isComplete }) => (isComplete ? '#3C63EC' : '#E5E5EC')};
+  margin-bottom:30px;
 `;
 
 const ButtonText = styled.Text`
-  color: ${({ isPressed }) => (isPressed ? '#fff' : '#999')};
+  color: ${({ isComplete }) => (isComplete ? '#fff' : '#999')};
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;

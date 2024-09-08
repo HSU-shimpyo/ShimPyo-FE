@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { TouchableOpacity, Text } from 'react-native';
-export default function DinnerTimePicker({ setIsTimeSettingComplete }) {
+export default function DinnerTimePicker({ setIsTimeSettingComplete, setDinnerTime }) {
   const [isTimeZoneFocus, setIsTimeZoneFocus] = useState(null);
   const [isHoursFocus, setIsHoursFocus] = useState(null);
   const [isMinuteFocus, setIsMinuteFocus] = useState(null);
@@ -28,21 +28,35 @@ export default function DinnerTimePicker({ setIsTimeSettingComplete }) {
   useEffect(() => {
     if (isTimeZoneFocus !== null && isHoursFocus !== null && isMinuteFocus !== null) {
       setIsTimeSettingComplete(true);
+
+      // 시간 계산 로직
+      let formattedHours = parseInt(isHoursFocus, 10);
+      const formattedMinutes = isMinuteFocus;
+
+      if (isTimeZoneFocus === '오후' && formattedHours !== 12) {
+        formattedHours += 12;
+      } else if (isTimeZoneFocus === '오전' && formattedHours === 12) {
+        formattedHours = 0; // 오전 12시는 00시로 변경
+      }
+
+      // "HH:MM" 형식으로 시간 포맷
+      const formattedTime = `${formattedHours.toString().padStart(2, '0')}:${formattedMinutes}`;
+      setDinnerTime(formattedTime);
     } else {
       setIsTimeSettingComplete(false);
     }
   }, [isTimeZoneFocus, isHoursFocus, isMinuteFocus]);
 
-  const selectedTimeZone = (index) => {
-    setIsTimeZoneFocus(index);
+  const selectedTimeZone = (item) => {
+    setIsTimeZoneFocus(item);
   };
 
-  const selectedHours = (index) => {
-    setIsHoursFocus(index);
+  const selectedHours = (item) => {
+    setIsHoursFocus(item);
   };
 
-  const selectedMinute = (index) => {
-    setIsMinuteFocus(index);
+  const selectedMinute = (item) => {
+    setIsMinuteFocus(item);
   };
 
   return (
@@ -52,40 +66,40 @@ export default function DinnerTimePicker({ setIsTimeSettingComplete }) {
         {timeZone.map((item, index) => (
           <TimeZoneButton
             key={index}
-            onPress={() => selectedTimeZone(index)}
-            isFocused={isTimeZoneFocus === index}
+            onPress={() => selectedTimeZone(item)}
+            isFocused={isTimeZoneFocus === item}
             activeOpacity={1}
           >
-            <TimeZoneText isFocused={isTimeZoneFocus === index}>{item}</TimeZoneText>
+            <TimeZoneText isFocused={isTimeZoneFocus === item}>{item}</TimeZoneText>
           </TimeZoneButton>
         ))}
       </TimeZoneContainer>
 
       {/* 시간 및 분 선택 */}
       <TimePickerContainer>
-        <SelectScrollView showsVerticalScrollIndicator={false}>
+        <SelectScrollView showsVerticalScrollIndicator={false} isFocused={isHoursFocus != null}>
           {hours.map((item, index) => (
             <TimeButton
               key={index}
-              onPress={() => selectedHours(index)}
-              isFocused={isHoursFocus === index}
+              onPress={() => selectedHours(item)}
+              isFocused={isHoursFocus === item}
               activeOpacity={1}
             >
-              <TimeText isFocused={isHoursFocus === index}>{item}</TimeText>
+              <TimeText isFocused={isHoursFocus === item}>{item}</TimeText>
             </TimeButton>
           ))}
         </SelectScrollView>
-        <DotImage source={require('../../../assets/images/TimePickerDot.png')} />
+        <DotImage source={require('../../../assets/images/TimePickerDot.png')}/>
 
-        <SelectScrollView showsVerticalScrollIndicator={false}>
+        <SelectScrollView showsVerticalScrollIndicator={false} isFocused={isMinuteFocus != null}>
           {minutes.map((item, index) => (
             <TimeButton
               key={index}
-              onPress={() => selectedMinute(index)}
-              isFocused={isMinuteFocus === index}
+              onPress={() => selectedMinute(item)}
+              isFocused={isMinuteFocus === item}
               activeOpacity={1}
             >
-              <TimeText isFocused={isMinuteFocus === index}>{item}</TimeText>
+              <TimeText isFocused={isMinuteFocus === item}>{item}</TimeText>
             </TimeButton>
           ))}
         </SelectScrollView>
@@ -136,7 +150,7 @@ const TimeZoneButton = styled(TouchableOpacity)`
 
 const TimeZoneText = styled(Text)`
   color: ${({ isFocused }) => (isFocused ? '#fff' : '#767676')};
-  font-size: 18px;
+  font-size: 15px;
   font-weight: 600;
   text-align: center;
   font-family: Pretendard;
@@ -145,12 +159,12 @@ const TimeZoneText = styled(Text)`
 `;
 
 const SelectScrollView = styled.ScrollView`
-  width: 100px;
-  height: 120px;
+  width: 100%;
+  height: 100%;
   border-radius: 24px;
   background-color: #f7f7fb;
   border-radius: 24px;
-  border: 2px solid #CACAD7;
+  border: ${({ isFocused }) => (isFocused ? '2px solid #3C63EC' : '2px solid #CACAD7')};
   background: #FFF;
   margin-left:20px;
   margin-right:20px;
@@ -159,16 +173,15 @@ const SelectScrollView = styled.ScrollView`
 const TimeButton = styled(TouchableOpacity)`
   align-items: center;
   display: flex;
-  width: 100px;
+  width: 100%;
   height: 120px;
-  padding: 32px 29px 0px 29px;
   flex-direction: column;
-  justify-content: flex;
+  justify-content: center;
   align-items: center;
 `;
 
 const TimeText = styled(Text)`
-  color: ${({ isFocused }) => (isFocused ? '#3C63EC' : '#999')};
+  color: ${({ isFocused }) => (isFocused ? '#111' : '#999')};
   text-align: center;
   font-family: Pretendard;
   font-size: 40px;

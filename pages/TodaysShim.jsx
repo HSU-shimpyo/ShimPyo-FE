@@ -8,10 +8,12 @@ import Loading from '../entities/TodaysShim/ui/Loading';
 import Result from '../entities/TodaysShim/ui/Result';
 import { ScrollView } from 'react-native';
 
-export default function TodaysShim() {
+export default function TodaysShim({route}) {
+  const {year, month, day} = route.params;
   const [isComplete, setIsComplete] = useState(false)
   const [isResult, setIsResult] = useState(false)
   const [audioFileArray, setAudioFileArray] = useState([]); // 녹음 파일 URI를 저장할 배열
+
   return (
     <ScrollViewContainer>
       <MainLayout>
@@ -20,7 +22,14 @@ export default function TodaysShim() {
       <ToolBar page={ isResult ? "오늘의 쉼 결과" : "오늘의 쉼"}/>
 
       {/* 숨 측정 */}
-      {!isResult && <BreathNow setIsComplete={setIsComplete} setAudioFileArray={setAudioFileArray}/> }
+      {!isResult && 
+        <BreathNow 
+          setIsComplete={setIsComplete} 
+          setAudioFileArray={setAudioFileArray}
+          year={year}
+          month={month}
+          day={day}
+          /> }
 
       {/* 로딩중 */}
       {isComplete &&  !isResult && <Loading setIsResult={setIsResult}/>}

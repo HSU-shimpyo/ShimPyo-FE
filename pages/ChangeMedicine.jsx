@@ -1,5 +1,5 @@
 //약 복용 수정하기(전체 페이지)
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import {View, Text} from 'react-native' 
 import ToolBar_x from '../entities/MedicineTimeSettingComponent/ui/Toolbar_x';
@@ -17,29 +17,21 @@ export default function ChangeMedicine() {
  
   const [isComplete, setIsComplete] = useState(false);
   const navigation = useNavigation();
+  const [mealTiming,setMealTiming] = useState()
+  const [intakeTiming,setIntakeTiming] = useState()
   
-  const handleButtonClick = () => {
-    if (isComplete) {
-      navigation.navigate("WhenBreakfast");
-    } else {
-      setIsComplete(true);
-    }
-  }
   return(
     <MainLayout>
           {/* 툴바 */}
-            {!isComplete && <ToolBar_x/>}
+          {!isComplete && <ToolBar_x/>}
           {/* 텍스트 */}
           {!isComplete && <WhenMedicineText/>}
           {/* 식전 식후 버튼  */}
-          {!isComplete && <WhenEatingTimeButton/>}
+          {!isComplete && <WhenEatingTimeButton setMealTiming={setMealTiming}/>}
           {/*곧바로 , 30분, 1시간, 2시간 버튼 */}
-          {!isComplete && <MinuteButton/>}
+          {!isComplete && <MinuteButton setIntakeTiming={setIntakeTiming}/>}
           {/* 재설정하기 버튼 */}
-          {!isComplete && <ChangeTimeButton/>}
-
-
-
+          {!isComplete && <ChangeTimeButton mealTiming={mealTiming} intakeTiming={intakeTiming}/>}
     </MainLayout>
   );
 

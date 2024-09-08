@@ -16,44 +16,47 @@ export default function HospitalReservationTimeModal({
   hospitalId,
   year,
   month,
-  day
+  day,
+  loadInfo
 }) {
-    const [isTimeSettingComplete, setIsTimeSettingComplete] = useState(false);
-    const [selectedTimeZone, setSelectedTimeZone] = useState();
-    const [selectedHours, setSelectedHours] = useState();
-    const [selectecMinutes, setSelectedMinutes] = useState();
-    const [reservationTime, setReservationTime] = useState('');
+  const [isTimeSettingComplete, setIsTimeSettingComplete] = useState(false);
+  const [selectedTimeZone, setSelectedTimeZone] = useState();
+  const [selectedHours, setSelectedHours] = useState();
+  const [selectedMinutes, setSelectedMinutes] = useState();
+  const [reservationTime, setReservationTime] = useState('');
 
-    const formatReservationTime = (year, month, day, selectedTimeZone, selectedHours, selectecMinutes) => {
-      const formattedMonth = String(month).padStart(2, '0');
-      const formattedDay = String(day).padStart(2, '0');
-      
-      // 시간 변환 로직
-      let formattedHours = selectedTimeZone === '오후' && parseInt(selectedHours, 10) < 12 
-      ? parseInt(selectedHours, 10) + 12 
-      : selectedTimeZone === '오전' && parseInt(selectedHours, 10) === 12
-      ? 0 
-      : parseInt(selectedHours, 10);
-  
+  const formatReservationTime = (year, month, day, selectedTimeZone, selectedHours, selectedMinutes) => {
+    const formattedMonth = String(month).padStart(2, '0');
+    const formattedDay = String(day).padStart(2, '0');
+    
+    //시간 변환 로직 (오전/오후)
+    let formattedHours = selectedTimeZone === '오후' && parseInt(selectedHours, 10) < 12 
+    ? parseInt(selectedHours, 10) + 12 
+    : selectedTimeZone === '오전' && parseInt(selectedHours, 10) === 12
+    ? 0 
+    : parseInt(selectedHours, 10);
 
-      const formattedMinutes = String(selectecMinutes).padStart(2, '0');
+    const formattedMinutes = String(selectedMinutes).padStart(2, '0');
 
-      return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
-    };
+    return `${year}년 ${formattedMonth}월 ${formattedDay}일 ${formattedHours}시 ${formattedMinutes}분`;
+  };
 
-    const CompleteButtonClick = () => {
-      setIsHospitalSelected(false);
-      setIsDayClick(false);
-      setButtonStatus("저장하기");
-      setButtonColor("#3C63EC");
-      setVisitHospital(hospitalId,reservationTime)
-    };
+  const CompleteButtonClick = async () => {
+    setIsHospitalSelected(false);
+    setIsDayClick(false);
+    setButtonStatus("저장하기");
+    setButtonColor("#3C63EC");
 
-    useEffect(() => {
-      const formattedTime = formatReservationTime(year, month, day, selectedTimeZone, selectedHours, selectecMinutes);
-      setReservationTime(formattedTime);
-      //console.log(formattedTime)
-    }, [year, month, day, selectedTimeZone, selectedHours, selectecMinutes]);
+    await setVisitHospital(hospitalId, reservationTime);
+
+    //새로운 예약 정보를 다시 불러옴
+    loadInfo();
+  };
+
+  useEffect(() => {
+    const formattedTime = formatReservationTime(year, month, day, selectedTimeZone, selectedHours, selectedMinutes);
+    setReservationTime(formattedTime);
+  }, [year, month, day, selectedTimeZone, selectedHours, selectedMinutes]);
 
   return (
     <Container intensity={15}>
@@ -73,15 +76,15 @@ export default function HospitalReservationTimeModal({
         />
 
         <StandardButton 
-            text='시간 작성 완료' 
-            color={setIsTimeSettingComplete ? '#fff' : '#999'}
-            backgroundColor={isTimeSettingComplete ? '#4896EC' : '#F1F1F5'}
-            width='137px' 
-            height='48px' 
-            borderRadius='100px' 
-            fontSize='14px'
-            marginBottom='24px'
-            onPress={CompleteButtonClick}
+          text='시간 작성 완료' 
+          color={isTimeSettingComplete ? '#fff' : '#999'}
+          backgroundColor={isTimeSettingComplete ? '#4896EC' : '#F1F1F5'}
+          width='137px' 
+          height='48px' 
+          borderRadius='100px' 
+          fontSize='14px'
+          marginBottom='24px'
+          onPress={isTimeSettingComplete ? CompleteButtonClick : null}
         />
       </ModalContainer>
     </Container>
@@ -116,7 +119,6 @@ const TopBar = styled.View`
 
 const StyledText = styled.Text`
   color: #fff;
-  margin-top: 5%; 
   font-size: 18px;
   font-weight: 600;
   margin-top: 14px;

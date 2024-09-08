@@ -1,23 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import moment from 'moment';
+import { Text } from 'react-native'
 import 'moment/locale/ko';
 
-export default function Calendar({ display, setIsDayClick, setYear, setMonth, setDay, reservationList }) {
-  const resevation = [
-    
-  ]
+export default function Calendar({ display, setIsDayClick, setYear, setMonth, setDay, reservationList, setIsReservedDayClick }) {
   useEffect(() => {
     moment.locale('ko');
-
-    const times = reservationList.map((info) => info.visitTime);
-
-    // const date = 0;
-    // times.map((time,index) => (
-    // ))
-
-    console.log(times);
-  }, [reservationList]);
+    //console.log(reservationList);
+  }, []);
 
   const startDay = moment().clone().startOf("month").startOf("week");
   const endDay = moment().clone().endOf("month").endOf("week");
@@ -35,7 +26,7 @@ export default function Calendar({ display, setIsDayClick, setYear, setMonth, se
 
   const handledDayClick = (date) => {
     setIsDayClick(true);
-    
+
     // 년, 월, 일 추출
     const selectedYear = date.year();
     const selectedMonth = date.month() + 1; // moment.js에서 month()는 0부터 시작하므로 +1
@@ -47,8 +38,22 @@ export default function Calendar({ display, setIsDayClick, setYear, setMonth, se
     setDay(selectedDay);
   };
 
+  const handledReservedDayClick = (date) => {
+    // 년, 월, 일 추출
+    const selectedYear = date.year();
+    const selectedMonth = date.month() + 1; // moment.js에서 month()는 0부터 시작하므로 +1
+    const selectedDay = date.date();
+
+    // 상태 업데이트
+    setYear(selectedYear);
+    setMonth(selectedMonth);
+    setDay(selectedDay);
+    setIsReservedDayClick(true)
+  };
+
   return (
     <MainLayout>
+
       <CalendarContainer display={display}>
 
         {/* 요일 */}
@@ -60,20 +65,48 @@ export default function Calendar({ display, setIsDayClick, setYear, setMonth, se
           ))}
         </WeekDaysContainer>
 
-        {/* 날짜 출력 */}
         {calendar.map((week, weekIndex) => (
           <WeekRow
             key={weekIndex}
             bottomLine={weekIndex === calendar.length - 1 ? '#fff' : '#E5E5EC'}
           >
-            {week.map((date, dayIndex) => (
-              <DayContainer key={dayIndex} onPress={() => handledDayClick(date)}>
-                <DayNumber>{date.format('D')}</DayNumber>
-              </DayContainer>
-            ))}
+            {week.map((date, dayIndex) => {
+              // 해당 날짜에 예약이 있는지 확인
+              const reservationForDay = reservationList.find((reservation) => {
+                // 예약 날짜와 캘린더 날짜가 같은지 비교
+                return (
+                  reservation.year === date.year() &&
+                  reservation.month === date.month() + 1 && // moment의 month()는 0부터 시작하므로 +1
+                  reservation.day === date.date()
+                );
+              });
+
+              return reservationForDay ? (
+                <DayContainer
+                  key={dayIndex}
+                  onPress={() => handledReservedDayClick(date)}
+                  backgroundColor='#E5E9FA'
+                  marginBottom='10px'
+                  justifyContent="space-between"
+                >
+                  <DayNumber color='#111'>
+                    {date.format('D')}
+                  </DayNumber>
+                  <TimeText>{`${reservationForDay.hour}:${reservationForDay.minute}`}</TimeText>
+                </DayContainer>
+              ) : (
+                <DayContainer
+                  key={dayIndex}
+                  onPress={() => handledDayClick(date)}
+                  backgroundColor='#fff'
+                  marginBottom='0px'
+                >
+                  <DayNumber>{date.format('D')}</DayNumber>
+                </DayContainer>
+              );
+            })}
           </WeekRow>
         ))}
-
       </CalendarContainer>
     </MainLayout>
   );
@@ -126,14 +159,29 @@ const WeekRow = styled.View`
 `;
 
 const DayContainer = styled.TouchableOpacity`
+  background-color : ${({ backgroundColor }) => backgroundColor || '#fff'};
+  border-radius : 8px;
+  margin-bottom : ${({ marginBottom }) => marginBottom || '0px'};
   align-items: center;
   width : 40px;
   height : 58px;
+  justify-content :  ${({ justifyContent }) => justifyContent || 'none'};
 `;
 
 const DayNumber = styled.Text`
-  font-size: 12px;
-  font-weight: 500;
+  font-size: ${({ fontSize }) => fontSize || '12px'};
+  font-weight: ${({ fontWeight }) => fontWeight || '500'};
   margin-top : 20%;
-  color : #767676;
+  color : ${({ color }) => color || '#767676'};
+`;
+
+const TimeText = styled.Text`
+color: #767676;
+text-align: center;
+font-family: Pretendard;
+font-size: 8px;
+font-style: normal;
+font-weight: 400;
+line-height: 12px; /* 150% */
+margin-bottom : 30%;
 `;
