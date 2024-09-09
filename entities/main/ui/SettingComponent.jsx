@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components/native'
-import {Image, Text, View} from 'react-native'
+import { Image, Text, View } from 'react-native'
 import NextButton from '../../../assets/images/nextbutton.png'
 import { useNavigation } from "@react-navigation/native";
 
@@ -9,7 +9,7 @@ import stethoscope from '../../../assets/images/Stethoscope.png';
 
 import 'moment/locale/ko';
 
-export default function SettingComponent({value,type}) {
+export default function SettingComponent({ value, type }) {
   const navigation = useNavigation();
 
   const handleNextButtonClick = () => {
@@ -21,18 +21,26 @@ export default function SettingComponent({value,type}) {
 
       {/* 아이콘과 텍스트 */}
       <Wrap>
-        <Icon source={type==="pill" ? pill : stethoscope}/> 
+        <Icon source={type === "pill" ? pill : stethoscope} />
 
-        {
-          type==="pill" ?
-          <StyledText>약 복용까지 <BoldText>{value}</BoldText> 남았어요</StyledText>
-          :
-          <StyledText>병원 진료까지 <BoldText>{value}</BoldText> 남았어요</StyledText>
-        }
+        {type === "pill" ? (
+          value === "error" ? (
+            <StyledText>오늘 약 복용을 모두 마쳤습니다</StyledText>
+          ) : (
+            <StyledText>
+              약 복용까지 <BoldText>{value}</BoldText> 남았어요
+            </StyledText>
+          )
+        ) : (
+          <StyledText>
+            병원 진료까지 <BoldText>{value}</BoldText> 남았어요
+          </StyledText>
+        )}
       </Wrap>
-      
+
+
       {/* 버튼 */}
-      <Next source={NextButton}/>
+      <Next source={NextButton} />
 
     </MainLayout>
   )
