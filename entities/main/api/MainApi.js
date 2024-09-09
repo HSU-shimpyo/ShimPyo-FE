@@ -62,6 +62,6 @@ export const getMedicineTimeLeft = async () => {
 
   } catch (error) {
     console.error('error!', error.response?.data || error.message);
-    return "병원 정보를 가져오는 중 오류가 발생했습니다.";
+    return "error";
   }
 };

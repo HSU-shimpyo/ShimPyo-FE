@@ -12,7 +12,6 @@ export default function WhenBreakfast({route}) {
   const [isComplete, setIsComplete] = useState(false);
   const [imageToggle, setImageToggle] = useState(false); // 이미지 상태 관리
   const [breakfastTime, setBreakfastTime] = useState();
-  const [color, setColor] = useState(); 
   const navigation = useNavigation();
 
   const handleButtonClick = () => {

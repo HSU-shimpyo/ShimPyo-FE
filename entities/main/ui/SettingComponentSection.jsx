@@ -5,12 +5,12 @@ import SettingComponent from './SettingComponent';
 
 export default function SettingComponentSection() {
 
-  const [pill, setPill] = useState(30);
+  const [pill, setPill] = useState('로딩 중...');
   const [hospital, setHospital] = useState('로딩 중...');
   
   const loadLeftTime = () => {
     getTimeLeft().then((res) => setHospital(res)).catch(() => setHospital("병원 정보를 불러오는 중 오류가 발생했습니다."));
-    getMedicineTimeLeft().then((res) => setPill(res)).catch(()=>setPill("약 시간 정보를 불러오는 중 오류가 발생했습니다."))
+    getMedicineTimeLeft().then((res) => setPill(res)).catch(()=>setPill("end"))
   }
 
   useEffect(() => {

@@ -1,29 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components/native';
-
-export default function EatingTimeButton() {
-  // 더미 데이터 (하나만 선택되도록 설정)
-  const selectedData = {
-    option: '식후', // 만약 식후를 선택했을 때
-    time: null,     // 선택되지 않았을 때는 null 써주기
-  };
-
-  // 현재 설정된 페이지로, 더미 데이터를 기반으로 색상이 적용된 버튼을 표시
+import { TimeInfo } from '../model/model';
+export default function EatingTimeButton({mealTiming,intakeTiming}) {
+  useEffect(()=>{
+    console.log(TimeInfo,intakeTiming);
+  },[])
   return (
     <Container>
       <ButtonContainer>
-        <StyledLeftButton
-          isSelected={selectedData.option === '식후' && !selectedData.time}
-        >
-          <ButtonText isSelected={selectedData.option === '식후' && !selectedData.time}>
-            식후
+        <StyledLeftButton>
+          <ButtonText>
+            {mealTiming}
           </ButtonText>
         </StyledLeftButton>
-        <StyledRightButton
-          isSelected={!selectedData.option && selectedData.time === '30분'}
-        >
-          <ButtonText isSelected={!selectedData.option && selectedData.time === '30분'}>
-            30분
+        <StyledRightButton>
+          <ButtonText>
+            {intakeTiming}
           </ButtonText>
         </StyledRightButton>
       </ButtonContainer>
@@ -43,13 +35,13 @@ const ButtonContainer = styled.View`
   justify-content: space-between;
   width: 327px;
   height: 64px;
-  margin-top:-180px;
+
 `;
 
 const StyledLeftButton = styled.View`
   width: 164px;
   height: 64px;
-  background-color: ${(props) => (props.isSelected ? '#C2DDF8' : '#FFFFFF')};
+  background-color: #C2DDF8;
   justify-content: center;
   align-items: center;
   border-radius: 24px 0px 0px 24px;
@@ -65,7 +57,7 @@ const StyledRightButton = styled.View`
 `;
 
 const ButtonText = styled.Text`
-  color: #111111;
+  color: #111;
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;

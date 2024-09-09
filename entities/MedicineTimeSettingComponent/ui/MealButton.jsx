@@ -1,28 +1,21 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-export default function MealButton() {
-  // 더미 데이터
-  const mealTimes = {
-    아침: '09:40',
-    점심: '12:30',
-    저녁: '18:00'
-  };
-
+export default function MealButton({breakfast, lunch, dinner}) {
   return (
     <Container>
       <ButtonContainer>
         <StyledButton>
           <ButtonLabel>아침</ButtonLabel>
-          <ButtonTime>{mealTimes['아침']}</ButtonTime>
+          <ButtonTime>{breakfast}</ButtonTime>
         </StyledButton>
         <StyledButton>
           <ButtonLabel>점심</ButtonLabel>
-          <ButtonTime>{mealTimes['점심']}</ButtonTime>
+          <ButtonTime>{lunch}</ButtonTime>
         </StyledButton>
         <StyledButton>
           <ButtonLabel>저녁</ButtonLabel>
-          <ButtonTime>{mealTimes['저녁']}</ButtonTime>
+          <ButtonTime>{dinner}</ButtonTime>
         </StyledButton>
       </ButtonContainer>
     </Container>
@@ -30,18 +23,14 @@ export default function MealButton() {
 }
 
 const Container = styled.View`
-  
 justify-content: center;
 align-items: center;
-
 `;
 
 const ButtonContainer = styled.View`
-  position:relative;
   flex-direction: row;
   justify-content: space-between;
   width: 326px;
-  bottom:100px;
 `;
 
 const StyledButton = styled.View`
@@ -55,10 +44,9 @@ const StyledButton = styled.View`
 `;
 
 const ButtonLabel = styled.Text`
-  color: #111;
+color: #111;
 text-align: center;
 
-/* MO/Title/KR/T4_KR_Sb */
 font-family: Pretendard;
 font-size: 16px;
 font-style: normal;
@@ -73,7 +61,7 @@ font-family: Pretendard;
 font-size: 14px;
 font-style: normal;
 font-weight: 400;
-line-height: 20px; /* 142.857% */
+line-height: 20px; 
 margin-top:2px;
 
 `;
