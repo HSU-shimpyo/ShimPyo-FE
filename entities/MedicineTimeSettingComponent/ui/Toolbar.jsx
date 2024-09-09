@@ -6,18 +6,21 @@ import { useNavigation } from "@react-navigation/native";
 
 export default function ToolBar() {
   const navigation = useNavigation();
-  
+
   const handleCloseButtonClick = () => {
     navigation.navigate("Main");
   }
 
   return (
     <MainLayout>
-               
+
       <ArrowButtonWrapper onPress={handleCloseButtonClick}>
-         <ArrowButton source={arrowButton} />
+        <ArrowButton source={arrowButton} />
       </ArrowButtonWrapper>
       <StyledText>약 알림 설정</StyledText>
+      <ArrowButtonWrapper>
+        <ArrowButton source={arrowButton} opacity="0"/>
+      </ArrowButtonWrapper>
 
     </MainLayout>
   )
@@ -33,12 +36,10 @@ const MainLayout = styled.View`
 `;
 
 const StyledText = styled.Text`
-    margin-right:158px;
     overflow: hidden;
-    color: var(--Font-02_black, #111);
+    color: #111;
     text-align: center;
     text-overflow: ellipsis;
-
     font-family: Pretendard;
     font-size: 20px;
     font-style: normal;
