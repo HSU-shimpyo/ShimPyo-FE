@@ -51,7 +51,7 @@ export default function Loading({setIsResult}) {
         잠시만 기다려주세요
       </StyledText>
 
-      <StyledText marginBottom="10%;">
+      <StyledText marginBottom="55%;">
         측정 결과를 추출하는 중입니다
       </StyledText>
 
