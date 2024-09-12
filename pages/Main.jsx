@@ -11,9 +11,7 @@ export default function Main() {
   const [month, setMonth] = useState();
   const [day, setDay] = useState();
 
-  useEffect(()=>{
-    //console.log(`${year}, ${month}, ${day}`)
-  },[,year,month,day])
+
   return (
     <Container>
     <ScrollContainer>
