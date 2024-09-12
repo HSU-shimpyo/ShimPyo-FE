@@ -15,4 +15,5 @@ const MainLayout = styled.View`
     border-radius: 24px;
     justify-content: space-between;
     align-items: center;
+    margin-top : 32px;
 `;

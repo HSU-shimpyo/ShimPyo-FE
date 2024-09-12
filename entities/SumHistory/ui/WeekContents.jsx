@@ -3,9 +3,9 @@ import styled from 'styled-components'
 import ThisWeekShimStatus from './ThisWeekShimStatus';
 import ComparedLastWeek from './ComparedLastWeek';
 import PefAvg from './PefAvg';
-export default function Contents() {
+import Info from './Info'
+export default function WeekContents() {
   return (
-    <ScrollViewContainer>
       <MainLayout>
         
         <PefAvg/>
@@ -14,12 +14,12 @@ export default function Contents() {
 
         <ThisWeekShimStatus/>
 
+        <Info/>
+
       </MainLayout>
-    </ScrollViewContainer>
   )
 }
 
-const ScrollViewContainer = styled.ScrollView``;
 const MainLayout = styled.View`
 justify-content : space-around;
 align-items : center;
