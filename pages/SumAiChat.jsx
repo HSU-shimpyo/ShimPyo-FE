@@ -51,7 +51,7 @@ const dummyData = [
   },
 ];
 
-export default function SumAiChat() {
+export default function SumAiChat(navigation) {
   const [searchQuery, setSearchQuery] = useState('');
 
   // 검색어를 기준으로 데이터 필터링

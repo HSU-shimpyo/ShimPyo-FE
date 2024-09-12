@@ -25,13 +25,13 @@ export default function ChattingContent() {
             <DefaultChat />
 
             </BasicContainer>
-          
-          <MyChat /> 
+
+          {/* <MyChat />  */}
           </ScrollView>
         </ScrollViewContainer>
 
         {/* 고정된 인풋창 */}
-        
+
       </MainLayout>
       </Container>
     </KeyboardAvoidingView>
@@ -40,8 +40,10 @@ export default function ChattingContent() {
 
 const ScrollViewContainer = styled.View`
   width: 388px;
-  height:610px;
+  height:100%;
   background-color: #F1F1F5; 
+  border:1px;
+  bottom:56px;
 `;
 
 const MainLayout = styled.View`
@@ -57,6 +59,7 @@ width:100%;
 flex:1;
 justify-content:center;
 align-items:center;
+background-color:#111;
 `;
 
 const InputContainer = styled.View`
@@ -77,4 +80,3 @@ const BasicContainer=styled.View`
   margin-left:10px;
   top:155px;
 `;
-

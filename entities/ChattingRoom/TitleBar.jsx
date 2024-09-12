@@ -14,7 +14,7 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
 
       {/* Close 버튼 (왼쪽) */}
       <CloseButtonWrapper 
-        opacity="1"
+        opacity="0"
         onPress={() => navigation.navigate('SumAiChat')} // 페이지 이동 
       >
         <CloseButton source={closeButton} />
@@ -50,7 +50,7 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 100px;
+  height: 115px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -60,6 +60,8 @@ const MainLayout = styled.View`
 const WrapTitle = styled.View`
   flex-direction: row;
   height: 28px;
+  margin-top:60px;
+
 `;
 
 const Title = styled.TextInput`
@@ -95,4 +97,6 @@ const CloseButton = styled.Image`
   width: 28px;
   height: 28px;
   margin-right: 24px;
+    margin-top:60px;
+
 `;
