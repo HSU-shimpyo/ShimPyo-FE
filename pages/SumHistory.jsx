@@ -1,9 +1,9 @@
-import React from 'react'
+import React, { useState, useEffect} from 'react'
 import styled from 'styled-components'
 import ToolBar from '../shared/component/ToolBar';
 import NavigationBar from '../shared/component/NavigationBar';
-import Contents from '../entities/SumHistory/Contents';
-
+import Contents from '../entities/SumHistory/ui/Contents';
+import { getWeeklyAverage } from '../entities/SumHistory/api/SumHistory';
 export default function SumHistory() {
   return (
     <MainLayout>
