@@ -16,9 +16,8 @@ export const getPef = async (setPef) => {
                     }
                 }
             );
-            
-            //console.log(response.data.data);
-            setPef(response.data.data)
+
+            return response.data.data.breathingRate
         } else {
             console.log("토큰이 없습니다.");
         }
