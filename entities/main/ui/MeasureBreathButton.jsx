@@ -14,7 +14,7 @@ import YellowSum from '../../../assets/images/yellowsum.png'
 
 export default function MeasureBreathButton({ year, month, day }) {
   const navigation = useNavigation();
-  const [isMeasure, setIsMeasure] = useState();
+  const [isMeasure, setIsMeasure] = useState(false);
   const [pef, setPef] = useState();
   const [status, setStatus] = useState();
   const [color , setColor] = useState();

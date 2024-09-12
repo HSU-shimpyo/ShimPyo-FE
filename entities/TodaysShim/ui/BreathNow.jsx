@@ -75,7 +75,7 @@ export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileA
 
   useEffect(() => {
     if (count === 3 && audioFileArray.length === 3) {
-     // setIsComplete(true)
+      setIsComplete(true)
       setTimeout(() => {
         if(isMeasure){
           const formData = new FormData();

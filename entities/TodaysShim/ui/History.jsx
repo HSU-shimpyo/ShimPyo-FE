@@ -1,61 +1,90 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import {View, Text, Dimensions} from 'react-native'
+import { View, Text, Dimensions } from 'react-native'
 import { LineChart } from "react-native-chart-kit";
+import { getWeeklyResult } from '../api/TodaysShimApi';
 
 
 
-export default function History({PEF}) {
-    const screenWidth = Dimensions.get('window').width;
+export default function History({ PEF }) {
+  const screenWidth = Dimensions.get('window').width;
+
+  const [labels, setLabels] = useState([]);
+  const [data, setData] = useState([]);
+
+  // 데이터가 유효하지 않은 경우 기본값 0을 설정
+  useEffect(() => {
+    getWeeklyResult().then((res) => {
+      if (res && res.success) {
+        const labelsArray = res.data.map((item) => {
+          const date = new Date(item.date);
+          const formattedDate = `${(date.getMonth() + 1)
+            .toString()
+            .padStart(2, '0')}.${date.getDate().toString().padStart(2, '0')}`;
+          return formattedDate;
+        });
+
+        const dataArray = res.data.map((item) => {
+          return item.breathingRate !== null ? item.breathingRate : 0;
+        })
+
+        setLabels(labelsArray);
+        setData(dataArray);
+      }
+    })
+
+
+  }, [])
+
 
   return (
     <MainLayout>
-        <StyledText>지난 7일간 측정 내역</StyledText>
-        <LineChart
+      <StyledText>지난 7일간 측정 내역</StyledText>
+      <LineChart
         data={{
-            labels: ["07.03","07.04","07.05","07.06","07.07","07.08","07.09"],
-            datasets: [
+          labels: ["07.03", "07.04", "07.05", "07.06", "07.07", "07.08", "07.09"],
+          datasets: [
             {
-                data: [170,200,150,210,230,250,275]
+              data: [170, 200, 150, 210, 230, 250, 275]
             }
-            ]
+          ]
         }}
         withInnerLines={false} //차트 내부 대시라인 여부
         withOuterLines={false} //차트 외부 대시라인 여부
         withHorizontalLabels={false}
         segments={3} //수평 라인 개수 , 기본값 4
         fromZero={true} //0부터 랜더링
-        width={screenWidth-10} //차트의 너비 조절
+        width={screenWidth - 10} //차트의 너비 조절
         height={300}
-        yAxisInterval={3} 
+        yAxisInterval={3}
         chartConfig={{
-            backgroundGradientFrom: "rgb(0,0,0,0.1)",
-            backgroundGradientTo: "rgb(0,0,0,0.1)",
-            decimalPlaces: 0, //y축 값 소수점
-            color:  (opacity = 1) => `#275F63` , //차트 선 색상
-            labelColor: (opacity = 1) => `#767676`, // 라벨 색상
-            fillShadowGradientFrom: '#8FEAD4', //그라데이션 시작 색상
-            fillShadowGradientTo: "#fff", //그라데이션 끝 색상
-            fillShadowGradientFromOpacity: 0.2, //시작 색상 불투명도
-            fillShadowGradientToOpacity: 0.4, //끝 색상 불투명도
-            propsForDots: {
-              r: "0"
-            },
-            propsForLabels: {
-                fontFamily: 'Pretendard',
-                fontSize: 12,
-                fontWeight: 400,
-                letterSpacing: -0.3,
-              }
+          backgroundGradientFrom: "rgb(0,0,0,0.1)",
+          backgroundGradientTo: "rgb(0,0,0,0.1)",
+          decimalPlaces: 0, //y축 값 소수점
+          color: (opacity = 1) => `#275F63`, //차트 선 색상
+          labelColor: (opacity = 1) => `#767676`, // 라벨 색상
+          fillShadowGradientFrom: '#8FEAD4', //그라데이션 시작 색상
+          fillShadowGradientTo: "#fff", //그라데이션 끝 색상
+          fillShadowGradientFromOpacity: 0.2, //시작 색상 불투명도
+          fillShadowGradientToOpacity: 0.4, //끝 색상 불투명도
+          propsForDots: {
+            r: "0"
+          },
+          propsForLabels: {
+            fontFamily: 'Pretendard',
+            fontSize: 12,
+            fontWeight: 400,
+            letterSpacing: -0.3,
+          }
         }}
         style={{
-            marginTop: 31,
-            position : 'relative',
-            right : 30,
+          marginTop: 31,
+          position: 'relative',
+          right: 30,
         }}
-        />
-        <Mark><MarkText>{PEF}</MarkText></Mark>
-</MainLayout>
+      />
+      <Mark><MarkText>{PEF}</MarkText></Mark>
+    </MainLayout>
 
   )
 }

@@ -31,6 +31,7 @@ export default function TodaysShim({route}) {
           year={year}
           month={month}
           day={day}
+          isMeasure={isMeasure}
           /> }
 
       {/* 로딩중 */}

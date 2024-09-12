@@ -3,8 +3,11 @@ import styled from 'styled-components';
 import { Dimensions } from 'react-native';
 import { LineChart } from 'react-native-chart-kit';
 
-export default function DetailGraph({ PEF }) {
+export default function DetailGraph({ PEF, first, second, third }) {
   const screenWidth = Dimensions.get('window').width;
+
+  // 데이터가 유효하지 않은 경우 기본값 0을 설정
+  const safeData = [first, second, third].map(value => isNaN(value) ? 0 : value);
 
   return (
     <MainLayout>
@@ -14,7 +17,7 @@ export default function DetailGraph({ PEF }) {
           labels: ["1회차", "2회차", "3회차"],
           datasets: [
             {
-              data: [190, 150, 275],
+              data: safeData,  // 안전한 데이터 전달
             },
           ],
         }}
@@ -23,7 +26,7 @@ export default function DetailGraph({ PEF }) {
         withHorizontalLabels={true}
         segments={3}
         fromZero={true}
-        width={screenWidth}
+        width={screenWidth - 40} // 여백을 주기 위해 약간의 너비 조정
         height={300}
         yAxisInterval={3}
         xLabelsOffset={5}
