@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-export default function ThisWeekShimStatus() {
+export default function ThisMonthShimStatus() {
   return (
     <MainLayout>
       
@@ -15,4 +15,5 @@ const MainLayout = styled.View`
     border-radius: 24px;
     justify-content: space-between;
     align-items: center;
+    margin-top : 32px;
 `;
