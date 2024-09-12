@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import ToolBar from '../shared/component/ToolBar';
 import NavigationBar from '../shared/component/NavigationBar';
-import WeekContents from '../entities/SumHistory/ui/WeekContents';
+import WeeklyContents from '../entities/SumHistory/ui/WeeklyContents';
 import Selecter from '../entities/SumHistory/ui/Selecter';
-import MonthContents from '../entities/SumHistory/ui/MonthContents';
+import MonthlyContents from '../entities/SumHistory/ui/MonthlyContents';
 export default function SumHistory() {
   const [isSelect, setIsSelect] = useState(true)
   return (
@@ -19,7 +19,7 @@ export default function SumHistory() {
         <StyledText>매일 측정할수록 더 정확한 최대 호기량을 측정할 수 있어요!</StyledText>
 
         {
-          isSelect ? <WeekContents /> : <MonthContents />
+          isSelect ? <WeeklyContents /> : <MonthlyContents />
         }
 
       </ScrollViewContainer>

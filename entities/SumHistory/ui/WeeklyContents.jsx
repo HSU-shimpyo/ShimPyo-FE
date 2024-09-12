@@ -4,7 +4,7 @@ import ThisWeekShimStatus from './ThisWeekShimStatus';
 import ComparedLastWeek from './ComparedLastWeek';
 import PefAvg from './PefAvg';
 import Info from './Info'
-export default function WeekContents() {
+export default function WeeklyContents() {
   return (
       <MainLayout>
         
