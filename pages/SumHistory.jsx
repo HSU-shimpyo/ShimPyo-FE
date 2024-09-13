@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import ToolBar from '../shared/component/ToolBar';
 import NavigationBar from '../shared/component/NavigationBar';
 import WeeklyContents from '../entities/SumHistory/ui/WeeklyContents';
-import Selecter from '../entities/SumHistory/ui/Selecter';
+import Selector from '../entities/SumHistory/ui/Selector';
 import MonthlyContents from '../entities/SumHistory/ui/MonthlyContents';
 export default function SumHistory() {
   const [isSelect, setIsSelect] = useState(true)
@@ -14,7 +14,7 @@ export default function SumHistory() {
 
 
       <ScrollViewContainer showsVerticalScrollIndicator={false}>
-        <Selecter isSelect={isSelect} setIsSelect={setIsSelect} />
+        <Selector isSelect={isSelect} setIsSelect={setIsSelect} />
 
         <StyledText>매일 측정할수록 더 정확한 최대 호기량을 측정할 수 있어요!</StyledText>
 
