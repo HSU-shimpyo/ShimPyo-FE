@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import styled from 'styled-components'
-import { TouchableOpacity, Text } from 'react-native';
+import { TouchableOpacity, Text, Animated } from 'react-native';
 
 export default function Selecter({isSelect, setIsSelect}) {
     const [isTimeZoneFocus, setIsTimeZoneFocus] = useState('주간');
