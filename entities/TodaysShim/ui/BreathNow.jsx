@@ -121,7 +121,7 @@ export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileA
             type: "audio/m4a"
           });
   
-          modifyBreathing(formData);
+          getPef(formData);
         }
       }, 1500);
     }

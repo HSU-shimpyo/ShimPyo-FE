@@ -1,7 +1,7 @@
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { BASE_URL } from "../../../shared/config/config";
-
+import { myInfo } from "../model/model";
 export const getPef = async (setPef) => {    
     try {
         //로컬 스토리지에 저장되어 있는 토큰을 가져옴
@@ -16,8 +16,8 @@ export const getPef = async (setPef) => {
                     }
                 }
             );
-
-            return response.data.data.breathingRate
+            const integerBreathingRate = Math.floor(response.data.data.breathingRate);
+            setPef(integerBreathingRate)
         } else {
             console.log("토큰이 없습니다.");
         }

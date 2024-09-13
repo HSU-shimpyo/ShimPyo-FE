@@ -36,7 +36,7 @@ export default function MeasureBreathButton({ year, month, day }) {
       case "경고" : setColor("#FA0"); setImage(YellowSum); break;
       case "위험" : setColor("#DC0000"); setImage(RedSum); break;
     }
-  }, [])
+  }, [status])
 
   const clickButton = () => {
     navigation.navigate("TodaysShim", { year, month, day, isMeasure })
