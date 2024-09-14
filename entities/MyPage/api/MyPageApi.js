@@ -16,8 +16,8 @@ export const getPef = async (setPef) => {
                     }
                 }
             );
-            const integerBreathingRate = Math.floor(response.data.data.breathingRate);
-            setPef(integerBreathingRate)
+            //console.log(response.data.data.breathingRate);
+            return response.data.data.breathingRate;
         } else {
             console.log("토큰이 없습니다.");
         }

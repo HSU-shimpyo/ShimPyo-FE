@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 import styled from 'styled-components'
 import { TouchableOpacity, Text, Animated } from 'react-native';
 
-export default function Selecter({isSelect, setIsSelect}) {
+export default function Selector({isSelect, setIsSelect}) {
     const [isTimeZoneFocus, setIsTimeZoneFocus] = useState('주간');
 
     const timeZone = ['주간', '월간'];

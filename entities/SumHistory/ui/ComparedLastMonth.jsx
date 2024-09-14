@@ -16,7 +16,7 @@ export default function ComparedLastMonth() {
     getMonthlyDifference().then((res) => {
       const lastMonthValue = isNaN(res.lastMonthAverage) ? 0 : parseFloat(res.lastMonthAverage) || 0;
       const thisMonthValue = isNaN(res.thisMonthAverage) ? 0 : parseFloat(res.thisMonthAverage) || 0;
-      
+
       setLastMonth(lastMonthValue);
       setThisMonth(thisMonthValue);
       setPercentage(res.differencePercent || 0);
@@ -25,6 +25,19 @@ export default function ComparedLastMonth() {
       console.error("Error fetching monthly difference:", error);
     });
   }, []); // 빈 의존성 배열로 한 번만 실행
+  const yLabelStyle = {
+    color: '#CACAD7',
+    fontSize: 12,
+    fontWeight: 400,
+    lineHeight: 18,
+    letterSpacing: -0.3
+  };
+
+  const XLabelStyle = {
+    fontSize: 15, // 라벨 폰트 크기
+    color: '#505050', // 라벨 폰트 색상
+    fontWeight: 400
+  };
 
   // status가 변경될 때 색상을 업데이트하는 useEffect
   useEffect(() => {
@@ -41,16 +54,20 @@ export default function ComparedLastMonth() {
     }
   }, [status]); // status가 변경될 때마다 실행
 
+  const maxValue = Math.max(lastMonth, thisMonth)
+
   const barData = [
-    { 
-      value: lastMonth, 
-      label: '저번달', 
-      frontColor: (lastMonth > thisMonth) ? '#9CC9F5' : '#E8EAF6' 
+    {
+      value: (lastMonth !== 0) ? lastMonth : 50,
+      label: '저번달',
+      frontColor: (lastMonth > thisMonth) ? '#9CC9F5' : '#E8EAF6',
+      labelTextStyle: { fontWeight: lastMonth === maxValue ? 600 : 400 }
     },
-    { 
-      value: thisMonth, 
-      label: '이번달', 
-      frontColor: (thisMonth > lastMonth) ? '#9CC9F5' : '#E8EAF6' 
+    {
+      value: (thisMonth !== 0) ? thisMonth : 50,
+      label: '이번달',
+      frontColor: (thisMonth > lastMonth) ? '#9CC9F5' : '#E8EAF6',
+      labelTextStyle: { fontWeight: thisMonth === maxValue ? 600 : 400 }
     }
   ];
 
@@ -59,32 +76,38 @@ export default function ComparedLastMonth() {
       <WrapText>
         <StyledText>저번달 대비 최대 호기량 수치가</StyledText>
         <StyledText>
-          <StyledText 
+          <StyledText
             fontSize='56px'
             lineHeight='72px'
             letterSpacing='-1.4px'
             color={color}
             fontWeight="600"
-          > 
+          >
             {percentage}<StyledText color="#4AA8EE" fontSize='32px'>%</StyledText>
-          </StyledText> 
+          </StyledText>
           <StyledText fontSize='16px' color={color} fontWeight="600" lineHeight='24px'>{status}</StyledText> 하였습니다
         </StyledText>
       </WrapText>
-      <BarChart
-        disableScroll={true}
-        hideAxes={false}
-        hideRules={true}
-        height={250}
-        barWidth={120}
-        barBorderRadius={12}
-        frontColor="lightgray"
-        data={barData}
-        yAxisThickness={0}
-        xAxisThickness={0}
-        barMarginBottom={8}
-        hideYAxisText={true}  // Y축 라벨 숨김
-      />
+      <WrapChart>
+        <BarChart
+          disableScroll={true}
+          hideAxes={false}
+          hideRules={true}
+          height={250}
+          barWidth={130}
+          barBorderRadius={12}
+          frontColor="lightgray"
+          data={barData}
+          yAxisThickness={0}
+          xAxisThickness={0}
+          barMarginBottom={8}
+          hideYAxisText={true}  // Y축 라벨 숨김
+          yAxisTextStyle={yLabelStyle}  // yAxisTextStyle 사용
+          xAxisLabelTextStyle={XLabelStyle}
+        />
+
+      </WrapChart>
+
     </MainLayout>
   );
 }
@@ -102,6 +125,12 @@ const MainLayout = styled.View`
 const WrapText = styled.View`
   width: 100%;
   padding-left: 20px;
+`;
+
+const WrapChart = styled.View`
+  width : 100%;
+  position : relative;
+  right : 2%;
 `;
 
 const StyledText = styled.Text`

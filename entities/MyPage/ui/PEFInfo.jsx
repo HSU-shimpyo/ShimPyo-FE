@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { myInfo } from '../model/model'
 import { getPef } from '../api/MyPageApi'
 import Sum from '../../../assets/images/mypageSum.png'
 
@@ -8,7 +7,8 @@ export default function PEFInfo() {
   const [pef, setPef] = useState('')
   useEffect(() => {
     getPef().then((res) =>{
-      setPef(res)
+      const integerBreathingRate = Math.floor(res);
+      setPef(integerBreathingRate)
     });
   }, [])
 
