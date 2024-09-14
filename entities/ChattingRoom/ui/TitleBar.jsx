@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import closeButton from '../../assets/images/closebutton.png';
-import icon from '../../assets/images/pencil.png';
-import SumAiChat from '../../pages/SumAiChat';
+import closeButton from '../../../assets/images/closebutton.png';
+import icon from '../../../assets/images/pencil.png';
+import SumAiChat from '../../../pages/SumAiChat';
 import { TouchableOpacity } from 'react-native';
 
 export default function TitleBar({ navigation }) {  // navigation 객체를 props로 받음
@@ -14,7 +14,7 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
 
       {/* Close 버튼 (왼쪽) */}
       <CloseButtonWrapper 
-        opacity="1"
+        opacity="0"
         onPress={() => navigation.navigate('SumAiChat')} // 페이지 이동 
       >
         <CloseButton source={closeButton} />
@@ -60,6 +60,7 @@ const MainLayout = styled.View`
 const WrapTitle = styled.View`
   flex-direction: row;
   height: 28px;
+  margin-top : 10%;
 `;
 
 const Title = styled.TextInput`
@@ -89,6 +90,7 @@ const PencilIcon = styled.Image`
 
 const CloseButtonWrapper = styled.TouchableOpacity`
   opacity: ${({ opacity }) => opacity || '0'};
+  margin-top: 10%;
 `;
 
 const CloseButton = styled.Image`

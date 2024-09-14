@@ -1,63 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import TitleBar from '../entities/SumAiChat/ui/TitleBar';
 import Search from '../entities/SumAiChat/ui/Search';
 import FloatingButton from '../entities/SumAiChat/ui/FloatingButton';
 import NavigationBar from '../shared/component/NavigationBar';
-import { ScrollView, Text, View } from 'react-native';
-
-const dummyData = [
-  {
-    id: 1,
-    title: '증상',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 2,
-    title: '최대호기량이란?',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 3,
-    title: '종류',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 4,
-    title: '질문방 제목',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 5,
-    title: '질문방 제목',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 6,
-    title: '천식에 나쁜 음식',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-  {
-    id: 7,
-    title: '천식에 좋은 음식',
-    description: '동해물과 백두산이 동해물과 백두산이동해물과 백두산이 동해물과 백두산이...',
-    time: '3분 전',
-  },
-];
+import { getAllChatRoom } from '../entities/SumAiChat/api/SumAiChatApi';
+import axios from "axios";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { BASE_URL } from '../shared/config/config';
+import { useNavigation } from '@react-navigation/native';
 
 export default function SumAiChat() {
   const [searchQuery, setSearchQuery] = useState('');
+  const [rooms, setRooms] = useState([]);
+  const navigetion = useNavigation();
+
+  useEffect(() => {
+    getAllChatRoom().then((res) => {
+      setRooms(res);
+    })
+  }, [])
+
+  const clickBox = (roomId) => {
+    navigetion.navigate("ChattingRoom", { roomId })
+  }
 
   // 검색어를 기준으로 데이터 필터링
-  const filteredData = dummyData.filter((item) =>
-    item.title.toLowerCase().includes(searchQuery.toLowerCase())
+  const filteredData = rooms.filter((item) =>
+    item.chatRoomTitle.toLowerCase().includes(searchQuery.toLowerCase())
   );
+
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + '...';
+    }
+    return text;
+  };
 
   return (
     <Container>
@@ -72,12 +50,14 @@ export default function SumAiChat() {
           {/* 필터링된 질문방 더미데이터 */}
           {filteredData.length > 0 ? (
             filteredData.map((item) => (
-              <QuestionBox key={item.id}>
+              <QuestionBox key={item.chatRoomId} onPress={() => clickBox(item.chatRoomId)}>
                 <BoxHeader>
-                  <TitleText>{item.title}</TitleText>
-                  <TimeText>{item.time}</TimeText>
+                  <TitleText>{item.chatRoomTitle}</TitleText>
+                  <TimeText>{item.lastChatAt}</TimeText>
                 </BoxHeader>
-                <DescriptionText>{item.description}</DescriptionText>
+                <DescriptionText>
+                  {truncateText(item.lastChat, 65)}
+                </DescriptionText>
               </QuestionBox>
             ))
           ) : (
@@ -92,9 +72,7 @@ export default function SumAiChat() {
       </FloatingButtonContainer>
 
       {/* 네비게이션 바 */}
-      <NavigationBarContainer>
-        <NavigationBar SumAiChat />
-      </NavigationBarContainer>
+      <NavigationBar chat />
     </Container>
   );
 }
@@ -113,9 +91,10 @@ const ScrollContainer = styled.ScrollView`
 const MainLayout = styled.View`
   align-items: center;
   background-color: #F7F7FB;
+    padding-bottom : 20%;
 `;
 
-const QuestionBox = styled.View`
+const QuestionBox = styled.TouchableOpacity`
   width: 327px;
   height: 108px;
   border-radius: 12px;
@@ -123,6 +102,10 @@ const QuestionBox = styled.View`
   padding: 16px;
   margin-bottom: 12px;
   border-radius: 12px;
+  shadow-color: rgba(0, 0, 0, 0.04);
+  shadow-offset: 0px 20px;
+  shadow-opacity: 0.44;
+  shadow-radius: 44px;
 `;
 
 const BoxHeader = styled.View`
