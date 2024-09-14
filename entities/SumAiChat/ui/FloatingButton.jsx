@@ -1,12 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Plus from '../../../assets/images/plus.png'
 import { useNavigation } from '@react-navigation/native';
+import { makeChatRoom } from '../api/SumAiChatApi';
 
 export default function FloatingButton() {
   const navigation = useNavigation();
+  const [roomId, setRoomId] = useState();
+  
   const clickButton = () => {
-    navigation.navigate("ChattingRoom")
+    makeChatRoom().then((res)=> {
+      setRoomId(res);
+    })
+    navigation.navigate("ChattingRoom",{roomId})
   }
   return (
     <Background activeOpacity={1} onPress={clickButton}>

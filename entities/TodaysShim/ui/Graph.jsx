@@ -36,7 +36,7 @@ export default function Graph({ PEF, first, second, third }) {
           endOpacity={0}
           endFillColor="#ffffff" // 그라데이션 끝 색상
           hideYAxisText={false} // Y축 텍스트 숨기기
-          maxValue={300}
+          maxValue={400}
           minValue={0}
           noOfSections={3}
           yAxisThickness={0} // Y축 두께 숨기기

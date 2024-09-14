@@ -82,6 +82,10 @@ const MainLayout = styled.View`
   flex-direction: row;
   justify-content: space-around;
   background-color: #fff;
+  shadow-color: rgba(0, 0, 0, 0.8);
+  shadow-offset: 0px -10px; 
+  shadow-opacity: 0.04;
+  shadow-radius: 10px;
 `;
 
 const Menu = styled.TouchableOpacity`
