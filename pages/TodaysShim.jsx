@@ -11,8 +11,8 @@ import { getResult } from '../entities/TodaysShim/api/TodaysShimApi';
 
 export default function TodaysShim({route}) {
   const {year, month, day,isMeasure} = route.params;
-  const [isComplete, setIsComplete] = useState(false)
-  const [isResult, setIsResult] = useState(false)
+  const [isComplete, setIsComplete] = useState(true)
+  const [isResult, setIsResult] = useState(true)
   const [audioFileArray, setAudioFileArray] = useState([]); // 녹음 파일 URI를 저장할 배열
 
   return (

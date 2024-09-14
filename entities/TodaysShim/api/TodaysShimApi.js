@@ -105,8 +105,8 @@ export const getWeeklyResult = async () => {
                     }
                 }     
             );
-            console.log(response.data.data)
-            //return response.data.data;
+            //console.log(response.data.data)
+            return response.data.data;
         } else {
             console.log("토큰이 없습니다.");
         }
