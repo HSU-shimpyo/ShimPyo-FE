@@ -41,7 +41,6 @@ export default function SumAiChat() {
   };
 
   const handleRefresh = async () => {
-    console.log('handleRefreshStore');
     setIsRefreshing(true);
     loadChattingRoomList()
     setIsRefreshing(false);
