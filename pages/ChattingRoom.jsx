@@ -5,7 +5,7 @@ import ChattingContent from '../entities/ChattingRoom/ui/ChattingContent';
 import TitleBar from '../entities/ChattingRoom/ui/TitleBar';
 
 export default function ChattingRoom({route}) {
-  const {roomId} = route.params;
+  const {roomId,title} = route.params;
 
   return (
     <KeyboardAvoidingView
@@ -15,7 +15,7 @@ export default function ChattingRoom({route}) {
     >
       <MainLayout>
 
-        <TitleBar />
+        <TitleBar roomId={roomId} title={title} />
 
         <ChattingContent roomId={roomId}/>
 

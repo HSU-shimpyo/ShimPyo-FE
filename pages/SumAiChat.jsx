@@ -5,9 +5,6 @@ import Search from '../entities/SumAiChat/ui/Search';
 import FloatingButton from '../entities/SumAiChat/ui/FloatingButton';
 import NavigationBar from '../shared/component/NavigationBar';
 import { getAllChatRoom } from '../entities/SumAiChat/api/SumAiChatApi';
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { BASE_URL } from '../shared/config/config';
 import { useNavigation } from '@react-navigation/native';
 
 export default function SumAiChat() {
@@ -21,8 +18,8 @@ export default function SumAiChat() {
     })
   }, [])
 
-  const clickBox = (roomId) => {
-    navigetion.navigate("ChattingRoom", { roomId })
+  const clickBox = (roomId, title) => {
+    navigetion.navigate("ChattingRoom", { roomId,title })
   }
 
   // 검색어를 기준으로 데이터 필터링
@@ -50,7 +47,7 @@ export default function SumAiChat() {
           {/* 필터링된 질문방 더미데이터 */}
           {filteredData.length > 0 ? (
             filteredData.map((item) => (
-              <QuestionBox key={item.chatRoomId} onPress={() => clickBox(item.chatRoomId)}>
+              <QuestionBox key={item.chatRoomId} onPress={() => clickBox(item.chatRoomId, item.chatRoomTitle)}>
                 <BoxHeader>
                   <TitleText>{item.chatRoomTitle}</TitleText>
                   <TimeText>{item.lastChatAt}</TimeText>

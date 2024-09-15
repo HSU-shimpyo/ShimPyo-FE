@@ -2,12 +2,17 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import closeButton from '../../../assets/images/closebutton.png';
 import icon from '../../../assets/images/pencil.png';
-import SumAiChat from '../../../pages/SumAiChat';
-import { TouchableOpacity } from 'react-native';
-
-export default function TitleBar({ navigation }) {  // navigation 객체를 props로 받음
-  const [name, setName] = useState("질문방1");
+import { modifyChatRoomTitle } from '../api/ChattingRoomAPi';
+import { useNavigation } from '@react-navigation/native';
+export default function TitleBar({roomId, title}) {  
+  const navigation = useNavigation();
+  const [name, setName] = useState(title);
   const [isEditAble, setIsEditable] = useState(true);
+
+  const modifiedTitle = (title) => {
+    setIsEditable(true)
+    modifyChatRoomTitle(roomId,title)
+  }
 
   return (
     <MainLayout>
@@ -29,7 +34,7 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
           color={isEditAble ? "#111" : "#767676"}
           editable={isEditAble ? false : true}
           selectTextOnFocus={isEditAble ? false : true}
-          onSubmitEditing={() => setIsEditable(true)} // 완료버튼을 눌렀을 때
+          onSubmitEditing={()=>modifiedTitle(name)} // 완료버튼을 눌렀을 때
         />
 
         <IconWrap onPress={() => setIsEditable(false)} >

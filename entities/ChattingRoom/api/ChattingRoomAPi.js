@@ -70,3 +70,32 @@ export const getChat = async (roomId, setMessages) => {
     }
 };
 
+//채팅방 제목 수정 
+export const modifyChatRoomTitle = async (roomId, title) => {
+    console.log("룸", roomId);
+    console.log('제목', title);
+    try {
+        const token = await AsyncStorage.getItem('accessToken');
+        if (token) {
+            const response = await axios.put(`${BASE_URL}/api/chat/modifyChatRoomTitle`, 
+                {
+                    chatRoomId: roomId,
+                    title: title
+                },
+                {
+                    headers: {  // 헤더는 여기서 정의
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}` // 헤더에 토큰 추가
+                    }
+                }
+            );
+            console.log(response.data);
+        } else {
+            console.log("토큰이 없습니다.");
+        }
+    } catch (error) {
+        console.error('error!', error);
+    }
+};
+
+
