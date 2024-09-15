@@ -6,16 +6,22 @@ import FloatingButton from '../entities/SumAiChat/ui/FloatingButton';
 import NavigationBar from '../shared/component/NavigationBar';
 import { getAllChatRoom } from '../entities/SumAiChat/api/SumAiChatApi';
 import { useNavigation } from '@react-navigation/native';
+import { RefreshControl } from 'react-native-gesture-handler';
 
 export default function SumAiChat() {
+  const [isRefreshing, setIsRefreshing] = useState(false)
   const [searchQuery, setSearchQuery] = useState('');
   const [rooms, setRooms] = useState([]);
   const navigetion = useNavigation();
 
-  useEffect(() => {
+  const loadChattingRoomList = () => {
     getAllChatRoom().then((res) => {
       setRooms(res);
     })
+  }
+
+  useEffect(() => {
+    loadChattingRoomList()
   }, [])
 
   const clickBox = (roomId, title) => {
@@ -34,6 +40,13 @@ export default function SumAiChat() {
     return text;
   };
 
+  const handleRefresh = async () => {
+    console.log('handleRefreshStore');
+    setIsRefreshing(true);
+    loadChattingRoomList()
+    setIsRefreshing(false);
+  };
+
   return (
     <Container>
       {/* 타이틀 바 */}
@@ -42,7 +55,7 @@ export default function SumAiChat() {
       {/* 검색창 */}
       <Search setSearchQuery={setSearchQuery} />
 
-      <ScrollContainer>
+      <ScrollContainer refreshControl={<RefreshControl refreshing={isRefreshing} onRefresh={handleRefresh}/>}>
         <MainLayout>
           {/* 필터링된 질문방 더미데이터 */}
           {filteredData.length > 0 ? (
