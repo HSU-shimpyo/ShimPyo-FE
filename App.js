@@ -27,7 +27,8 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName="Main" // 초기 경로 설정
-        screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
+        screenOptions={{ headerShown: false, animationEnabled: false }} //모든 스크린에서 헤더를 숨김
+        mode="card" //스크린 전환 card / modal
       >
         <Stack.Screen name="FirstSplash" component={FirstSplash} />
         <Stack.Screen name="Start" component={Start} />
@@ -43,7 +44,7 @@ function App() {
         <Stack.Screen name="WhenDinner" component={WhenDinner} />
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
-        <Stack.Screen name="SumAiChat" component={SumAiChat} />
+        <Stack.Screen name="SumAiChat" component={SumAiChat}/>
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
         <Stack.Screen name="MyPage" component={MyPage} />
         <Stack.Screen name="SumHistory" component={SumHistory}/>
