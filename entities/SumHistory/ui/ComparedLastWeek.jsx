@@ -71,7 +71,7 @@ export default function ComparedLastWeek() {
             color={color}
             fontWeight="600"
           >
-            {percentage}<StyledText color="#4AA8EE" fontSize='32px'>%</StyledText></StyledText> <StyledText fontSize='16px' color={color} fontWeight="600" lineHeight='24px'>{status}</StyledText> 하였습니다
+            {percentage}<StyledText color={color} fontSize='32px'>%</StyledText></StyledText> <StyledText fontSize='16px' color={color} fontWeight="600" lineHeight='24px'>{status}</StyledText> 하였습니다
         </StyledText>
       </WrapText>
       <WrapChart>

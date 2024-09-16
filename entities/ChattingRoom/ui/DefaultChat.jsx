@@ -1,10 +1,25 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { ScrollView } from 'react-native';
+import headphone from '../../../assets/images/chatIcon.png';
+import { Animated } from 'react-native';
 
-export default function DefaultChat() {
-  const [chatLog, setChatLog] = useState([]);
-  const scrollViewRef = useRef();  // ScrollView의 참조를 위한 useRef 사용
+export default function DefaultChat({ messages, setMessages }) {
+  const [rotation, setRotation] = useState(0); // 회전값을 상태로 관리
+    // 좌우 흔들기 애니메이션
+    useEffect(() => {
+      let direction = 1; // 회전 방향 설정
+      const intervalId = setInterval(() => {
+        setRotation((prevRotation) => {
+          const nextRotation = prevRotation + (direction * 8); // 5도씩 회전
+          if (nextRotation > 15 || nextRotation < -15) {
+            direction *= -1; // 회전 방향을 반대로 변경
+          }
+          return nextRotation;
+        });
+      }, 50); // 100ms마다 실행
+  
+      return () => clearInterval(intervalId); // 컴포넌트 언마운트 시 타이머 제거
+    }, []);
 
   const QuestionArray = [
     "호기량 늘리는 운동법",
@@ -22,11 +37,25 @@ export default function DefaultChat() {
 
   const handleQuestionClick = (question) => {
     const answer = exampleAnswers[question];
-    setChatLog([...chatLog, { question, answer }]);
+    setMessages(prevMessages => [
+      ...prevMessages,
+      { type: 'user', content: question }
+    ]);
+    setMessages(prevMessages => [
+      ...prevMessages,
+      { type: 'ai', content: answer }
+    ]);
   };
 
   return (
     <MainLayout>
+
+      <Icon source={headphone} style={{ transform: `rotate(${rotation}deg)` }} />
+
+      <WelcomeMsg>
+        <StyledText>안녕하세요, 이주연님!   쉼표 AI 챗봇 숨숨이에요. 무엇이 궁금하실까요?</StyledText>
+      </WelcomeMsg>
+
       <DefaultSection>
         {QuestionArray.map((content, index) => (
           <DefaultQuestion key={index} onPress={() => handleQuestionClick(content)}>
@@ -35,33 +64,20 @@ export default function DefaultChat() {
         ))}
       </DefaultSection>
 
-      <ChatLogSection>
-        <ScrollView
-          contentContainerStyle={{ flexGrow: 1 }}
-          keyboardShouldPersistTaps="handled"
-          ref={scrollViewRef}  // ScrollView 참조 설정
-          onContentSizeChange={() => scrollViewRef.current.scrollToEnd({ animated: true })}
-        >
-          {chatLog.map((log, index) => (
-            <React.Fragment key={index}>
-              <UserMessage>
-                <StyledText color="#fff">{log.question}</StyledText>
-              </UserMessage>
-              <BotMessage>
-                <StyledText color="#505050">{log.answer}</StyledText>
-              </BotMessage>
-            </React.Fragment>
-          ))}
-        </ScrollView>
-      </ChatLogSection>
     </MainLayout>
   );
 }
 
 const MainLayout = styled.View`
-  flex: 1;
-  justify-content: flex-start;
-  padding: 0px 24px;
+`;
+
+const WelcomeMsg = styled.View`
+  background-color: #fff;
+  border-radius: 0px 8px 8px 8px;
+  padding: 12px;
+  max-width: 47%; 
+  margin-top : 10px;
+  margin-bottom : 12px;
 `;
 
 const StyledText = styled.Text`
@@ -77,9 +93,7 @@ const StyledText = styled.Text`
 const DefaultSection = styled.View`
   width: 100%;
   flex-direction: row;
-  flaot:start;
   flex-wrap: wrap;
-  
   `;
 
 const DefaultQuestion = styled.TouchableOpacity`
@@ -92,25 +106,7 @@ const DefaultQuestion = styled.TouchableOpacity`
   margin-right: 8px;
 `;
 
-const ChatLogSection = styled.View`
-  flex: 1;
-`;
-
-const UserMessage = styled.View`
-  background-color: #3C63EC;
-  align-self: flex-end;
-  padding: 8px 12px;
-  border-radius: 8px 0px 8px 8px;
-  margin-bottom: 20px;
-  max-width: 80%;
-
-`;
-
-const BotMessage = styled.View`
-  background-color: #FFFFFF;
-  align-self: flex-start;
-  padding: 8px 12px;
-  margin-bottom: 20px;
-  max-width: 80%;
-  border-radius: 0px 8px 8px 8px;
+const Icon = styled.Image`
+  width: 50px;
+  height: 50px;
 `;

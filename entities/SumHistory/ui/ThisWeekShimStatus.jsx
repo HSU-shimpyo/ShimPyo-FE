@@ -31,7 +31,7 @@ export default function ThisWeekShimStatus() {
                 letterSpacing="-0.3px"
                 padding="12px"> 양호
               </StyledText>
-              <CountText fontSize="56px" marginTop="30%">
+              <CountText fontSize="56px" marginTop="30%" paddingRight="12px">
                 {good}회
               </CountText>
             </Good>
@@ -76,7 +76,7 @@ export default function ThisWeekShimStatus() {
                 fontWeight="600"
                 lineHeight="18px"
                 letterSpacing="-0.3px"
-                padding="12px"> 경고
+                padding="5px"> 경고
               </StyledText>
               <CountText fontSize="56px" paddingRight="10px">
                 {warning}회
@@ -90,7 +90,7 @@ export default function ThisWeekShimStatus() {
                   fontWeight="600"
                   lineHeight="18px"
                   letterSpacing="-0.3px"
-                  padding="12px" > 양호
+                  padding="5px" > 양호
                 </StyledText>
                 <CountText paddingRight="12px">
                   {good}회
@@ -103,7 +103,7 @@ export default function ThisWeekShimStatus() {
                   fontWeight="600"
                   lineHeight="18px"
                   letterSpacing="-0.3px"
-                  padding="12px"> 위험
+                  padding="5px"> 위험
                 </StyledText>
                 <CountText paddingRight="12px">
                   {danger}회
@@ -221,7 +221,6 @@ const StyledText = styled.Text`
   font-size: ${({ fontSize }) => fontSize || '13px'};
   font-style: normal;
   font-weight: ${({ fontWeight }) => fontWeight || '400'};
-  line-height: ${({ lineHeight }) => lineHeight || '18px'};
   letter-spacing: ${({ letterSpacing }) => letterSpacing || '0.35px'};
   margin-bottom : ${({ marginBottom }) => marginBottom || '0px'};
   padding : ${({ padding }) => padding || '0px'};
@@ -232,6 +231,7 @@ color: #505050;
 text-align : right;
 padding-right : ${({ paddingRight }) => paddingRight || '0px'};
 padding-left : ${({ paddingLeft }) => paddingLeft || '0px'};
+padding-bottom : ${({ paddingBottom }) => paddingBottom || '0px'};
 font-family: Pretendard;
 font-size: ${({ fontSize }) => fontSize || '24px'};
 font-style: normal;

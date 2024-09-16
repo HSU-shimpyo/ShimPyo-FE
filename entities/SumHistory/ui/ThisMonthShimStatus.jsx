@@ -31,7 +31,7 @@ export default function ThisMonthShimStatus() {
                 letterSpacing="-0.3px"
                 padding="12px"> 양호
               </StyledText>
-              <CountText fontSize="56px" marginTop="30%">
+              <CountText fontSize="56px" marginTop="30%" paddingRight="12px">
                 {good}회
               </CountText>
             </Good>
@@ -76,7 +76,7 @@ export default function ThisMonthShimStatus() {
                 fontWeight="600"
                 lineHeight="18px"
                 letterSpacing="-0.3px"
-                padding="12px"> 경고
+                padding="5px"> 경고
               </StyledText>
               <CountText fontSize="56px" paddingRight="10px">
                 {warning}회
@@ -90,7 +90,7 @@ export default function ThisMonthShimStatus() {
                   fontWeight="600"
                   lineHeight="18px"
                   letterSpacing="-0.3px"
-                  padding="12px" > 양호
+                  padding="5px" > 양호
                 </StyledText>
                 <CountText paddingRight="12px">
                   {good}회
@@ -103,7 +103,7 @@ export default function ThisMonthShimStatus() {
                   fontWeight="600"
                   lineHeight="18px"
                   letterSpacing="-0.3px"
-                  padding="12px"> 위험
+                  padding="5px"> 위험
                 </StyledText>
                 <CountText paddingRight="12px">
                   {danger}회
