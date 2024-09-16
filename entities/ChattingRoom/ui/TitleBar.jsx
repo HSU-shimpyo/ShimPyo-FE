@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import closeButton from '../../../assets/images/closebutton.png';
 import icon from '../../../assets/images/pencil.png';
@@ -29,7 +29,7 @@ export default function TitleBar({roomId, title}) {
       <WrapTitle>
         <Title
           placeholder={name}
-          value={name}
+          value={name==="" ? "채팅방1" : name}
           onChangeText={text => setName(text)}
           color={isEditAble ? "#111" : "#767676"}
           editable={isEditAble ? false : true}

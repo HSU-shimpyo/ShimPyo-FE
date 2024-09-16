@@ -158,8 +158,8 @@ right  : 38%;
 top : 15%;
 `;
 const MeasureButton = styled.View`
-width : '178px';
-height : '34px';
+width : 178px;
+height : 34px;
 background-color : #3C63EC;
 text-align : center;
 margin-bottom : 32px;

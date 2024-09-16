@@ -1,19 +1,22 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 import MyChat from './MyChat';
-import AiChat from './AiChat'; // AI 응답용 컴포넌트
+import AiChat from './AiChat'; 
 import Input from './Input';
 import { getAsk, getChat } from '../api/ChattingRoomAPi';
+import DefaultChat from './DefaultChat';
+import Loading from './Loading';
 
 export default function ChattingContent({ roomId }) {
-  const [messages, setMessages] = useState([]); // 메시지 리스트 관리
-  const [content, setContent] = useState(''); // 입력된 내용 관리
+  const [messages, setMessages] = useState([]); //메세지 담는 배열
+  const [content, setContent] = useState(''); 
+  const [loading, setLoading] = useState(false); //로딩 상태
 
-  const scrollViewRef = useRef(null); // ScrollView 참조
+  const scrollViewRef = useRef(null); 
 
   useEffect(() => {
-    getChat(roomId, setMessages)
-  }, [])
+    getChat(roomId, setMessages);
+  }, []);
 
   const handleSendMessage = () => {
     if (content.trim()) {
@@ -21,13 +24,17 @@ export default function ChattingContent({ roomId }) {
         ...prevMessages,
         { type: 'user', content }
       ]);
-      getAsk(roomId, content, setMessages);
+      setLoading(true); 
+      getAsk(roomId, content, (newMessages) => {
+        setMessages(newMessages);
+        setLoading(false);
+      });
       setContent('');
     }
   };
 
+  // 메시지가 추가되면 자동으로 스크롤 하단으로 이동
   useEffect(() => {
-    //컴포넌트가 렌더링된 후 가장 하단으로 스크롤 이동
     scrollViewRef.current?.scrollToEnd({ animated: true });
   }, [messages]);
 
@@ -39,6 +46,7 @@ export default function ChattingContent({ roomId }) {
         contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
         showsVerticalScrollIndicator={false}
       >
+        <DefaultChat messages={messages} setMessages={setMessages} />
         <Content>
           {messages.map((message, index) => (
             message.type === 'user' ? (
@@ -47,28 +55,35 @@ export default function ChattingContent({ roomId }) {
               <AiChat key={index} content={message.content} />
             )
           ))}
+          {loading && <Loading/>}
         </Content>
-
       </ScrollViewContainer>
 
       <Input
         content={content}
         setContent={setContent}
-        onSend={handleSendMessage} // 메시지 전송 시 호출되는 함수
+        onSend={handleSendMessage}
       />
 
     </MainLayout>
   );
 }
 
+const LoadingMessage = styled.Text`
+  color: #767676;
+  font-size: 14px;
+  font-style: italic;
+  padding: 10px;
+  text-align: center;
+`;
+
 const ScrollViewContainer = styled.ScrollView`
   width: 90%;
 `;
 
 const Content = styled.View`
-width : 100%;
-padding-bottom : 13%;
-
+  width: 100%;
+  padding-bottom: 2%;
 `;
 
 const MainLayout = styled.View`
@@ -77,3 +92,4 @@ const MainLayout = styled.View`
   background-color: #F1F1F5;
   align-items: center;
 `;
+

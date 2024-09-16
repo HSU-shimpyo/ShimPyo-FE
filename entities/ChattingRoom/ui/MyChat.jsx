@@ -14,7 +14,6 @@ const MainLayout = styled.View`
   border-radius: 8px 0px 8px 8px;
   padding: 12px;
   margin-left: 149px;
-  max-width: 80%;
   margin-top : 10px;
 `;
 
