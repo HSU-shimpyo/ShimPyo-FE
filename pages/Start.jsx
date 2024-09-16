@@ -65,22 +65,20 @@ const RowContainer = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-background-color: #F7F7FB;
-width:166px;
+  background-color: #F7F7FB;
+  width:166px;
 
 `;
 
 const StyledButton = styled(Button)`
   background-color: #3b5998;
-  color: white;
   color: #3C63EC;
-
-font-family: Pretendard;
-font-size: 16px;
-font-style: normal;
-font-weight: 600;
-line-height: 24px; /* 150% */
-letter-spacing: -0.4px;
+  font-family: Pretendard;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 24px; /* 150% */
+  letter-spacing: -0.4px;
 `;
 
 const TextContainer = styled.View`

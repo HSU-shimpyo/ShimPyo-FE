@@ -4,6 +4,7 @@ import { KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import Input from '../entities/ChattingRoom/Input';
 import ChattingContent from '../entities/ChattingRoom/ChattingContent';
 import TitleBar from '../entities/ChattingRoom/TitleBar';
+import Loading from '../entities/ChattingRoom/Loading';
 
 export default function ChattingRoom() {
   const scrollViewRef = useRef();
@@ -41,7 +42,9 @@ export default function ChattingRoom() {
           </ScrollView>
         </ScrollViewContainer>
         <InputContainer>
+        <Loading/>
           <Input />
+
         </InputContainer>
       </MainLayout>
     </KeyboardAvoidingView>

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 
-export default function StandardButton({ text, marginBottom,marginTop,onPress, backgroundColor, width, height , borderRadius, color, fontSize}) {
+export default function StandardButton({ text, marginBottom,marginTop,onPress, backgroundColor, width, height , borderRadius, color, fontSize,Bottom,Top}) {
   return (
     <StyledButton 
       marginBottom={marginBottom} 
@@ -11,6 +11,8 @@ export default function StandardButton({ text, marginBottom,marginTop,onPress, b
       width={width}
       height={height}
       borderRadius={borderRadius}
+      Bottom={Bottom}
+      Top={Top}
       >
 
       {/* 버튼에 들어갈 텍스트 */}
@@ -29,6 +31,9 @@ const StyledButton = styled.TouchableOpacity`
   align-items: center;
   margin-top: ${({ marginTop }) => marginTop || '0px'};
   margin-bottom: ${({ marginBottom }) => marginBottom || '0px'};
+  bottom: ${({Bottom }) => Bottom || '0px'};
+  top: ${({Top }) => Top || '0px'};
+
 `;
 
 const ButtonText = styled.Text`
