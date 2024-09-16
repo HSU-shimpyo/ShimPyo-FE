@@ -1,25 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { myInfo } from '../model/model'
-import {getPef} from '../api/MyPageApi'
+import { getPef } from '../api/MyPageApi'
 import Sum from '../../../assets/images/mypageSum.png'
 
 export default function PEFInfo() {
   const [pef, setPef] = useState('')
-  useEffect(()=>{
-   getPef(setPef)
-   console.log(pef)
-  },[])
+  useEffect(() => {
+    getPef().then((res) =>{
+      const integerBreathingRate = Math.floor(res);
+      setPef(integerBreathingRate)
+    });
+  }, [])
 
   return (
     <MainLayout>
-        <TextSection>
-            <StyledText marginBottom="8px">
-                니의 기준 <StyledText fontWeight="600">최대 호기량(PEF)는</StyledText>
-            </StyledText>
-            <StyledText fontWeight="600" fontSize="48px">{pef} <StyledText fontSize="16px" fontWeight="600">Lpm</StyledText></StyledText>
-        </TextSection>
-      <SumImg source={Sum}/>
+      <TextSection>
+        <StyledText marginBottom="8px">
+          나의 기준 <StyledText fontWeight="600">최대 호기량(PEF)는</StyledText>
+        </StyledText>
+        <StyledText fontWeight="600" fontSize="48px">{pef}<StyledText fontSize="16px" fontWeight="600">Lpm</StyledText></StyledText>
+      </TextSection>
+      <SumImg source={Sum} />
     </MainLayout>
   )
 }

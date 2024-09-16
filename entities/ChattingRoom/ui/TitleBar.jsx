@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import closeButton from '../../assets/images/closebutton.png';
-import icon from '../../assets/images/pencil.png';
-import SumAiChat from '../../pages/SumAiChat';
-import { TouchableOpacity } from 'react-native';
-
-export default function TitleBar({ navigation }) {  // navigation 객체를 props로 받음
-  const [name, setName] = useState("질문방1");
+import closeButton from '../../../assets/images/closebutton.png';
+import icon from '../../../assets/images/pencil.png';
+import { modifyChatRoomTitle } from '../api/ChattingRoomAPi';
+import { useNavigation } from '@react-navigation/native';
+export default function TitleBar({roomId, title}) {  
+  const navigation = useNavigation();
+  const [name, setName] = useState(title);
   const [isEditAble, setIsEditable] = useState(true);
+
+  const modifiedTitle = (title) => {
+    setIsEditable(true)
+    modifyChatRoomTitle(roomId,title)
+  }
 
   return (
     <MainLayout>
@@ -24,12 +29,12 @@ export default function TitleBar({ navigation }) {  // navigation 객체를 prop
       <WrapTitle>
         <Title
           placeholder={name}
-          value={name}
+          value={name==="" ? "채팅방1" : name}
           onChangeText={text => setName(text)}
           color={isEditAble ? "#111" : "#767676"}
           editable={isEditAble ? false : true}
           selectTextOnFocus={isEditAble ? false : true}
-          onSubmitEditing={() => setIsEditable(true)} // 완료버튼을 눌렀을 때
+          onSubmitEditing={()=>modifiedTitle(name)} // 완료버튼을 눌렀을 때
         />
 
         <IconWrap onPress={() => setIsEditable(false)} >
@@ -60,8 +65,12 @@ const MainLayout = styled.View`
 const WrapTitle = styled.View`
   flex-direction: row;
   height: 28px;
+<<<<<<< HEAD:entities/ChattingRoom/TitleBar.jsx
   margin-top:60px;
 
+=======
+  margin-top : 10%;
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/TitleBar.jsx
 `;
 
 const Title = styled.TextInput`
@@ -91,6 +100,7 @@ const PencilIcon = styled.Image`
 
 const CloseButtonWrapper = styled.TouchableOpacity`
   opacity: ${({ opacity }) => opacity || '0'};
+  margin-top: 10%;
 `;
 
 const CloseButton = styled.Image`

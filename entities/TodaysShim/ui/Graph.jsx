@@ -1,62 +1,63 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Dimensions } from 'react-native';
-import { LineChart } from 'react-native-chart-kit';
-
-export default function DetailGraph({ PEF }) {
+import { LineChart } from 'react-native-gifted-charts'; { }
+export default function Graph({ PEF, first, second, third }) {
   const screenWidth = Dimensions.get('window').width;
+
+  // 데이터가 유효하지 않은 경우 기본값 0을 설정
+  const safeData = [first, second, third].map(value => isNaN(value) ? 0 : value);
+
+  // 가장 큰 값 찾기
+  const maxValue = Math.max(...safeData);
+
+  const lineData = [
+    { value: safeData[0], label: '1회차', labelTextStyle: { color: safeData[0] === maxValue ? '#3776CB' : '#505050', fontWeight : safeData[0] === maxValue ? 600 : 400 } },
+    { value: safeData[1], label: '2회차', labelTextStyle: { color: safeData[1] === maxValue ? '#3776CB' : '#505050',  fontWeight : safeData[1] === maxValue ? 600 : 400  } },
+    { value: safeData[2], label: '3회차', labelTextStyle: { color: safeData[2] === maxValue ? '#3776CB' : '#505050',  fontWeight : safeData[2] === maxValue ? 600 : 400  } }
+  ];
 
   return (
     <MainLayout>
       <StyledText>상세 지표</StyledText>
-      <LineChart
-        data={{
-          labels: ["1회차", "2회차", "3회차"],
-          datasets: [
-            {
-              data: [190, 150, 275],
-            },
-          ],
-        }}
-        withInnerLines={false}
-        withOuterLines={false}
-        withHorizontalLabels={true}
-        segments={3}
-        fromZero={true}
-        width={screenWidth}
-        height={300}
-        yAxisInterval={3}
-        xLabelsOffset={5}
-        yLabelsOffset={40}
-        chartConfig={{
-          backgroundGradientFrom: "rgb(0,0,0,0.1)",
-          backgroundGradientTo: "rgb(0,0,0,0.1)",
-          decimalPlaces: 0,
-          color: (opacity = 1) => `#3F51B5`, // 차트 선 색상
-          labelColor: (opacity = 1) => `#767676`, // 라벨 색상
-          fillShadowGradientFrom: '#8FBEEA', // 그라데이션 시작 색상
-          fillShadowGradientTo: "#fff", // 그라데이션 끝 색상
-          fillShadowGradientFromOpacity: 0.3, // 그라데이션 시작 색상 불투명도
-          fillShadowGradientToOpacity: 0.1, // 그라데이션 끝 색상 불투명도
-          propsForDots: {
-            r: "3",
-            strokeWidth: "5",
-            fill: "#3F51B5",
-          },
-          propsForLabels: {
+      <WrapChart>
+        <LineChart
+          disableScroll={true} // 스크롤 비활성화
+          data={lineData} // 차트 데이터
+          height={250} // 차트 높이
+          color="#3F51B5" // 라인 색상
+          dataPointsColor="#275F63" // 데이터 포인트 색상
+          thickness={3} // 라인 두께
+          hideDataPoints={false} // 데이터 포인트 표시
+          hideRules={true} // Y축의 눈금선 숨기기
+          areaChart={true} // 영역 그래프 표시
+          startFillColor="#8FBEEA" // 그라데이션 시작 색상
+          startOpacity={0.9}
+          endOpacity={0}
+          endFillColor="#ffffff" // 그라데이션 끝 색상
+          hideYAxisText={false} // Y축 텍스트 숨기기
+          maxValue={400}
+          minValue={0}
+          noOfSections={3}
+          yAxisThickness={0} // Y축 두께 숨기기
+          xAxisThickness={0} // X축 두께 숨기기
+          adjustToWidth={true} // 화면 너비에 맞춤
+          spacing={115} // 데이터 간격 설정
+          xAxisLabelTextStyle={{ //x축 라벨 스타일
             fontSize: 14,
-            fontWeight: "400",
-            letterSpacing: -0.35
-          },
-        }}
-        style={{
-          marginTop: 31,
-          marginLeft: 15,
-        }}
-      />
-      <Mark>
-        <MarkText>{PEF}</MarkText>
-      </Mark>
+            fontWeight: 400,
+            color: '#505050'
+
+          }}
+          yAxisLabelTextStyle={{ //y축 라벨 스타일
+            fontSize: 12,
+            fontWeight: 400,
+            color: '#767676'
+          }}
+          curved={true} //곡선 여부
+        />
+
+      </WrapChart>
     </MainLayout>
   );
 }
@@ -64,6 +65,7 @@ export default function DetailGraph({ PEF }) {
 const MainLayout = styled.View`
   width: 327px;
   height: 379px;
+  align-items : center;
   background-color: #fff;
   border-radius: 32px;
   margin-bottom: 20px;
@@ -71,6 +73,13 @@ const MainLayout = styled.View`
   shadow-offset: 0px 20px;
   shadow-opacity: 0.1;
   shadow-radius: 44px;
+`;
+
+const WrapChart = styled.View`
+width : 100%;
+position : relative;
+left : 3%;
+top : 5%;
 `;
 
 const StyledText = styled.Text`
@@ -82,6 +91,7 @@ const StyledText = styled.Text`
   letter-spacing: -0.5px;
   color: #111;
   padding: 23px 0 0 16px;
+  width : 100%;
 `;
 
 const Mark = styled.View`

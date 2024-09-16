@@ -3,8 +3,9 @@ import styled from 'styled-components';
 import icon from '../../../assets/images/icon_ver2.png';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
 import { Audio } from 'expo-av';
+import { getPef, modifyBreathing } from '../api/TodaysShimApi';
 
-export default function BreathNow({ setIsComplete, setAudioFileArray, year, month, day }) {
+export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileArray, year, month, day ,isMeasure}) {
   const [fill, setFill] = useState(0);
   const [count, setCount] = useState(0);
   const [text, setText] = useState("후! 불어주세요");
@@ -29,16 +30,16 @@ export default function BreathNow({ setIsComplete, setAudioFileArray, year, mont
     setFill(fill + 35);
     setCount((prevCount) => prevCount + 1);
 
-    startRecording(); //녹음 시작
+    startRecording(); // 녹음 시작
     setTimeout(() => {
-      stopRecording(); //1초 후 녹음 중지
+      stopRecording(); // 1초 후 녹음 중지
     }, 1000);
   };
 
   async function startRecording() {
     try {
       if (permissionResponse.status !== 'granted') {
-        console.log('권한 요청중..');
+        console.log('권한 요청 중...');
         await requestPermission();
       }
       await Audio.setAudioModeAsync({
@@ -49,7 +50,6 @@ export default function BreathNow({ setIsComplete, setAudioFileArray, year, mont
       console.log('녹음 시작');
       const { recording } = await Audio.Recording.createAsync(Audio.RecordingOptionsPresets.HIGH_QUALITY);
       recordingRef.current = recording;
-      console.log('녹음 완료');
     } catch (err) {
       console.error('녹음 실패', err);
     }
@@ -64,33 +64,68 @@ export default function BreathNow({ setIsComplete, setAudioFileArray, year, mont
       });
       const uri = recordingRef.current.getURI();
 
-      //배열에 새로운 URI 추가
+      // 배열에 새로운 URI 추가
       setAudioFileArray((prevArray) => {
         const newArray = [...prevArray, uri];
-        console.log('녹음 파일 : ', uri);
+        console.log('녹음 파일: ', uri);
         return newArray;
       });
     }
   }
 
   useEffect(() => {
-    switch (count) {
-      case 1:
-        setText("후! 불어주세요");
-        break;
-      case 2:
-        setText("한 번 더 힘차게!");
-        break;
-      case 3:
-        setText("마지막으로 한 번 더!");
-        setTimeout(() => {
-          setIsComplete(true);
-        }, 1500);
-        break;
-      default:
-        break;
+    if (count === 3 && audioFileArray.length === 3) {
+      setIsComplete(true)
+      setTimeout(() => {
+        if(isMeasure){
+          const formData = new FormData();
+          formData.append('date', formatDate());
+  
+          formData.append('firstFile', {
+            uri: audioFileArray[0],
+            name: "file1.m4a",
+            type: "audio/m4a"
+          });
+  
+          formData.append('secondFile', {
+            uri: audioFileArray[1],
+            name: "file2.m4a",
+            type: "audio/m4a"
+          });
+  
+          formData.append('thirdFile', {
+            uri: audioFileArray[2],
+            name: "file3.m4a",
+            type: "audio/m4a"
+          });
+          modifyBreathing(formData)
+        } else {
+          const formData = new FormData();
+          formData.append('date', formatDate());
+  
+          formData.append('firstFile', {
+            uri: audioFileArray[0],
+            name: "file1.m4a",
+            type: "audio/m4a"
+          });
+  
+          formData.append('secondFile', {
+            uri: audioFileArray[1],
+            name: "file2.m4a",
+            type: "audio/m4a"
+          });
+  
+          formData.append('thirdFile', {
+            uri: audioFileArray[2],
+            name: "file3.m4a",
+            type: "audio/m4a"
+          });
+  
+          getPef(formData);
+        }
+      }, 1500);
     }
-  }, [count]);
+  }, [count, audioFileArray]);
 
   return (
     <MainLayout>
@@ -131,7 +166,7 @@ export default function BreathNow({ setIsComplete, setAudioFileArray, year, mont
   );
 }
 
-
+// 스타일 정의
 const MainLayout = styled.View`
   width: 100%;
   height: 40%;
@@ -149,6 +184,7 @@ const WrapIcon = styled.TouchableOpacity`
   top: 7.5%;
   left: 32%;
 `;
+
 const Icon = styled.Image`
   width: 140px;
   height: 140px;
