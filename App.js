@@ -26,9 +26,9 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="main" // 초기 경로 설정
-        screenOptions={{ headerShown: false }} // 모든 스크린에서 헤더를 숨김
-    >
+        initialRouteName="Main" //초기 경로 설정
+        screenOptions={{ headerShown: false, animationEnabled: false }} //모든 스크린에서 헤더를 숨김
+      >
         <Stack.Screen name="FirstSplash" component={FirstSplash} />
         <Stack.Screen name="Start" component={Start} />
         <Stack.Screen name="SignUp" component={SignUp} />

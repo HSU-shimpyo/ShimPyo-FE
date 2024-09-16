@@ -55,7 +55,7 @@ export default function TitleBar({roomId, title}) {
 
 const MainLayout = styled.View`
   width: 100%;
-  height: 115px;
+  height: 100px;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -65,12 +65,7 @@ const MainLayout = styled.View`
 const WrapTitle = styled.View`
   flex-direction: row;
   height: 28px;
-<<<<<<< HEAD:entities/ChattingRoom/TitleBar.jsx
-  margin-top:60px;
-
-=======
   margin-top : 10%;
->>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/TitleBar.jsx
 `;
 
 const Title = styled.TextInput`
@@ -107,6 +102,4 @@ const CloseButton = styled.Image`
   width: 28px;
   height: 28px;
   margin-right: 24px;
-    margin-top:60px;
-
 `;

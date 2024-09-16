@@ -21,7 +21,6 @@ export default function Search({ setSearchQuery }) {
       />
     </WrapInput>
   );
-  
 }
 
 const WrapInput = styled.View`
