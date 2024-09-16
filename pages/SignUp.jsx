@@ -70,9 +70,6 @@ export default function SignUp() {
       <StandardButton
         text={isInfoComplete && isPefComplete ? "완료하기" : "다음"}
         backgroundColor={isInfoComplete && isPefComplete ? "#3C63EC" : "#E5E5EC"}
-        color={isInfoComplete && isPefComplete ? "#FFFFFF" : "#999999"}
-
-        Top={"40px"}
         onPress={handleButtonClick}
       />
     </MainLayout>

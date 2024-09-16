@@ -196,7 +196,7 @@ const StyledButton = styled.Pressable`
 `;
 
 const ButtonText = styled.Text`
-  color: ${({ isEnabled }) => (isEnabled ? '#FFF' : '#999999')};
+  color: ${({ isEnabled }) => (isEnabled ? '#FFF' : '#E5E5EC')};
   text-align: center;
   font-family: Pretendard;
   font-size: 16px;

@@ -50,8 +50,8 @@ export default function HospitalSearchModal({ setIsDayClick, setIsHospitalSelect
             placeholder="예약한 병원 이름을 입력해주세요"
             placeholderTextColor="#999"
             value={keyword}
-            onChangeText={(keyword) => setKeyword(keyword)} 
-            onSubmitEditing={DoneSearch}   
+            onChangeText={(keyword) => setKeyword(keyword)}
+            onSubmitEditing={DoneSearch}
             returnKeyType="done"
           />
           <GlassesImg source={glasses} />
