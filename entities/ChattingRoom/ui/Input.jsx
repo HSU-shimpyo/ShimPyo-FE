@@ -1,14 +1,24 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+<<<<<<< HEAD:entities/ChattingRoom/Input.jsx
+import { KeyboardAvoidingView, Platform } from 'react-native'; // 추가
+import ExportIcon from '../../assets/images/export.png';
+
+export default function Input() {
+  const [isFocused, setIsFocused] = useState(false);
+  const [inputHeight, setInputHeight] = useState(20);
+
+=======
 import ExportIcon from '../../../assets/images/export.png';
 export default function Input({ content, setContent, onSend }) {
   const [isFocused, setIsFocused] = useState(false);
   const [inputHeight, setInputHeight] = useState(20); // 기본 입력 창 높이
   
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/Input.jsx
   const handleContentSizeChange = (event) => {
     const { contentSize } = event.nativeEvent;
-    const newHeight = Math.min(contentSize.height, 60); // 최대 높이 60px 제한 (3줄)
-    setInputHeight(Math.max(newHeight, 20)); // 최소 높이 20px (한 줄)
+    const newHeight = Math.min(contentSize.height, 60);
+    setInputHeight(Math.max(newHeight, 20));
   };
 
   const sendMessage = () => {
@@ -16,6 +26,33 @@ export default function Input({ content, setContent, onSend }) {
   };
 
   return (
+<<<<<<< HEAD:entities/ChattingRoom/Input.jsx
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'} // iOS일 때 패딩 적용
+      style={{ flex: 1 }}
+    >
+      <WrapContainer>
+        <Wrap isFocused={isFocused} inputHeight={inputHeight}>
+          <InputContainer isFocused={isFocused} inputHeight={inputHeight}>
+            <StyledInput
+              placeholder="궁금한 점을 숨숨이에게 물어보세요!"
+              placeholderTextColor="#767676"
+              returnKeyType="done"
+              multiline
+              onFocus={() => setIsFocused(true)}
+              onBlur={() => setIsFocused(false)}
+              onContentSizeChange={handleContentSizeChange}
+              style={{ height: inputHeight }}
+              isFocused={isFocused}
+            />
+          </InputContainer>
+          <WrapIcon>
+            <Icon source={ExportIcon} />
+          </WrapIcon>
+        </Wrap>
+      </WrapContainer>
+    </KeyboardAvoidingView>
+=======
       <Wrap>
         <InputContainer isFocused={isFocused} inputHeight={inputHeight}>
           <StyledInput
@@ -36,25 +73,39 @@ export default function Input({ content, setContent, onSend }) {
           <Icon source={ExportIcon} />
         </WrapIcon>
       </Wrap>
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/Input.jsx
   );
 }
 
 const Wrap = styled.View`
+<<<<<<< HEAD:entities/ChattingRoom/Input.jsx
+  width: 327px;
+  height: ${({ inputHeight }) => inputHeight + 32}px;
+  position: relative;
+  background-color: #F1F1F5;
+  border-radius: 24px;
+  border: 1px solid ${({ isFocused }) => (isFocused ? '#3C63EC' : '#E5E5EC')};
+=======
 width : 100%;
 height : 89px;
 align-items : center;
 
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/Input.jsx
 `;
 
 
 const InputContainer = styled.View`
   width: 327px;
+<<<<<<< HEAD:entities/ChattingRoom/Input.jsx
+  height: ${({ inputHeight }) => inputHeight + 32}px;
+=======
   height: ${({ inputHeight }) => inputHeight + 32}px; 
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/Input.jsx
   display: flex;
-  justify-content: center; /* 수직 방향 중앙 정렬 */
-  align-items: center; /* 수평 방향 중앙 정렬 */
+  justify-content: center;
+  align-items: center;
   border-radius: 24px;
-  background-color: ${({ isFocused }) => (isFocused ? '#3C63EC1A' : '#F7F7FB')}; /* 둥근 모서리 내부 색상 */
+  background-color: ${({ isFocused }) => (isFocused ? '#3C63EC1A' : '#F7F7FB')};
 `;
 
 const StyledInput = styled.TextInput`
@@ -63,7 +114,11 @@ const StyledInput = styled.TextInput`
   max-height: 40px;
   padding-left: 14px;
   margin-right: 45px;
+<<<<<<< HEAD:entities/ChattingRoom/Input.jsx
+  margin-bottom: 5px;
+=======
   margin-bottom:5px;
+>>>>>>> a98cb29f9e104de3ed5b0911e352fc5d3a55ab6f:entities/ChattingRoom/ui/Input.jsx
   background-color: transparent;
 `;
 

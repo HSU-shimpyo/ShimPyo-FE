@@ -24,6 +24,9 @@ export default function InputInfo({
 }
 
 const MainLayout = styled.View`
-justify-content : space-between;
-padding-left : 24px;
+  justify-content : space-between;
+  padding-left : 24px;
+  margin-top:32px;
+
 `;
+

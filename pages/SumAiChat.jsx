@@ -8,7 +8,7 @@ import { getAllChatRoom } from '../entities/SumAiChat/api/SumAiChatApi';
 import { useNavigation } from '@react-navigation/native';
 import { RefreshControl } from 'react-native-gesture-handler';
 
-export default function SumAiChat() {
+export default function SumAiChat(navigation) {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [searchQuery, setSearchQuery] = useState('');
   const [rooms, setRooms] = useState([]);
