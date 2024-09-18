@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import { TouchableOpacity, Text } from 'react-native';
 export default function DinnerTimePicker({ setIsTimeSettingComplete, setDinnerTime }) {
-  const [isTimeZoneFocus, setIsTimeZoneFocus] = useState(null);
+  const [isTimeZoneFocus, setIsTimeZoneFocus] = useState('오후');
   const [isHoursFocus, setIsHoursFocus] = useState(null);
   const [isMinuteFocus, setIsMinuteFocus] = useState(null);
   const timeZone = ['오전', '오후'];

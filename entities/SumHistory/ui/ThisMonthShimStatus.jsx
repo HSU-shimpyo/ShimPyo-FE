@@ -186,7 +186,7 @@ export default function ThisMonthShimStatus() {
 
       <StyledText marginBottom="14px">
         <StyledText fontSize="13px" fontWeight="600" lineHeight="18px">이주연</StyledText>
-        님의 월간 평균 최대 호기량
+        님의 월간 평균 호기량 상태
       </StyledText>
 
       <StyledText fontSize="16px" fontWeight="400" lineHeight="24px" marginBottom="24px">
