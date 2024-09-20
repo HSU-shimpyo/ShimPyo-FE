@@ -8,11 +8,6 @@ export default function ChattingRoom({route}) {
   const {roomId,title} = route.params;
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
-      style={{ flex: 1 }}
-      keyboardVerticalOffset={Platform.OS === 'ios' ? -22 : 0} // iOS에서 키보드 높이 보정
-    >
       <MainLayout>
 
         <TitleBar roomId={roomId} title={title} />
@@ -20,7 +15,7 @@ export default function ChattingRoom({route}) {
         <ChattingContent roomId={roomId}/>
 
       </MainLayout>
-    </KeyboardAvoidingView>
+  
   );
 }
 

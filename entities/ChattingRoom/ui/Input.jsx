@@ -43,7 +43,6 @@ const Wrap = styled.View`
 width : 100%;
 height : 89px;
 align-items : center;
-
 `;
 
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { View, KeyboardAvoidingView, Platform } from 'react-native';
 import styled from 'styled-components';
 import MyChat from './MyChat';
 import AiChat from './AiChat'; 
@@ -8,16 +9,22 @@ import DefaultChat from './DefaultChat';
 import Loading from './Loading';
 
 export default function ChattingContent({ roomId }) {
-  const [messages, setMessages] = useState([]); //메세지 담는 배열
+  const [messages, setMessages] = useState([]); // 메시지 배열
   const [content, setContent] = useState(''); 
-  const [loading, setLoading] = useState(false); //로딩 상태
+  const [loading, setLoading] = useState(false); // 로딩 상태
+  const scrollViewRef = useRef(null); // ScrollView 참조
 
-  const scrollViewRef = useRef(null); 
+  // 메시지가 추가될 때마다 자동으로 스크롤을 아래로 이동
+  useEffect(() => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollToEnd({ animated: true });
+    }
+  }, [messages]);
 
   useEffect(() => {
     getChat(roomId, setMessages);
   }, []);
-
+  
   const handleSendMessage = () => {
     if (content.trim()) {
       setMessages(prevMessages => [
@@ -33,57 +40,52 @@ export default function ChattingContent({ roomId }) {
     }
   };
 
-  // 메시지가 추가되면 자동으로 스크롤 하단으로 이동
-  useEffect(() => {
-    scrollViewRef.current?.scrollToEnd({ animated: true });
-  }, [messages]);
-
   return (
-    <MainLayout>
+    <KeyboardAvoidingView 
+      style={{ flex: 1 }} 
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
+      <MainLayout>
+        <ScrollViewContainer
+          ref={scrollViewRef} // ScrollView 참조
+          contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }} // 'flex-end'로 스크롤뷰 내용 하단 정렬
+          onContentSizeChange={() => scrollViewRef.current?.scrollToEnd({ animated: true })} // 스크롤 자동 이동
+          showsVerticalScrollIndicator={false}
+        >
+          <Content>
+            {/* DefaultChat을 일반 메시지 리스트의 맨 위로 배치 */}
+            <DefaultChat messages={messages} setMessages={setMessages} />
 
-      <ScrollViewContainer
-        ref={scrollViewRef}
-        contentContainerStyle={{ flexGrow: 1, justifyContent: 'flex-end' }}
-        showsVerticalScrollIndicator={false}
-      >
-        <DefaultChat messages={messages} setMessages={setMessages} />
-        <Content>
-          {messages.map((message, index) => (
-            message.type === 'user' ? (
-              <MyChat key={index} content={message.content} />
-            ) : (
-              <AiChat key={index} content={message.content} />
-            )
-          ))}
-          {loading && <Loading/>}
-        </Content>
-      </ScrollViewContainer>
+            {/* 일반 사용자 메시지와 AI 메시지 렌더링 */}
+            {messages.map((message, index) => (
+              message.type === 'user' ? (
+                <MyChat key={index} content={message.content} />
+              ) : (
+                <AiChat key={index} content={message.content} />
+              )
+            ))}
+            {loading && <Loading />}
+          </Content>
+        </ScrollViewContainer>
 
-      <Input
-        content={content}
-        setContent={setContent}
-        onSend={handleSendMessage}
-      />
-
-    </MainLayout>
+        <Input
+          content={content}
+          setContent={setContent}
+          onSend={handleSendMessage}
+        />
+      </MainLayout>
+    </KeyboardAvoidingView>
   );
 }
 
-const LoadingMessage = styled.Text`
-  color: #767676;
-  font-size: 14px;
-  font-style: italic;
-  padding: 10px;
-  text-align: center;
-`;
-
 const ScrollViewContainer = styled.ScrollView`
-  width: 90%;
+  width: 100%;
 `;
 
 const Content = styled.View`
   width: 100%;
-  padding-bottom: 2%;
+  padding-left: 5%;
+  padding-right: 5%;
 `;
 
 const MainLayout = styled.View`
@@ -92,4 +94,3 @@ const MainLayout = styled.View`
   background-color: #F1F1F5;
   align-items: center;
 `;
-
