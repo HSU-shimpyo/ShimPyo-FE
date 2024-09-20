@@ -69,6 +69,7 @@ export default function DefaultChat({ messages, setMessages }) {
 }
 
 const MainLayout = styled.View`
+padding-left : 5%;
 `;
 
 const WelcomeMsg = styled.View`

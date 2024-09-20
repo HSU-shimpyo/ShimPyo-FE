@@ -16,9 +16,11 @@ export default function ComparedLastMonth() {
     getMonthlyDifference().then((res) => {
       const lastMonthValue = isNaN(res.lastMonthAverage) ? 0 : parseFloat(res.lastMonthAverage) || 0;
       const thisMonthValue = isNaN(res.thisMonthAverage) ? 0 : parseFloat(res.thisMonthAverage) || 0;
+      const integerLastMonth = Math.floor(lastMonthValue);
+      const integerThisMonth = Math.floor(thisMonthValue);
 
-      setLastMonth(lastMonthValue);
-      setThisMonth(thisMonthValue);
+      setLastMonth(integerLastMonth);
+      setThisMonth(integerThisMonth);
       setPercentage(res.differencePercent || 0);
       setStatus(res.changeDirection || '');
     }).catch((error) => {
@@ -105,6 +107,8 @@ export default function ComparedLastMonth() {
           yAxisTextStyle={yLabelStyle}  // yAxisTextStyle 사용
           xAxisLabelTextStyle={XLabelStyle}
         />
+        <LastWeek color={(lastMonth > thisMonth) ? '#FFF' : '#999'} fontWeight={(lastMonth > thisMonth) ? '600' : '400'}>{(lastMonth===0) ? "" : lastMonth}</LastWeek>
+        <ThisWeek color={(thisMonth > lastMonth) ? '#FFF' : '#999'} fontWeight={(thisMonth > lastMonth) ? '600' : '400'}>{thisMonth}</ThisWeek>
 
       </WrapChart>
 
@@ -141,4 +145,30 @@ const StyledText = styled.Text`
   font-weight: ${({ fontWeight }) => fontWeight || '400'};
   line-height: ${({ lineHeight }) => lineHeight || '20px'};
   letter-spacing: ${({ letterSpacing }) => letterSpacing || '0.35px'};
+`;
+
+const LastWeek = styled.Text`
+position : absolute;
+bottom : 20%;
+left : 23%;
+color:  ${({ color }) => color || '#111'};
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: ${({ fontWeight }) => fontWeight || 400};
+line-height: 34px; /* 141.667% */
+letter-spacing: -0.6px;
+`;
+
+const ThisWeek = styled.Text`
+position : absolute;
+bottom : 20%;
+right : 17%;
+color : ${({ color }) => color || '#111'};
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: ${({ fontWeight }) => fontWeight || 400};
+line-height: 34px; /* 141.667% */
+letter-spacing: -0.6px;
 `;

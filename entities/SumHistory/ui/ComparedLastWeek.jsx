@@ -14,8 +14,10 @@ export default function ComparedLastWeek() {
 
   useEffect(() => {
     getDifference().then((res) => {
-      setLastWeek(res.lastWeekAverage);
-      setThisWeek(res.thisWeekAverage);
+      const integerLastWeek = Math.floor(res.lastWeekAverage);
+      setLastWeek(integerLastWeek);
+      const integerThisWeek = Math.floor(res.thisWeekAverage);
+      setThisWeek(integerThisWeek);
       setPercentage(res.differencePercent);
       setStatus(res.state);
     });
@@ -90,6 +92,8 @@ export default function ComparedLastWeek() {
           hideYAxisText={true}  // Y축 라벨 숨김
           xAxisLabelTextStyle={XLabelStyle}
         />
+        <LastWeek color={(lastWeek > thisWeek) ? '#FFF' : '#999'} fontWeight={(lastWeek > thisWeek) ? '600' : '400'}>{lastWeek}</LastWeek>
+        <ThisWeek color={(thisWeek > lastWeek) ? '#FFF' : '#999'} fontWeight={(thisWeek > lastWeek) ? '600' : '400'}>{thisWeek}</ThisWeek>
       </WrapChart>
     </MainLayout>
   );
@@ -117,11 +121,37 @@ const WrapChart = styled.View`
 `;
 
 const StyledText = styled.Text`
-    color:  ${({ color }) => color || '#111'};;
-    font-family: Pretendard;
-    font-size: ${({ fontSize }) => fontSize || '14px'};
-    font-style: normal;
-    font-weight: ${({ fontWeight }) => fontWeight || '400'};
-    line-height: ${({ lineHeight }) => lineHeight || '20px'};
-    letter-spacing: ${({ letterSpacing }) => letterSpacing || '0.35px'};
+  color:  ${({ color }) => color || '#111'};
+  font-family: Pretendard;
+  font-size: ${({ fontSize }) => fontSize || '14px'};
+  font-style: normal;
+  font-weight: ${({ fontWeight }) => fontWeight || '400'};
+  line-height: ${({ lineHeight }) => lineHeight || '20px'};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing || '0.35px'};
+`;
+
+const LastWeek = styled.Text`
+position : absolute;
+bottom : 20%;
+left : 23%;
+color:  ${({ color }) => color || '#111'};
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: ${({ fontWeight }) => fontWeight || 400};
+line-height: 34px; /* 141.667% */
+letter-spacing: -0.6px;
+`;
+
+const ThisWeek = styled.Text`
+position : absolute;
+bottom : 20%;
+right : 18%;
+color : ${({ color }) => color || '#111'};
+font-family: Pretendard;
+font-size: 24px;
+font-style: normal;
+font-weight: ${({ fontWeight }) => fontWeight || 400};
+line-height: 34px; /* 141.667% */
+letter-spacing: -0.6px;
 `;
