@@ -79,7 +79,7 @@ export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileA
       setTimeout(() => {
         if(isMeasure){
           const formData = new FormData();
-          formData.append('date', formatDate());
+          formData.append('date', "2024-09-26");
   
           formData.append('firstFile', {
             uri: audioFileArray[0],
@@ -101,7 +101,7 @@ export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileA
           modifyBreathing(formData)
         } else {
           const formData = new FormData();
-          formData.append('date', formatDate());
+          formData.append('date', "2024-09-26");
   
           formData.append('firstFile', {
             uri: audioFileArray[0],
@@ -121,7 +121,7 @@ export default function BreathNow({ setIsComplete, audioFileArray, setAudioFileA
             type: "audio/m4a"
           });
   
-          getPef(formData);
+          modifyBreathing(formData);
         }
       }, 1500);
     }

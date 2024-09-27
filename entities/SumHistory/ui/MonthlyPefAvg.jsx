@@ -61,7 +61,7 @@ export default function MonthlyPefAvg() {
         {week1 || week2 || week3 || week4 ? (
           <BarChart
             disableScroll={true}
-            maxValue={400}
+            maxValue={450}
             minValue={0}
             hideRules={true}
             height={300}

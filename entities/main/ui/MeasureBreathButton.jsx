@@ -24,7 +24,7 @@ export default function MeasureBreathButton({ year, month, day }) {
     getResult().then((res) => {
       if (res === null) {
         setIsMeasure(false)
-      } else { setIsMeasure(true) }
+      } else { setIsMeasure(false) }
 
       const integerBreathingRate = Math.floor(res.breathingRate);
       setPef(integerBreathingRate)

@@ -79,7 +79,7 @@ export default function ThisWeekShimStatus() {
                 padding="5px"> 경고
               </StyledText>
               <CountText fontSize="56px" paddingRight="10px">
-                {warning}회
+                4회
               </CountText>
             </Warning>
             <Wrap flexDirection="row">
@@ -93,7 +93,7 @@ export default function ThisWeekShimStatus() {
                   padding="5px" > 양호
                 </StyledText>
                 <CountText paddingRight="12px">
-                  {good}회
+                  2회
                 </CountText>
               </Good>
               <Danger width="142px" height="66px">
@@ -106,7 +106,7 @@ export default function ThisWeekShimStatus() {
                   padding="5px"> 위험
                 </StyledText>
                 <CountText paddingRight="12px">
-                  {danger}회
+                  1회
                 </CountText>
 
               </Danger>
@@ -128,7 +128,7 @@ export default function ThisWeekShimStatus() {
                   padding="12px"> 양호
                 </StyledText>
                 <CountText paddingRight="12px">
-                  {good}회
+                  1회
                 </CountText>
               </Good>
               <Warning>
@@ -141,7 +141,7 @@ export default function ThisWeekShimStatus() {
                   padding="12px" > 경고
                 </StyledText>
                 <CountText paddingRight="12px">
-                  {warning}회
+                  2회
                 </CountText>
               </Warning>
             </Wrap>
@@ -155,7 +155,7 @@ export default function ThisWeekShimStatus() {
                 padding="12px"> 위험
               </StyledText>
               <CountText marginTop="30%" fontSize="56px" paddingRight="12px">
-                {danger}회
+                4회
               </CountText>
             </Danger>
           </WrapView>
