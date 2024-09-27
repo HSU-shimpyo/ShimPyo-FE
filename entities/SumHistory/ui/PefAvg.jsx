@@ -31,6 +31,16 @@ export default function PefAvg() {
     frontColor: (data[i] === 45) ? '#F1F1F5' : '#9CC9F5'
   }));
 
+  // const barData = [
+  //   {value: 397, label:'화', frontColor: '#9CC9F5'},
+  //   {value: 400, label:'월', frontColor: '#9CC9F5'},
+  //   {value: 396, label:'일', frontColor: '#9CC9F5'},
+  //   {value: 369, label:'토', frontColor: '#9CC9F5'},
+  //   {value: 380, label:'월', frontColor: '#9CC9F5'},
+  //   {value: 389, label:'화', frontColor: '#9CC9F5'},
+  //   {value: 410, label:'수', frontColor: '#9CC9F5'},
+  // ]
+
   const yLabelStyle = {
     color: '#CACAD7',
     fontSize: 12,
@@ -50,7 +60,7 @@ export default function PefAvg() {
       <WrapChart>
         <BarChart
           disableScroll={true}
-          maxValue={400}
+          maxValue={600}
           minValue={0}
           hideRules={true}
           height={300}

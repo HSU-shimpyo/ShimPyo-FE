@@ -27,6 +27,18 @@ export default function History({ labels, data }) {
     label: label || ''    // 레이블이 없으면 빈 문자열 처리
   }));
 
+  // const lineData = [
+  //   {value: 397, label : '09.17'},
+  //   {value: 412, label : '09.20'},
+  //   {value: 431, label : '09.21'},
+  //   {value: 369, label : '09.22'},
+  //   {value: 444, label : '09.23'},
+  //   {value: 389, label : '09.24'},
+  //   {value: 410, label : '09.25'}
+  // ]
+
+  
+
   return (
     <MainLayout>
       <StyledText>지난 7일간 측정 내역</StyledText>

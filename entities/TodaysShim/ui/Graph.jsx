@@ -27,22 +27,22 @@ export default function Graph({ PEF, first, second, third }) {
           height={250} // 차트 높이
           color="#3F51B5" // 라인 색상
           dataPointsColor="#275F63" // 데이터 포인트 색상
-          thickness={3} // 라인 두께
+          thickness={3} //라인 두께
           hideDataPoints={false} // 데이터 포인트 표시
-          hideRules={true} // Y축의 눈금선 숨기기
-          areaChart={true} // 영역 그래프 표시
-          startFillColor="#8FBEEA" // 그라데이션 시작 색상
+          hideRules={true} //Y축의 눈금선 숨기기
+          areaChart={true} //영역 그래프 표시
+          startFillColor="#8FBEEA" //그라데이션 시작 색상
           startOpacity={0.9}
           endOpacity={0}
-          endFillColor="#ffffff" // 그라데이션 끝 색상
-          hideYAxisText={false} // Y축 텍스트 숨기기
-          maxValue={400}
+          endFillColor="#ffffff" //그라데이션 끝 색상
+          hideYAxisText={false} //Y축 텍스트 숨기기
+          maxValue={600}
           minValue={0}
           noOfSections={3}
-          yAxisThickness={0} // Y축 두께 숨기기
-          xAxisThickness={0} // X축 두께 숨기기
-          adjustToWidth={true} // 화면 너비에 맞춤
-          spacing={115} // 데이터 간격 설정
+          yAxisThickness={0} //Y축 두께 숨기기
+          xAxisThickness={0} //X축 두께 숨기기
+          adjustToWidth={true} //화면 너비에 맞춤
+          spacing={115} //데이터 간격 설정
           xAxisLabelTextStyle={{ //x축 라벨 스타일
             fontSize: 14,
             fontWeight: 400,

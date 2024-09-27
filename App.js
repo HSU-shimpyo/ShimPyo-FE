@@ -43,10 +43,10 @@ function App() {
         <Stack.Screen name="WhenDinner" component={WhenDinner} />
         <Stack.Screen name="MedicineComplete" component={MedicineComplete} />
         <Stack.Screen name="TodaysShim" component={TodaysShim} />
-        <Stack.Screen name="SumAiChat" component={SumAiChat}/>
+        <Stack.Screen name="SumAiChat" component={SumAiChat} />
         <Stack.Screen name="ChattingRoom" component={ChattingRoom} />
         <Stack.Screen name="MyPage" component={MyPage} />
-        <Stack.Screen name="SumHistory" component={SumHistory}/>
+        <Stack.Screen name="SumHistory" component={SumHistory} />
       </Stack.Navigator>
     </NavigationContainer>
   );
